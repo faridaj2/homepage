@@ -3,5 +3,32 @@
 @tailwind utilities;
 
 .line{
-    @apply before:content-[''] before:absolute before:bg-black before:w-0 hover:before:w-full before:h-[2px] before:duration-500 before:transition-all before:-bottom-3 relative;
+    @apply before:content-[''] before:absolute before:bg-black before:w-0 hover:before:w-full before:h-[2px] before:duration-500 before:transition-all before:-bottom-0 relative py-3;
+}
+.submenu{
+    @apply pl-5 pr-5 py-2;
+}
+.menu-hover{
+    @apply hover:text-green-500;
+}
+.special{
+    @apply text-emerald-800
+}
+.special h1{
+    @apply font-Petrona font-bold text-3xl mb-5 md:text-left text-center;
+}
+.special img{
+    @apply h-72 rounded-md shadow-costum1 md:m-5 mx-auto md:float-left;
+}
+.special p{
+    @apply leading-relaxed tracking-wide text-justify indent-10;
+}
+.special h2{
+    @apply font-Petrona font-bold text-2xl mt-10 uppercase;
+}
+.activeDmenu{
+    @apply bg-[#EAF2FE] flex items-center gap-2 font-semibold px-2 pr-5 mx-2 py-2 rounded-md cursor-pointer text-violet-700
+}
+.Dmenu{
+    @apply flex items-center gap-2 font-semibold px-2 pr-5 mx-2 py-2 rounded-md text-slate-900 cursor-pointer hover:bg-slate-100
 }

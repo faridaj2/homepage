@@ -18,7 +18,7 @@
             </div>
             <div class=" mt-4">
                 <h1 class="text-sm my-2 ml-2 text-gray-500">Isi Artikel ini</h1>
-                <textarea name="" id="" cols="30" rows="10"
+                <textarea name="" id="" cols="100" rows="10"
                     class="w-full outline-none border-2 focus:ring-0 bg-background text-2xl"></textarea>
             </div>
             <input type="submit" value="Simpan"
@@ -65,13 +65,14 @@
         }
         tinymce.init({
             selector: 'textarea',
+            height: "720",
             setup: function(editor) {
                 editor.on('change', function() {
                     content = editor.getContent();
                 });
             },
-            plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss image',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            plugins: 'textcolor ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss image',
+            toolbar: 'forecolor backcolor | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name',
             image_uploadtab: true,

@@ -35,13 +35,9 @@
                                 class="block group-hover/submenu2:hidden"></ion-icon><ion-icon
                                 name="chevron-down-outline" class="hidden group-hover/submenu2:block"></ion-icon>
                             <ul class="w-full ml-5 my-3 group-hover/submenu2:block hidden">
-                                <li class="py-3"><a href="/profil-pimpinan/1">KH. M. Hisyam
-                                        Syafaat</a></li>
-                                <li class="py-3">KH. M. Riza Azizy, M.IEB</li>
-                                <li class="py-3">KH. M. Bahrul Ulum Mubarok</li>
-
-                                @foreach ($navbarData['pendidikan'] as $item)
-                                    <li class="py-3">{{ $item->title }}</li>
+                                @foreach ($navbarData['pemimpin'] as $item)
+                                    <li class="py-3"><a
+                                            href="/profil-pimpinan/{{ $item->id }}">{{ $item->title }}</a></li>
                                 @endforeach
 
 
@@ -52,10 +48,10 @@
                                 class="block group-hover/submenu2:hidden"></ion-icon><ion-icon
                                 name="chevron-down-outline" class="hidden group-hover/submenu2:block"></ion-icon>
                             <ul class="w-full ml-5 my-3 group-hover/submenu2:block hidden">
-                                <li class="py-3">Madin Darul Adzkiya'</li>
-                                <li class="py-3">SMK Darussalam Blokagung 2</li>
-                                <li class="py-3">SMP Darussalam Blokagung 2</li>
-                                <li class="py-3">TK Miftahul Huda</li>
+                                @foreach ($navbarData['pendidikan'] as $item)
+                                    <li class="py-3"><a href="/pendidikan/{{ $item->id }}">{{ $item->title }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
                     </ul>
@@ -65,15 +61,13 @@
                         class="block group-hover/submenu:hidden"></ion-icon><ion-icon name="chevron-down-outline"
                         class="hidden group-hover/submenu:block"></ion-icon>
                     <ul class="flex-col w-full text-xs gap-3 my-3 ml-5 pr-5 hidden group-hover/submenu:flex">
-                        <li class="">Latar Belakang
-                        </li>
-                        <li class="">Selayang Pandang
-                        </li>
-                        <li class="">Sintesa
-                        </li>
+                        @foreach ($navbarData['sejarah'] as $item)
+                            <li class="py-3"><a href="/sejarah/{{ $item->id }}">{{ $item->title }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </li>
-                <li class="flex items-center justify-between"><a href="#">Warta</a></li>
+                <li class="flex items-center justify-between"><a href="/warta">Warta</a></li>
                 <li class="flex items-center justify-between"><a href="#">Pendaftaran</a></li>
                 <li class="flex items-center justify-between"><a href="#">Kontak & Alamat</a></li>
             </ul>
@@ -139,13 +133,13 @@
 
                             @foreach ($navbarData['sejarah'] as $item)
                                 <li class="submenu menu-hover"><a class="flex items-center w-52 justify-between"
-                                        href="/pendidikan/{{ $item->id }}">{{ $item->title }}</a>
+                                        href="/sejarah/{{ $item->id }}">{{ $item->title }}</a>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
                 </li>
-                <li class="line"><a href="#">Warta</a></li>
+                <li class="line"><a href="/warta">Warta</a></li>
                 <li class="line"><a href="#">Pendaftaran</a></li>
                 <li class="line"><a href="#">Kontak & Alamat</a></li>
             </ul>

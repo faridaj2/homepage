@@ -17,7 +17,8 @@
         Error
     </button>
 </div> --}}
-<div x-data="noticesHandler()" class="fixed inset-0 flex flex-col items-end justify-start h-screen w-screen"
+<div x-data="noticesHandler()"
+    class="fixed top-10 right-10 gap-3 pr-10 inset-0 flex flex-col items-end justify-start h-screen w-screen"
     @notice.window="add($event.detail)" style="pointer-events:none">
 
     <template x-for="notice of notices" :key="notice.id">
@@ -26,7 +27,7 @@
             x-transition:leave="transition ease-out duration-500"
             x-transition:leave-start="transform translate-x-0 opacity-100"
             x-transition:leave-end="transform translate-x-full opacity-0" @click="remove(notice.id)"
-            class="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow mt-20 mr-10">
+            class="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow">
             <div class="ms-3 text-sm font-normal" x-text="notice.text">Set yourself free.</div>
 
         </div>

@@ -9,7 +9,7 @@
     @apply pl-5 pr-5 py-2;
 }
 .menu-hover{
-    @apply hover:text-green-500;
+    @apply hover:text-green-500 hover:cursor-pointer text-sm;
 }
 .special{
     @apply text-emerald-800

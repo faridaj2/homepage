@@ -2,9 +2,9 @@
 @section('content')
     <div class="mx-3" x-data="app">
         <div>
-            <h1 class="font-bold text-3xl">Buat Artikel Baru</h1>
+            <h1 class="font-bold text-3xl">Buat Berita Baru</h1>
         </div>
-        <form method="POST" action="/dashboard/sejarah" class="mt-5" @submit.prevent="submitArticleLeader()">
+        <form method="POST" action="/dashboard/article-leader" class="mt-5" @submit.prevent="submitArticleLeader()">
             @csrf
             <div class="">
                 <h1 class="text-sm my-2 ml-2 text-gray-500">Judul Artikel Ini...?</h1>
@@ -18,7 +18,7 @@
             </div>
             <div class=" mt-4">
                 <h1 class="text-sm my-2 ml-2 text-gray-500">Isi Artikel ini</h1>
-                <textarea name="" id="myTextarea" cols="30" rows="10"
+                <textarea name="" id="" cols="30" rows="10"
                     class="w-full outline-none border-2 focus:ring-0 bg-background text-2xl"></textarea>
             </div>
             <input type="submit" value="Simpan"
@@ -32,14 +32,14 @@
 
     {{-- end --}}
     <script>
-        let content;
+        let content
         const app = {
-            title: '{{ $data->title }}',
-            img: '{{ $data->image_url }}',
+            title: '',
+            img: '',
             content: '',
             csrfToken: document.cookie.match(/XSRF-TOKEN=([^;]+)/)[1],
             submitArticleLeader() {
-                axios.put('/dashboard/sejarah/' + {{ $data->id }}, {
+                axios.post('/dashboard/berita', {
                         title: this.title,
                         img: this.img,
                         content: content
@@ -52,7 +52,7 @@
                                 text: '✔️ Data Berhasil Terkirim'
                             }),
                             setTimeout(() => {
-                                window.location.replace('/dashboard/sejarah')
+                                window.location.replace('/dashboard/berita')
                             }, 3000);
                     })
                     .catch(error => {
@@ -63,7 +63,6 @@
                     })
             }
         }
-
         tinymce.init({
             selector: 'textarea',
             height: "720",
@@ -71,27 +70,14 @@
                 editor.on('change', function() {
                     content = editor.getContent();
                 });
-                editor.on('init', function() {
-                    editor.setContent(`{!! $data->content !!}`);
-                    content = `{!! $data->content !!}`;
-                });
             },
             plugins: 'textcolor tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss image',
             toolbar: 'forecolor backcolor | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name',
             image_uploadtab: true,
-            mergetags_list: [{
-                    value: 'First.Name',
-                    title: 'First Name'
-                },
-                {
-                    value: 'Email',
-                    title: 'Email'
-                },
-            ],
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject(
-                "See docs to implement AI Assistant")),
+
+
 
         });
     </script>

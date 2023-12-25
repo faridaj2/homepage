@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\ArticleLeaderController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\SejarahController;
 
@@ -20,8 +22,11 @@ use App\Http\Controllers\SejarahController;
 
 
 Route::controller(Controller::class)->group(function () {
+    Route::get('warta', 'Warta');
+    Route::get('sejarah/{id}', 'Sejarah');
+    Route::get('pendidikan/{id}', 'Pendidikan');
+    Route::get('profil-pimpinan/{id}', 'profilPimpinan');
     Route::get('/', 'index');
-    Route::get('/profil-pimpinan/1', 'profilPimpinan');
     Route::get('/login', 'login');
     Route::get('/register', 'register');
 });
@@ -37,6 +42,12 @@ Route::resource('/dashboard/pendidikan', PendidikanController::class)->middlewar
 ]);
 Route::resource('/dashboard/sejarah', SejarahController::class)->middleware('auth')->names([
     'index' => 'sejarah'
+]);
+Route::resource('/dashboard/berita', BeritaController::class)->middleware('auth')->names([
+    'index' => 'berita'
+]);
+Route::resource('/dashboard/file', FileController::class)->middleware('auth')->names([
+    'index' => 'file'
 ]);
 
 require __DIR__ . '/auth.php';

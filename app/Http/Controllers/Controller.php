@@ -24,10 +24,35 @@ class Controller extends BaseController
     {
         return view('page.register');
     }
-    public function profilPimpinan()
+    public function profilPimpinan($id)
     {
-        return view('page.profil');
+        $data = [
+            'data' => articleLeader::find($id),
+            'page' => 'Profil Pimpinan'
+        ];
+        return view('page.page', $data);
     }
+    public function Pendidikan($id)
+    {
+        $data = [
+            'data' => pendidikan::find($id),
+            'page' => 'Profil Instansi Pendidikan'
+        ];
+        return view('page.page', $data);
+    }
+    public function sejarah($id)
+    {
+        $data = [
+            'data' => sejarah::find($id),
+            'page' => 'Sejarah'
+        ];
+        return view('page.page', $data);
+    }
+    public function Warta()
+    {
+        return view('page.warta');
+    }
+
     public function navData()
     {
         $data = [

@@ -44,7 +44,8 @@
         <div class="w-full md:pr-5" :class="open || 'md:pl-5'">
             <div class="bg-base min-w-full shrink md:my-5 flex items-center justify-between rounded-lg">
                 <div></div>
-                <ion-icon name="menu" class="z-0 text-xl p-3 cursor-pointer" @click="open=!open"></ion-icon>
+                <ion-icon name="menu" class="z-0 text-3xl p-3 cursor-pointer text-sky-700"
+                    @click="open=!open"></ion-icon>
             </div>
             <div id="main-content">
                 @yield('content')

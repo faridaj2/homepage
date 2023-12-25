@@ -4,7 +4,7 @@
         <div>
             <h1 class="font-bold text-3xl">Buat Artikel Baru</h1>
         </div>
-        <form method="POST" action="/dashboard/sejarah" class="mt-5" @submit.prevent="submitArticleLeader()">
+        <form method="POST" action="/dashboard/berita" class="mt-5" @submit.prevent="submitArticleLeader()">
             @csrf
             <div class="">
                 <h1 class="text-sm my-2 ml-2 text-gray-500">Judul Artikel Ini...?</h1>
@@ -39,7 +39,7 @@
             content: '',
             csrfToken: document.cookie.match(/XSRF-TOKEN=([^;]+)/)[1],
             submitArticleLeader() {
-                axios.put('/dashboard/sejarah/' + {{ $data->id }}, {
+                axios.put('/dashboard/berita/' + {{ $data->id }}, {
                         title: this.title,
                         img: this.img,
                         content: content
@@ -52,10 +52,11 @@
                                 text: '✔️ Data Berhasil Terkirim'
                             }),
                             setTimeout(() => {
-                                window.location.replace('/dashboard/sejarah')
+                                window.location.replace('/dashboard/berita')
                             }, 3000);
                     })
                     .catch(error => {
+                        console.log(error)
                         this.$dispatch('notice', {
                             type: 'error',
                             text: '✖️ Terjadi Kesalahan'
@@ -66,7 +67,6 @@
 
         tinymce.init({
             selector: 'textarea',
-            height: "720",
             setup: function(editor) {
                 editor.on('change', function() {
                     content = editor.getContent();
@@ -76,8 +76,8 @@
                     content = `{!! $data->content !!}`;
                 });
             },
-            plugins: 'textcolor tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss image',
-            toolbar: 'forecolor backcolor | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss image',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name',
             image_uploadtab: true,

@@ -11,7 +11,7 @@
     <div class="prose max-w-none">
         <h1>{{ $article->title }}</h1>
         <div class="w-full ">
-            <img src="{{ $article->image_url }}" class="float-left m-3 rounded shadow" alt="">
+            <img src="{{ $article->image_url }}" class="float-left max-w-sm m-3 rounded shadow" alt="">
             {!! $article->content !!}
         </div>
     </div>

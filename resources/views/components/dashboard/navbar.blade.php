@@ -47,13 +47,19 @@
                 Sejarah
             </div>
         </a>
-        <a href="" class="flex">
-            <div class=""></div>
-            <div class="Dmenu">
+        <a href="{{ route('berita') }}" class="flex">
+            <div class="{{ Route::current()->getName() == 'berita' ? 'activeDmenu' : 'Dmenu' }}">
                 <ion-icon name="newspaper-outline"></ion-icon>
                 Berita
             </div>
         </a>
+        <a href="{{ route('file') }}" class="flex">
+            <div class="{{ Route::current()->getName() == 'file' ? 'activeDmenu' : 'Dmenu' }}">
+                <ion-icon name="cloud-upload"></ion-icon>
+                File Upload
+            </div>
+        </a>
+
         <li class="flex">
             <div class=""></div>
             <div class="Dmenu whitespace-nowrap">
@@ -70,20 +76,30 @@
         </li>
     </ul>
     <ul class="flex flex-col px-3 grow mt-16 gap-3 md:hidden">
-        <li class="text-center font-bold text-xl bg-accentYellow rounded text-slate-900 py-3">
-            Dashboard
+        <li
+            class="text-center font-bold text-xl  {{ Route::current()->getName() == 'dashboard' ? 'bg-sky-300' : 'bg-slate-100' }} rounded text-slate-900 py-3">
+            <a href="{{ route('dashboard') }}">Dashboard</a>
         </li>
-        <li class="text-center font-bold text-xl bg-slate-100 rounded text-slate-500 py-3">
-            Pemimpin
+        <li
+            class="text-center font-bold text-xl  {{ Route::current()->getName() == 'pemimpin' ? 'bg-sky-300' : 'bg-slate-100' }} rounded text-slate-900 py-3">
+            <a href="{{ route('pemimpin') }}">Pemimpin</a>
         </li>
-        <li class="text-center font-bold text-xl bg-slate-100 rounded text-slate-500 py-3">
-            Berita
+        <li
+            class="text-center font-bold text-xl  {{ Route::current()->getName() == 'pendidikan' ? 'bg-sky-300' : 'bg-slate-100' }} rounded text-slate-900 py-3">
+            <a href="{{ route('pendidikan') }}">Pendidikan</a>
         </li>
-        <li class="text-center font-bold text-xl bg-slate-100 rounded text-slate-500 py-3">
-            Info Pendaftaran
+        <li
+            class="text-center font-bold text-xl  {{ Route::current()->getName() == 'sejarah' ? 'bg-sky-300' : 'bg-slate-100' }} rounded text-slate-900 py-3">
+            <a href="{{ route('sejarah') }}">Sejarah</a>
         </li>
-        <li class="text-center font-bold text-xl bg-slate-100 rounded text-slate-500 py-3">
-            Galeri
+        <li
+            class="text-center font-bold text-xl  {{ Route::current()->getName() == 'berita' ? 'bg-sky-300' : 'bg-slate-100' }} rounded text-slate-900 py-3">
+            <a href="{{ route('berita') }}">Berita</a>
         </li>
+        <li
+            class="text-center font-bold text-xl  {{ Route::current()->getName() == 'file' ? 'bg-sky-300' : 'bg-slate-100' }} rounded text-slate-900 py-3">
+            <a href="{{ route('file') }}">file Upload</a>
+        </li>
+
     </ul>
 </div>

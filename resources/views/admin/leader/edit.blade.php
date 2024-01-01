@@ -77,7 +77,7 @@
                     content = `{!! $data->content !!}`;
                 });
             },
-            plugins: 'textcolor ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss image',
+            plugins: 'textcolor anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount casechange export formatpainter pageembed permanentpen advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss image',
             toolbar: 'forecolor backcolor | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name',
@@ -99,8 +99,9 @@
 @endsection
 
 @push('headScript')
-    <script src="https://cdn.tiny.cloud/1/vpmk19vvugfq61rgwhooflulvv0o9h9qd7wgaasn09hwm646/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
+    {{-- <script src="https://cdn.tiny.cloud/1/vpmk19vvugfq61rgwhooflulvv0o9h9qd7wgaasn09hwm646/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script> --}}
+    <script src="/tinymce/tinymce.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"
         integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -22,20 +22,19 @@
 
 
             @foreach ($data as $item)
-                <div class="max-w-sm w-full bg-white border border-gray-200 rounded-lg shadow ">
+                <div class="max-w-sm w-full bg-white flex flex-col">
                     <a href="#" class="overflow-hidden">
-                        <img class="rounded-t-lg w-full h-44 object-cover object-center" src="{{ $item->image_url }}"
-                            alt="" />
+                        <img class="w-full h-44 object-cover object-center" src="{{ $item->image_url }}" alt="" />
                     </a>
-                    <div class="p-5 h-28">
+                    <div class="p-5">
                         <a href="#">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">{{ $item->title }}</h5>
+                            <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 line-clamp-2">{{ $item->title }}
+                            </h5>
                         </a>
-                        <p class="mb-3 font-normal text-gray-700 ">{{ cutString($item->content) }}</p>
-
+                        <p class="mb-3 font-normal text-slate-400 text-xs line-clamp-2">
+                            {{ html_entity_decode(strip_tags($item->content)) }}</p>
                     </div>
-                    <hr>
-                    <div class="flex p-2 gap-2 justify-end flex-wrap">
+                    <div class="flex p-2 gap-2 justify-end flex-wrap mt-auto">
                         <a href="/dashboard/berita/{{ $item->id }}"
                             class="text-violet-300 hover:text-violet-500"><ion-icon name="eye"></ion-icon></a>
                         <a href="/dashboard/berita/{{ $item->id }}/edit"
@@ -46,7 +45,6 @@
                     </div>
                 </div>
             @endforeach
-
 
 
         </div>

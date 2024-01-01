@@ -22,6 +22,7 @@ use App\Http\Controllers\SejarahController;
 
 
 Route::controller(Controller::class)->group(function () {
+    Route::get('warta/{id}', 'GetWarta');
     Route::get('warta', 'Warta');
     Route::get('sejarah/{id}', 'Sejarah');
     Route::get('pendidikan/{id}', 'Pendidikan');

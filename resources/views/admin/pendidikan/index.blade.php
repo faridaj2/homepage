@@ -24,7 +24,7 @@
                             $teks = substr(strip_tags($item->content), 0, 200);
                         @endphp
                         <p class="text-xs text-gray-400 mt-1 w-full">
-                            {{ $teks }}</p>
+                            {{ html_entity_decode(strip_tags($item->content)) }}</p>
                         <div class="mt-5">
                             <span
                                 class="text-xs bg-violet-100 p-1 rounded-full px-2 text-slate-600">{{ $item->created_at }}</span>

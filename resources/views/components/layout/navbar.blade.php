@@ -2,7 +2,7 @@
     $navbarData = app('App\Http\Controllers\Controller')->navData();
 @endphp
 
-<div class="shadow-md" x-data="{ open: false }">
+<div class="shadow-md" x-data="{ open: false, search: false }">
     <div class="container mx-auto sm:hidden">
         <div x-transition:enter="transition-all ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
             x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300"
@@ -12,7 +12,7 @@
             <div class="h-10">
                 <x-logo.logo class="" />
             </div>
-            <ion-icon name="search-outline" class="text-2xl"></ion-icon>
+            <ion-icon name="search-outline" @click="search=!search" class="text-2xl"></ion-icon>
         </div>
         <div x-show="open" x-transition:enter="transition-all ease-out duration-300"
             x-transition:enter-start="-left-full" x-transition:enter-end="left-0"
@@ -143,7 +143,36 @@
                 <li class="line"><a href="#">Pendaftaran</a></li>
                 <li class="line"><a href="#">Kontak & Alamat</a></li>
             </ul>
-            <ion-icon name="search-outline" class="text-2xl"></ion-icon>
+            <ion-icon name="search-outline" class="text-2xl hover:cursor-pointer"></ion-icon>
+        </div>
+    </div>
+
+    <div class="fixed bg-black shadow w-full top-0 h-screen" x-show="search">
+        <div>
+            <div class="text-white flex justify-end"><ion-icon name="close-outline" @click="search=!search"
+                    class="text-4xl m-3 cursor-pointer"></ion-icon>
+            </div>
+            <div class="text-xs text-white text-center">Search</div>
+            <div class="mx-4"><input type="text"
+                    class="bg-black outline-none border-b border-x-0 border-t-0 w-full  focus:ring-0 text-white"
+                    name="" id="">
+            </div>
+            <div class="py-3">
+                <a class="text-white">
+                    <div class="gap-2 flex justify-normal mx-2">
+                        <div class="w-[100px] h-[100px] overflow-hidden text-white shrink-0">
+                            <img class="object-cover w-full h-full"
+                                src="https://i.pinimg.com/236x/32/ee/01/32ee0194fa98f3ec170a06fa1d032fac.jpg"
+                                alt="">
+                        </div>
+                        <p class="line-clamp-3 font-semibold">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            <br>
+                            <span class="text-xs font-light my-5 text-white/70">31, December 2023</span>
+                        </p>
+
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 

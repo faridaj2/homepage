@@ -69,7 +69,7 @@
                 </li>
                 <li class="flex items-center justify-between"><a href="/warta">Warta</a></li>
                 <li class="flex items-center justify-between"><a href="/pendaftaran">Pendaftaran</a></li>
-                <li class="flex items-center justify-between"><a href="/kontak">Kontak & Alamat</a></li>
+                <li class="flex items-center justify-between"><a href="/kontak">Kontak& Alamat</a></li>
             </ul>
         </div>
     </div>
@@ -142,9 +142,22 @@
                 <li class="line"><a href="/warta">Warta</a></li>
                 <li class="line"><a href="/pendaftaran">Pendaftaran</a></li>
                 <li class="line"><a href="/kontak">Kontak & Alamat</a></li>
+
             </ul>
             <ion-icon name="search-outline" class="text-2xl hover:cursor-pointer"
                 @click="searchDesktop = !searchDesktop"></ion-icon>
+            @auth
+
+                <div
+                    class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                    <a href="/logout">Logout</a>
+                </div>
+            @endauth
+            @guest
+                <div
+                    class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                    <a href="/login">Login</a></div>
+            @endguest
         </div>
     </div>
 

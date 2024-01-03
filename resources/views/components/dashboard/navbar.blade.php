@@ -81,6 +81,13 @@
                 Galeri
             </div>
         </li>
+        <a href="/logout" class="flex">
+            <div class=""></div>
+            <div class="Dmenu">
+                <ion-icon name="log-out-outline"></ion-icon>
+                Logout
+            </div>
+        </a>
     </ul>
     <ul class="flex flex-col px-3 grow mt-16 gap-3 md:hidden">
         <li
@@ -114,6 +121,9 @@
         <li
             class="text-center font-bold text-xl  {{ Route::current()->getName() == 'kontak' ? 'bg-sky-300' : 'bg-slate-100' }} rounded text-slate-900 py-3">
             <a href="{{ route('kontak') }}">Kontak & Alamat</a>
+        </li>
+        <li class="text-center font-bold text-xl   rounded text-slate-900 py-3">
+            <a href="/logout">Log Out</a>
         </li>
 
     </ul>

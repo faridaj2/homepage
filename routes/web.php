@@ -36,29 +36,32 @@ Route::controller(Controller::class)->group(function () {
     Route::get('/register', 'register');
 });
 
-Route::middleware('auth')->controller(DashboardController::class)->group(function () {
+Route::middleware(['auth', 'checkRole:admin'])->controller(DashboardController::class)->group(function () {
     Route::get('/dashboard/pemimpin', 'pemimpin')->name('pemimpin');
     Route::get('dashboard', 'index')->name('dashboard');
+    Route::resource('/dashboard/article-leader', ArticleLeaderController::class);
+    Route::resource('/dashboard/pendidikan', PendidikanController::class)->names([
+        'index' => 'pendidikan'
+    ]);
+    Route::resource('/dashboard/sejarah', SejarahController::class)->names([
+        'index' => 'sejarah'
+    ]);
+    Route::resource('/dashboard/berita', BeritaController::class)->names([
+        'index' => 'berita'
+    ]);
+    Route::resource('/dashboard/file', FileController::class)->names([
+        'index' => 'file'
+    ]);
+    Route::resource('/dashboard/info-pendaftaran', PendaftaranController::class)->names([
+        'index' => 'pendaftaran'
+    ]);
+    Route::resource('/dashboard/kontak', KontakController::class)->names([
+        'index' => 'kontak'
+    ]);
 });
 
-Route::resource('/dashboard/article-leader', ArticleLeaderController::class)->middleware('auth');
-Route::resource('/dashboard/pendidikan', PendidikanController::class)->middleware('auth')->names([
-    'index' => 'pendidikan'
-]);
-Route::resource('/dashboard/sejarah', SejarahController::class)->middleware('auth')->names([
-    'index' => 'sejarah'
-]);
-Route::resource('/dashboard/berita', BeritaController::class)->middleware('auth')->names([
-    'index' => 'berita'
-]);
-Route::resource('/dashboard/file', FileController::class)->middleware('auth')->names([
-    'index' => 'file'
-]);
-Route::resource('/dashboard/info-pendaftaran', PendaftaranController::class)->middleware('auth')->names([
-    'index' => 'pendaftaran'
-]);
-Route::resource('/dashboard/kontak', KontakController::class)->middleware('auth')->names([
-    'index' => 'kontak'
-]);
+
+Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
+Route::get('/google/callback', [App\Http\Controllers\GoogleLoginController::class, 'handleGoogleCallback'])->name('google.callback');
 
 require __DIR__ . '/auth.php';

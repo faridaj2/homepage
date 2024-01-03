@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\KontakController;
+use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\SejarahController;
 
@@ -22,6 +24,8 @@ use App\Http\Controllers\SejarahController;
 
 
 Route::controller(Controller::class)->group(function () {
+    Route::get('kontak', 'kontak');
+    Route::get('pendaftaran', 'pendaftaran');
     Route::get('warta/{id}', 'GetWarta');
     Route::get('warta', 'Warta');
     Route::get('sejarah/{id}', 'Sejarah');
@@ -49,6 +53,12 @@ Route::resource('/dashboard/berita', BeritaController::class)->middleware('auth'
 ]);
 Route::resource('/dashboard/file', FileController::class)->middleware('auth')->names([
     'index' => 'file'
+]);
+Route::resource('/dashboard/info-pendaftaran', PendaftaranController::class)->middleware('auth')->names([
+    'index' => 'pendaftaran'
+]);
+Route::resource('/dashboard/kontak', KontakController::class)->middleware('auth')->names([
+    'index' => 'kontak'
 ]);
 
 require __DIR__ . '/auth.php';

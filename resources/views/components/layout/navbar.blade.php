@@ -2,7 +2,7 @@
     $navbarData = app('App\Http\Controllers\Controller')->navData();
 @endphp
 
-<div class="shadow-md" x-data="{ open: false, search: false }">
+<div class="shadow-md" x-data="navbar">
     <div class="container mx-auto sm:hidden">
         <div x-transition:enter="transition-all ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
             x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300"
@@ -68,8 +68,8 @@
                     </ul>
                 </li>
                 <li class="flex items-center justify-between"><a href="/warta">Warta</a></li>
-                <li class="flex items-center justify-between"><a href="#">Pendaftaran</a></li>
-                <li class="flex items-center justify-between"><a href="#">Kontak & Alamat</a></li>
+                <li class="flex items-center justify-between"><a href="/pendaftaran">Pendaftaran</a></li>
+                <li class="flex items-center justify-between"><a href="/kontak">Kontak & Alamat</a></li>
             </ul>
         </div>
     </div>
@@ -140,38 +140,114 @@
                     </div>
                 </li>
                 <li class="line"><a href="/warta">Warta</a></li>
-                <li class="line"><a href="#">Pendaftaran</a></li>
-                <li class="line"><a href="#">Kontak & Alamat</a></li>
+                <li class="line"><a href="/pendaftaran">Pendaftaran</a></li>
+                <li class="line"><a href="/kontak">Kontak & Alamat</a></li>
             </ul>
-            <ion-icon name="search-outline" class="text-2xl hover:cursor-pointer"></ion-icon>
+            <ion-icon name="search-outline" class="text-2xl hover:cursor-pointer"
+                @click="searchDesktop = !searchDesktop"></ion-icon>
         </div>
     </div>
 
-    <div class="fixed bg-black shadow w-full top-0 h-screen" x-show="search">
+    <div class="fixed bg-black/90 z-50 backdrop-blur-md shadow w-full h-screen top-0" x-show="search"
+        x-transition:enter="transition-all ease-out duration-300" x-transition:enter-start="w-2 -top-52"
+        x-transition:enter-end="top-0" x-transition:leave="transition-all ease-in duration-300"
+        x-transition:leave-start="top-0" x-transition:leave-end="top-52 w-2">
         <div>
             <div class="text-white flex justify-end"><ion-icon name="close-outline" @click="search=!search"
                     class="text-4xl m-3 cursor-pointer"></ion-icon>
             </div>
             <div class="text-xs text-white text-center">Search</div>
-            <div class="mx-4"><input type="text"
+            <div class="mx-4">
+                <input type="text"
                     class="bg-black outline-none border-b border-x-0 border-t-0 w-full  focus:ring-0 text-white"
-                    name="" id="">
+                    name="" id="" x-model="input" @change="handleSubmit">
             </div>
-            <div class="py-3">
-                <a class="text-white">
-                    <div class="gap-2 flex justify-normal mx-2">
-                        <div class="w-[100px] h-[100px] overflow-hidden text-white shrink-0">
-                            <img class="object-cover w-full h-full"
-                                src="https://i.pinimg.com/236x/32/ee/01/32ee0194fa98f3ec170a06fa1d032fac.jpg"
-                                alt="">
-                        </div>
-                        <p class="line-clamp-3 font-semibold">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            <br>
-                            <span class="text-xs font-light my-5 text-white/70">31, December 2023</span>
-                        </p>
+            <div class="py-3 flex flex-col gap-3">
+                <template x-for="news in news">
+                    <a href="#" :href="`/warta/${news.id}`" class="text-white">
+                        <div class="gap-2 flex justify-normal mx-2">
+                            <div class="w-[100px] h-[100px] overflow-hidden text-white shrink-0">
+                                <img class="object-cover w-full h-full" :src="news.image_url" alt="">
+                            </div>
+                            <div>
+                                <p class="line-clamp-3 font-semibold overflow-clip" x-text="news.title">news.title
+                                </p>
 
+                                <span class="text-xs font-light my-5 text-white/70" x-text="news.created_at">31,
+                                    December 2023</span>
+                            </div>
+
+                        </div>
+                    </a>
+                </template>
+                <div class="text-white text-center" x-show="notFound">Hasil Tidak Ditemukan</div>
+                <div class="w-full flex justify-center pt-20" x-show="loadingSearchMobile">
+                    <div class="lds-roller mobile">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
                     </div>
-                </a>
+                </div>
+                <div x-show="news.length > 0" class="mt-auto text-center"><a href="" :href="`/warta?q=${url}`"
+                        class="text-xs text-violet-300 hover:text-violet-800">Lihat Selengkapnya...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute w-full top-0 bg-black/25 h-screen z-20 backdrop-blur-sm flex justify-center items-center"
+        x-show="searchDesktop">
+        <div class="w-full max-w-xl bg-white shadow flex justify-start flex-col p-4 h-96 rounded"
+            @click.outside="searchDesktop = !searchDesktop">
+
+            <input type="text" name="" id="" class="rounded w-full" x-model="input"
+                @change="handleSubmit">
+            <div class="flex flex-col gap-2 mt-3 overflow-y-scroll scroll-style">
+                <template x-for="news in news">
+                    <a href="#" :href="`/warta/${news.id}`" class="">
+                        <div class="gap-2 flex justify-normal mx-2">
+                            <div class="w-[100px] h-[100px] overflow-hidden text-black shrink-0">
+                                <img class="object-cover w-full h-full" :src="news.image_url" alt="">
+                            </div>
+                            <div>
+                                <p class="line-clamp-3 font-semibold overflow-clip" x-text="news.title">news.title
+                                </p>
+
+                                <span class="text-xs font-light my-5 text-black/70" x-text="news.created_at">31,
+                                    December 2023</span>
+                            </div>
+
+                        </div>
+                    </a>
+                </template>
+            </div>
+            <div class="w-full flex justify-center pt-20" x-show="loadingSearchMobile">
+                <div class="lds-roller md-screen">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="w-full h-full" x-show="notFound">
+                <div class="text-5xl w-full flex justify-center">
+                    <div class="flex flex-col justify-center items-center gap-6">
+                        <ion-icon name="alert-circle-outline"></ion-icon>
+                        <h1 class="text-xs text-slate-400 tracking-wide">Tidak ditemukan....</h1>
+                    </div>
+                </div>
+            </div>
+            <div x-show="news.length > 0" class="mt-auto"><a href="" :href="`/warta?q=${url}`"
+                    class="text-xs text-violet-300 hover:text-violet-800">Lihat Selengkapnya...</a>
             </div>
         </div>
     </div>

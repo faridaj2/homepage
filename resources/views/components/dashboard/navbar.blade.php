@@ -60,13 +60,20 @@
             </div>
         </a>
 
-        <li class="flex">
+        <a href="{{ route('pendaftaran') }}" class="flex">
             <div class=""></div>
-            <div class="Dmenu whitespace-nowrap">
+            <div class="text-nowrap {{ Route::current()->getName() == 'pendaftaran' ? 'activeDmenu' : 'Dmenu' }}">
                 <ion-icon name="help-circle-outline"></ion-icon>
                 Info Pendaftaran
             </div>
-        </li>
+        </a>
+        <a href="{{ route('kontak') }}" class="flex">
+            <div class=""></div>
+            <div class="text-nowrap {{ Route::current()->getName() == 'kontak' ? 'activeDmenu' : 'Dmenu' }}">
+                <ion-icon name="help-circle-outline"></ion-icon>
+                Kontak & Alamat
+            </div>
+        </a>
         <li class="flex">
             <div class=""></div>
             <div class="Dmenu">
@@ -98,7 +105,15 @@
         </li>
         <li
             class="text-center font-bold text-xl  {{ Route::current()->getName() == 'file' ? 'bg-sky-300' : 'bg-slate-100' }} rounded text-slate-900 py-3">
-            <a href="{{ route('file') }}">file Upload</a>
+            <a href="{{ route('file') }}">File Upload</a>
+        </li>
+        <li
+            class="text-center font-bold text-xl  {{ Route::current()->getName() == 'pendaftaran' ? 'bg-sky-300' : 'bg-slate-100' }} rounded text-slate-900 py-3">
+            <a href="{{ route('pendaftaran') }}">Pendaftaran</a>
+        </li>
+        <li
+            class="text-center font-bold text-xl  {{ Route::current()->getName() == 'kontak' ? 'bg-sky-300' : 'bg-slate-100' }} rounded text-slate-900 py-3">
+            <a href="{{ route('kontak') }}">Kontak & Alamat</a>
         </li>
 
     </ul>

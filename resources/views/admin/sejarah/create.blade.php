@@ -38,8 +38,8 @@
             img: '',
             content: '',
             csrfToken: document.cookie.match(/XSRF-TOKEN=([^;]+)/)[1],
-            submitArticleLeader() {
-                axios.post('/dashboard/sejarah', {
+            async submitArticleLeader() {
+                await axios.post('/dashboard/sejarah', {
                         title: this.title,
                         img: this.img,
                         content: content

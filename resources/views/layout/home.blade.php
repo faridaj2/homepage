@@ -9,7 +9,7 @@
 
     {{-- Css & Js --}}
     @vite('resources/css/app.css')
-    {{-- <link rel="stylesheet" href="/build/assets/app-3d0cb7e8.css"> --}}
+    {{-- <link rel="stylesheet" href="/build/assets/app-6ef13519.css"> --}}
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

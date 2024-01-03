@@ -38,8 +38,8 @@
         const app = {
             open: false,
             data: {},
-            hapus() {
-                axios.delete('/dashboard/pendidikan/' + this.data.id)
+            async hapus() {
+                await axios.delete('/dashboard/pendidikan/' + this.data.id)
                     .then(r => {
                         this.open = false,
                             this.$dispatch('notice', {

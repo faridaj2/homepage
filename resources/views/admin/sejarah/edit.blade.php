@@ -38,8 +38,8 @@
             img: '{{ $data->image_url }}',
             content: '',
             csrfToken: document.cookie.match(/XSRF-TOKEN=([^;]+)/)[1],
-            submitArticleLeader() {
-                axios.put('/dashboard/sejarah/' + {{ $data->id }}, {
+            async submitArticleLeader() {
+                await axios.put('/dashboard/sejarah/' + {{ $data->id }}, {
                         title: this.title,
                         img: this.img,
                         content: content

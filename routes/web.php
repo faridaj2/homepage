@@ -34,6 +34,9 @@ Route::controller(Controller::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/login', 'login');
     Route::get('/register', 'register');
+    Route::get('/privacy', function () {
+        return view('page/privacy');
+    });
 });
 
 Route::middleware(['auth', 'checkRole:admin'])->controller(DashboardController::class)->group(function () {

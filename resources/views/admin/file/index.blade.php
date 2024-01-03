@@ -126,8 +126,8 @@
                 this.open = true;
                 this.data = item
             },
-            hapus() {
-                axios.delete('/dashboard/file/' + this.data.id)
+            async hapus() {
+                await axios.delete('/dashboard/file/' + this.data.id)
                     .then(r => {
                         this.open = false,
                             this.$dispatch('notice', {
@@ -155,11 +155,11 @@
             }
         };
 
-        const handleUpload = (file, app) => {
+        const handleUpload = async (file, app) => {
             const formData = new FormData();
             formData.append('file', file);
 
-            axios.post('/dashboard/file', formData, {
+            await axios.post('/dashboard/file', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },

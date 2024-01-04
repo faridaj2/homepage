@@ -8,8 +8,8 @@
     <title>Home - Pondok Pesantren Darussalam Blokagung 2</title>
 
     {{-- Css & Js --}}
-    @vite('resources/css/app.css')
-    {{-- <link rel="stylesheet" href="/build/assets/app-6ef13519.css"> --}}
+    {{-- @vite('resources/css/app.css') --}}
+    <link rel="stylesheet" href="/build/assets/app-5cadc5d4.css">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

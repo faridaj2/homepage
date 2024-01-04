@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserInput;
-use App\Http\Requests\StoreUserInputRequest;
 use App\Http\Requests\UpdateUserInputRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserInputController extends Controller
 {
@@ -13,7 +14,8 @@ class UserInputController extends Controller
      */
     public function index()
     {
-        //
+        $data = UserInput::all();
+        return view('pspdb.index', compact('data'));
     }
 
     /**
@@ -21,46 +23,131 @@ class UserInputController extends Controller
      */
     public function create()
     {
-        //
+        return view('pspdb.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserInputRequest $request)
+    public function store(Request $request)
     {
-        //
+        // return $request;
+        $request->validate([
+            "user_id" => "required|numeric",
+            "nama" => "string|required",
+            "nik" => "numeric|nullable",
+            "nisn" => "numeric|nullable",
+            "tpt_lahir" => "string|nullable",
+            "tgl_lahir" => "date|nullable",
+            "kelamin" => "string|nullable",
+            "formal" => "string|nullable",
+            "diniyah" => "string|nullable",
+            "email" => "email|nullable",
+            "alamat" => "string|nullable",
+            "nama_ayah" => "string|nullable",
+            "tlp_ayah" => "numeric|nullable",
+            "nama_ibu" => "string|nullable",
+            "tlp_ibu" => "numeric|nullable",
+            "nis" => "numeric|nullable",
+        ]);
+        $insert = UserInput::create([
+            "user_id" => $request->user_id,
+            "nama" => $request->nama,
+            "nik" => $request->nik,
+            "nisn" => $request->nisn,
+            "tpt_lahir" => $request->tpt_lahir,
+            "tgl_lahir" => $request->tgl_lahir,
+            "kelamin" => $request->kelamin,
+            "formal" => $request->formal,
+            "diniyah" => $request->diniyah,
+            "email" => $request->email,
+            "alamat" => $request->alamat,
+            "ayah" => $request->nama_ayah,
+            "no_ayah" => $request->tlp_ayah,
+            "ibu" => $request->nama_ibu,
+            "no_ibu" => $request->tlp_ibu,
+            "nis" => $request->nis
+        ]);
+        if ($insert) {
+            return redirect('/pspdb')->with('status', 'data berhasil dimasukkan');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(UserInput $userInput)
+    public function show(Request $request, $id)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(UserInput $userInput)
+    public function edit(Request $request, $id)
     {
-        //
+        $check = Auth()->user()->userInput()->where('id', $id)->exists();
+
+        if ($check) {
+            $data = UserInput::find($id);
+            return view('pspdb.edit', compact('data'));
+        } else {
+            return redirect('/pspdb')->with('status', 'anda tidak memiliki hak mengedit data tsb');
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserInputRequest $request, UserInput $userInput)
+    public function update(Request $request, $id)
     {
-        //
+        $data = UserInput::find($id);
+        $request->validate([
+            "user_id" => "required|numeric",
+            "nama" => "string|required",
+            "nik" => "numeric|nullable",
+            "nisn" => "numeric|nullable",
+            "tpt_lahir" => "string|nullable",
+            "tgl_lahir" => "date|nullable",
+            "kelamin" => "string|nullable",
+            "formal" => "string|nullable",
+            "diniyah" => "string|nullable",
+            "email" => "email|nullable",
+            "alamat" => "string|nullable",
+            "nama_ayah" => "string|nullable",
+            "tlp_ayah" => "numeric|nullable",
+            "nama_ibu" => "string|nullable",
+            "tlp_ibu" => "numeric|nullable",
+            "nis" => "numeric|nullable",
+        ]);
+        $insert = $data->update([
+            "user_id" => $request->user_id,
+            "nama" => $request->nama,
+            "nik" => $request->nik,
+            "nisn" => $request->nisn,
+            "tpt_lahir" => $request->tpt_lahir,
+            "tgl_lahir" => $request->tgl_lahir,
+            "kelamin" => $request->kelamin,
+            "formal" => $request->formal,
+            "diniyah" => $request->diniyah,
+            "email" => $request->email,
+            "alamat" => $request->alamat,
+            "ayah" => $request->nama_ayah,
+            "no_ayah" => $request->tlp_ayah,
+            "ibu" => $request->nama_ibu,
+            "no_ibu" => $request->tlp_ibu,
+            "nis" => $request->nis
+        ]);
+        if ($insert) {
+            return redirect('/pspdb')->with('status', 'data berhasil diedit');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UserInput $userInput)
+    public function destroy(Request $request, $id)
     {
-        //
+        UserInput::destroy($id);
+        return redirect()->back()->with('status', 'data berhasil dihapus');
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\KontakController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\SejarahController;
+use App\Http\Controllers\UserInputController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,9 @@ use App\Http\Controllers\SejarahController;
 |
 */
 
-
+// Homepaeg Route Resource
 Route::controller(Controller::class)->group(function () {
+
     Route::get('kontak', 'kontak');
     Route::get('pendaftaran', 'pendaftaran');
     Route::get('warta/{id}', 'GetWarta');
@@ -38,7 +40,11 @@ Route::controller(Controller::class)->group(function () {
         return view('page/privacy');
     });
 });
+// PSPDB Route resource
+Route::resource('/pspdb', UserInputController::class)->names(['index' => 'pspdb']);
 
+
+// Dashboard Route resource
 Route::middleware(['auth', 'checkRole:admin'])->controller(DashboardController::class)->group(function () {
     Route::get('/dashboard/pemimpin', 'pemimpin')->name('pemimpin');
     Route::get('dashboard', 'index')->name('dashboard');
@@ -63,8 +69,9 @@ Route::middleware(['auth', 'checkRole:admin'])->controller(DashboardController::
     ]);
 });
 
-
+// Google Login ROute
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/google/callback', [App\Http\Controllers\GoogleLoginController::class, 'handleGoogleCallback'])->name('google.callback');
 
+// Auth
 require __DIR__ . '/auth.php';

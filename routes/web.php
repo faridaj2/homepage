@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\FileUserInputController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PendidikanController;
+use App\Http\Controllers\pspdb;
 use App\Http\Controllers\SejarahController;
 use App\Http\Controllers\UserInputController;
 
@@ -41,7 +43,8 @@ Route::controller(Controller::class)->group(function () {
     });
 });
 // PSPDB Route resource
-Route::resource('/pspdb', UserInputController::class)->names(['index' => 'pspdb']);
+Route::resource('/pspdb/dokumen-pendukung', FileUserInputController::class)->names(['index' => 'dokumen'])->middleware('auth');
+Route::resource('/pspdb', UserInputController::class)->names(['index' => 'pspdb'])->middleware('auth');
 
 
 // Dashboard Route resource
@@ -66,6 +69,9 @@ Route::middleware(['auth', 'checkRole:admin'])->controller(DashboardController::
     ]);
     Route::resource('/dashboard/kontak', KontakController::class)->names([
         'index' => 'kontak'
+    ]);
+    Route::resource('/dashboard/pspdb', pspdb::class)->names([
+        'index' => 'pspdb'
     ]);
 });
 

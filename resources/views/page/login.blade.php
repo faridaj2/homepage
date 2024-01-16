@@ -19,12 +19,12 @@
                 <div class="flex justify-between items-center"> <span>Lupa <a href="#"
                             class="underline text-blue-500">Password?</a></span>
                     <input type="submit" value="Login"
-                        class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center cursor-pointer">
+                        class="text-white bg-black hover:bg-black/70 focus:ring-4 focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center cursor-pointer">
                 </div>
             </form>
             <div class="flex justify-center mt-5">
                 <a href="{{ route('google.redirect') }}"
-                    class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                    class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex justify-center items-center w-full">
                     <svg class="mr-2 -ml-1 w-4 h-4" aria-hidden="true" focusable="false" data-prefix="fab"
                         data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
                         <path fill="currentColor"

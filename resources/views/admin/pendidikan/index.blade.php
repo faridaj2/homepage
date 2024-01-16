@@ -6,7 +6,7 @@
             <h6 class="text-xs text-slate-400">Lorem ipsum dolor sit amet.</h6>
         </div>
         <a href="/dashboard/pendidikan/create"
-            class="flex items-center gap-1 bg-violet-400 hover:bg-violet-500 text-white px-6 font-semibold rounded-md"><ion-icon
+            class="flex items-center gap-1 bg-black hover:bg-black/70 text-white px-6 font-semibold rounded-md"><ion-icon
                 name="add-outline"></ion-icon>
             Create</a>
     </div>

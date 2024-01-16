@@ -28,7 +28,7 @@
                 <div class="flex justify-between items-center"> <span>Sudah Punya Akun? <a href="/login"
                             class="underline text-blue-500">Login</a></span>
                     <input type="submit" value="Login"
-                        class="bg-sky-400 text-white font-bold text-xl rounded py-2 px-4 mt-5 hover:bg-sky-600 cursor-pointer transition">
+                        class="bg-black text-white font-bold text-xs rounded py-2 px-4 mt-5 hover:bg-sky-600 cursor-pointer transition">
                 </div>
             </form>
         </div>

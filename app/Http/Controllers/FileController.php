@@ -35,16 +35,19 @@ class FileController extends Controller
             $file = $request->file('file');
             $filePath = $file->store('public/file');
             $fileUrl = Storage::url($filePath);
-            file::create([
+            $fileStore = file::create([
                 'originalName' => $file->getClientOriginalName(),
                 'name' => $file->hashName(),
                 'url' => $filePath,
                 'ext' => $file->getClientOriginalExtension()
             ]);
+            if ($fileStore) {
 
-            return response(["msg" => "file success uploaded", "url" => $fileUrl], 200);
+                return response(["msg" => "file success uploaded", "url" => $fileUrl], 200);
+            }
+        } else {
+            return response()->json([], 402);
         }
-        return response()->json([], 402);
     }
 
     /**

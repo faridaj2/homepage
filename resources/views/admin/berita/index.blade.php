@@ -16,7 +16,7 @@
                 <h1>Berita berita</h1>
             </div>
             <a href="/dashboard/berita/create" type="button"
-                class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 ">Create</a>
+                class="text-white bg-black hover:bg-black/70 focus:outline-none font-medium rounded text-sm px-5 py-2.5 text-center me-2 mb-2 ">Create</a>
         </div>
         <div class="flex flex-wrap justify-center lg:justify-normal gap-2">
 

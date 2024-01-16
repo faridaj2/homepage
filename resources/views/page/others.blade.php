@@ -8,7 +8,9 @@
         </div>
         <div class="p-5 prose md:max-w-none">
             <div class="text-clip text-wrap overflow-hidden max-w-sm md:max-w-none">
-                {!! $content->content !!}
+                @if (isset($content->content))
+                    {!! $content->content !!}
+                @endif
             </div>
         </div>
     </div>

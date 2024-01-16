@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserInput;
-use App\Http\Requests\UpdateUserInputRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\FileUserInputController as FileController;
 
 class UserInputController extends Controller
 {
@@ -32,7 +31,7 @@ class UserInputController extends Controller
     public function store(Request $request)
     {
         // return $request;
-        $request->validate([
+        $validate = $request->validate([
             "user_id" => "required|numeric",
             "nama" => "string|required",
             "nik" => "numeric|nullable",
@@ -50,6 +49,7 @@ class UserInputController extends Controller
             "tlp_ibu" => "numeric|nullable",
             "nis" => "numeric|nullable",
         ]);
+
         $insert = UserInput::create([
             "user_id" => $request->user_id,
             "nama" => $request->nama,
@@ -69,7 +69,7 @@ class UserInputController extends Controller
             "nis" => $request->nis
         ]);
         if ($insert) {
-            return redirect('/pspdb')->with('status', 'data berhasil dimasukkan');
+            return redirect('/pspdb/dokumen-pendukung/create')->with(['status' => 'Upload dokumen pendukung', 'id' => $insert->id]);
         }
     }
 
@@ -78,6 +78,16 @@ class UserInputController extends Controller
      */
     public function show(Request $request, $id)
     {
+        $check = Auth()->user()->userInput()->where('id', $id)->exists();
+        if ($check) {
+
+            $data = [
+                'data' => UserInput::find($id)
+            ];
+            return view('pspdb.show', $data);
+        } else {
+            return redirect('/pspdb')->with('status', 'Anda tidak memiliki akses untuk data tersebut');
+        }
     }
 
     /**
@@ -138,15 +148,22 @@ class UserInputController extends Controller
             "nis" => $request->nis
         ]);
         if ($insert) {
-            return redirect('/pspdb')->with('status', 'data berhasil diedit');
+            return redirect('/pspdb/' . $id)->with('status', 'data berhasil diedit');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
+        $file =  UserInput::find($id)->fileUserInput()->get();
+        $fileController = new FileController();
+        if (!$file->isEmpty()) {
+            foreach ($file as $file) {
+                $fileController->destroy($file->id);
+            }
+        }
         UserInput::destroy($id);
         return redirect()->back()->with('status', 'data berhasil dihapus');
     }

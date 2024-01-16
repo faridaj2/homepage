@@ -5,7 +5,7 @@
             class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Buat
             Baru</a>
     </div>
-    <div>
+    <div x-data="app">
         @if (session('status'))
             <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 shadow"
                 role="alert">
@@ -23,7 +23,7 @@
 
 
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <section class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
@@ -32,10 +32,7 @@
                             Nama Siswa
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Kelas Formal
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Kelas diniyah
+                            Status
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -49,23 +46,26 @@
                             class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $siswa->nama }}
+                                <a href="/pspdb/{{ $siswa->id }}" class="underline hover:text-blue-500">
+                                    {{ $siswa->nama }}
+                                </a>
                             </th>
-                            <td class="px-6 py-4">
-                                {{ $siswa->formal }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $siswa->diniyah }}
+                            <td class="px-6 py-4 ">
+                                <div class="bg-red-500 rounded-full h-2 w-2 pulse ml-3">
+
+                                </div>
                             </td>
                             <td class="px-6 py-4">
 
                                 <a href="/pspdb/{{ $siswa->id }}/edit"
                                     class="font-medium text-blue-600 hover:underline">Edit</a>
 
+                                <button type="submit"
+                                    @click="() => openModal('{{ $siswa->id }}', '{{ $siswa->nama }}')"
+                                    class="font-medium text-red-600 hover:underline">Hapus</button>
                                 <form action="/pspdb/{{ $siswa->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="font-medium text-red-600 hover:underline">Hapus</button>
                                 </form>
                             </td>
                         </tr>
@@ -73,8 +73,61 @@
 
                 </tbody>
             </table>
-        </div>
+        </section>
+        <div x-show="modal"
+            class="fixed top-0 left-0 w-full h-full bg-black/70 backdrop-blur-sm  flex items-center justify-center">
+            <div class="shadow-lg p-3 bg-white rounded-lg text-center" @click.outside="modal = false">
+                <h1 class="font-bold p-4">Apakah Yakin Akan menghapus</h1>
+                <p class="py-2 font-bold text-2xl" x-html="dataOriginalName"></p>
+                <hr>
+                <div class="flex justify-around">
+                    <form :action="`/pspdb/${dataToDelete}`" method="post" class="w-full">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                            class="p-3 text-slate-500 w-full hover:bg-red-500 hover:text-white">Hapus</button>
+                    </form>
 
+                    <button class="p-3 text-slate-500 w-full hover:bg-sky-100" @click="modal=!modal">Batal</button>
+                </div>
+            </div>
+        </div>
 
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        const app = {
+            // Data
+            modal: false,
+            dataToDelete: null,
+            dataOriginalName: null,
+
+            // Method
+            openModal(id, name) {
+                this.modal = true
+                this.dataToDelete = id,
+                    this.dataOriginalName = name
+            }
+        }
+    </script>
+@endpush
+
+@push('headScript')
+    <style>
+        .pulse {
+            animation: pulse-animation 0.5s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% {
+                box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+            }
+
+            100% {
+                box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+            }
+        }
+    </style>
+@endpush

@@ -28,7 +28,7 @@ return new class extends Migration
             $table->integer('no_ayah')->nullable();
             $table->string('ibu')->nullable();
             $table->integer('no_ibu')->nullable();
-            $table->integer('nis')->nullable();
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

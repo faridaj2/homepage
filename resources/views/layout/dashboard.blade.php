@@ -8,8 +8,7 @@
     <title>Home - Pondok Pesantren Darussalam Blokagung 2</title>
 
     {{-- Css & Js --}}
-    <link rel="stylesheet" href="/build/assets/app-5cadc5d4.css">
-    {{-- @vite('resources/css/app.css') --}}
+    <x-head />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -39,13 +38,14 @@
             open = window.innerWidth >= 768 ? true : false;
         });
     }">
-        <div x-show="open">
+        <div x-show="open" class="min-h-screen w-full max-w-xs md:p-5">
             <x-dashboard.navbar />
         </div>
-        <div class="w-full md:pr-5" :class="open || 'md:pl-5'">
-            <div class="bg-base min-w-full shrink md:my-5 flex items-center justify-between rounded-lg">
-                <div></div>
-                <ion-icon name="menu" class="z-0 text-3xl p-3 cursor-pointer text-sky-700"
+        <div class="w-full md:pr-5 " :class="open || 'md:pl-5'">
+            <div
+                class="bg-base min-w-full shrink md:my-5 flex items-center justify-between rounded-lg hover:shadow-costum1">
+                <div class="p-3 font-bold">Admin Page</div>
+                <ion-icon name="menu" class="z-0 text-3xl p-3 cursor-pointer text-black"
                     @click="open=!open"></ion-icon>
             </div>
             <div id="main-content">

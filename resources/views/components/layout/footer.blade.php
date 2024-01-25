@@ -4,28 +4,28 @@
             <div class="text-center pt-5 md:text-left h-24">
                 <x-logo.logo class="w-full h-full" />
             </div>
-            <p class="font-Petrona font-bold">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis,
-                aperiam!</p>
-            <p class="font-Petrona text-sm font-thin">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
-                quaerat atque
-                recusandae.</p>
+            <p class="font-Petrona font-bold">Krajan Jalan Raden Wijaya No, Jl. R Supono, Jalen I, Setail, Kec. Genteng,
+                Kabupaten Banyuwangi, Jawa Timur 68486</p>
+            <p class="font-Petrona text-sm font-thin">Sekretariat / WA: <a
+                    href="https://wa.me/628127604401">628127604401</a> <br>
+                Email: <a href="mailto:darstachannel@gmail.com">darstachannel@gmail.com</a></p>
         </div>
         <div class="mt-14 p-10 flex justify-center gap-1">
-            <span
-                class="border-[0.5px] border-solid hover:border-black/30 transition-all hover:shadow border-black/10 h-10 w-10 flex items-center justify-center rounded-full"><ion-icon
-                    name="logo-facebook"></ion-icon></span>
-            <span
-                class="border-[0.5px] border-solid hover:border-black/30 transition-all hover:shadow border-black/10 h-10 w-10 flex items-center justify-center rounded-full"><ion-icon
-                    name="logo-instagram"></ion-icon></span>
-            <span
-                class="border-[0.5px] border-solid hover:border-black/30 transition-all hover:shadow border-black/10 h-10 w-10 flex items-center justify-center rounded-full"><ion-icon
-                    name="mail-outline"></ion-icon></span>
-            <span
-                class="border-[0.5px] border-solid hover:border-black/30 transition-all hover:shadow border-black/10 h-10 w-10 flex items-center justify-center rounded-full"><ion-icon
-                    name="logo-twitter"></ion-icon></span>
-            <span
-                class="border-[0.5px] border-solid hover:border-black/30 transition-all hover:shadow border-black/10 h-10 w-10 flex items-center justify-center rounded-full"><ion-icon
-                    name="logo-youtube"></ion-icon></span>
+            <a href="https://www.facebook.com/darussalamblokagung2"
+                class="border-[0.5px] border-solid hover:border-black/30 transition-all hover:shadow border-black/10 h-10 w-10 flex items-center justify-center rounded-full cursor-pointer"><ion-icon
+                    name="logo-facebook"></ion-icon></a>
+            <a href="https://www.instagram.com/darstachannel"
+                class="border-[0.5px] border-solid hover:border-black/30 transition-all hover:shadow border-black/10 h-10 w-10 flex items-center justify-center rounded-full cursor-pointer"><ion-icon
+                    name="logo-instagram"></ion-icon></a>
+            <a href="mailto:darstachannel@gmail.com"
+                class="border-[0.5px] border-solid hover:border-black/30 transition-all hover:shadow border-black/10 h-10 w-10 flex items-center justify-center rounded-full cursor-pointer"><ion-icon
+                    name="mail-outline"></ion-icon></a>
+            {{-- <span
+                class="border-[0.5px] border-solid hover:border-black/30 transition-all hover:shadow border-black/10 h-10 w-10 flex items-center justify-center rounded-full cursor-pointer"><ion-icon
+                    name="logo-twitter"></ion-icon></span> --}}
+            <a href="https://www.youtube.com/@ponpesdarussalamblokagung2472"
+                class="border-[0.5px] border-solid hover:border-black/30 transition-all hover:shadow border-black/10 h-10 w-10 flex items-center justify-center rounded-full cursor-pointer"><ion-icon
+                    name="logo-youtube"></ion-icon></a>
 
         </div>
     </div>

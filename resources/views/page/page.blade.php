@@ -8,7 +8,10 @@
         </div>
         <div class="p-5 prose md:max-w-none">
             <h1 class="text-left">{{ $data->title }}</h1>
-            <img class="rounded-md block mx-auto max-xs:w-full " src="{{ $data->image_url }}" alt="">
+            <div class="max-h-96 w-52 mx-auto overflow-hidden">
+                <img src="{{ $data->image_url }}" class="w-full h-full object-cover object-center m-3 rounded shadow"
+                    alt="">
+            </div>
 
             <div class="text-clip text-wrap overflow-hidden max-w-sm md:max-w-none">
                 {!! $data->content !!}

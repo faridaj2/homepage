@@ -49,6 +49,6 @@ class User extends Authenticatable
     }
     public function userInput()
     {
-        return $this->hasMany(userInput::class);
+        return $this->hasMany(UserInput::class);
     }
 }

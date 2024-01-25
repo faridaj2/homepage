@@ -8,11 +8,16 @@
                 name="eye-outline"></ion-icon>
             View in web</button>
     </div>
-    <div class="prose max-w-none">
-        <h1>{{ $data->title }}</h1>
-        <div class="w-full ">
-            <img src="{{ $data->image_url }}" class="float-left m-3 rounded shadow" alt="">
-            {!! $data->content !!}
+    <section class="">
+        <div class="prose max-w-none">
+            <h1>{{ $data->title }}</h1>
+            <div class="w-full">
+                <div class="max-h-96 w-52 mx-auto overflow-hidden">
+                    <img src="{{ $data->image_url }}" class="w-full h-full object-cover object-center m-3 rounded shadow"
+                        alt="">
+                </div>
+                {!! $data->content !!}
+            </div>
         </div>
-    </div>
+    </section>
 @endsection

@@ -51,9 +51,7 @@
                                 </a>
                             </th>
                             <td class="px-6 py-4 ">
-                                <div class="bg-red-500 rounded-full h-2 w-2 pulse ml-3">
-
-                                </div>
+                                Pending
                             </td>
                             <td class="px-6 py-4">
 

@@ -46,6 +46,10 @@
                 <span class="font-semibold">{{ $data->nisn }}</span>
             </div>
             <div class="border p-3 rounded-lg bg-slate-100 my-2">
+                <h4 class="text-sm text-slate-500">Asal Sekolah:</h4>
+                <span class="font-semibold">{{ $data->asal_sekolah }}</span>
+            </div>
+            <div class="border p-3 rounded-lg bg-slate-100 my-2">
                 <h4 class="text-sm text-slate-500">Kelas Formal:</h4>
                 <span class="font-semibold">{{ $data->formal }}</span>
             </div>

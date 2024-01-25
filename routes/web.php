@@ -27,7 +27,7 @@ use App\Http\Controllers\UserInputController;
 
 // Homepaeg Route Resource
 Route::controller(Controller::class)->group(function () {
-
+    Route::get('/', 'index');
     Route::get('kontak', 'kontak');
     Route::get('pendaftaran', 'pendaftaran');
     Route::get('warta/{id}', 'GetWarta');
@@ -35,7 +35,6 @@ Route::controller(Controller::class)->group(function () {
     Route::get('sejarah/{id}', 'Sejarah');
     Route::get('pendidikan/{id}', 'Pendidikan');
     Route::get('profil-pimpinan/{id}', 'profilPimpinan');
-    Route::get('/', 'index');
     Route::get('/login', 'login');
     Route::get('/register', 'register');
     Route::get('/privacy', function () {
@@ -44,7 +43,7 @@ Route::controller(Controller::class)->group(function () {
 });
 // PSPDB Route resource
 Route::resource('/pspdb/dokumen-pendukung', FileUserInputController::class)->names(['index' => 'dokumen'])->middleware('auth');
-Route::resource('/pspdb', UserInputController::class)->names(['index' => 'pspdb'])->middleware('auth');
+Route::resource('/pspdb', UserInputController::class)->names(['index' => 'pspdb/index'])->middleware('auth');
 
 
 // Dashboard Route resource

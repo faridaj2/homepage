@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('file_user_inputs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_input_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_input_id')->onDelete('cascade');
             $table->string('original_name');
             $table->string('name');
             $table->string('url_file');

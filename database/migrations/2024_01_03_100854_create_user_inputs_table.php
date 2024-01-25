@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_inputs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->onDelete('cascade');
             $table->string('nama')->nullable();
             $table->integer('nik')->nullable();
             $table->integer('nisn')->nullable();
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('diniyah')->nullable();
             $table->string('email')->nullable();
             $table->string('alamat')->nullable();
+            $table->string('asal_sekolah')->nullable();
             $table->string('ayah')->nullable();
             $table->integer('no_ayah')->nullable();
             $table->string('ibu')->nullable();

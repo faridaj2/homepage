@@ -13,15 +13,15 @@
                         <div
                             class="h-24 w-full md:h-52 overflow-hidden group-[:nth-child(1)]:w-full group-[:nth-child(1)]:h-52 bg-slate-500 relative">
                             <img src="{{ $item->image_url }}"
-                                class="group-hover:scale-150 transition-all object-cover object-center h-full w-screen md:brightness-50"
+                                class="group-hover:scale-150 transition-all object-cover object-center h-full w-screen md:brightness-50 hover:brightness-100"
                                 alt="">
                             <span class="absolute bottom-0 bg-black/75 text-white text-sm px-2 font-Petrona">Santri</span>
                         </div>
-                        <div class="md:absolute md:transition-all md:-bottom-56 md:group-hover:bottom-7 md:px-2">
+                        <div class="md:absolute md:transition-all md:-bottom-56 md:group-hover:bottom-7 md:px-2 w-full">
                             <h1
                                 class="font-Petrona text-green-900 md:text-white font-bold text-xs group-[:nth-child(1)]:text-xl group-[:nth-child(1)]:md:text-xs">
                                 {{ $item->title }}</h1>
-                            <span class="text-xs text-slate-400">- 08 Dec 2023</span>
+                            <span class="text-xs text-slate-400">- {{ $item->created_at }}</span>
                             <p
                                 class="text-sm text-slate-700 md:hidden hidden group-[:nth-child(1)]:line-clamp-2 max-w-sm group-[:nth-child(1)]:md:hidden">
                                 {{ html_entity_decode(strip_tags($item->content)) }}
@@ -66,6 +66,14 @@
 
         <div class="border-b-2 block w-full border-solid border-black mt-16">
             <div class="bg-black text-white font-semibold inline-block p-2 text-xs mt-5">Pusat Informasi</div>
+        </div>
+        <div class="p-5 flex gap-2">
+            <a href="/pendaftaran" class="bg-black text-white font-bold py-2 px-4 rounded-md">
+                Pusat Informasi Pendaftaran
+            </a>
+            <a href="/kontak" class="bg-black text-white font-bold py-2 px-4 rounded-md">
+                Pusat Informasi Pondok Pesantren & Hubungan
+            </a>
         </div>
         {{-- End Contact --}}
 

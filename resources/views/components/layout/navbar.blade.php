@@ -72,7 +72,7 @@
                 <li class="flex items-center justify-between"><a href="/kontak">Kontak & Alamat</a></li>
                 @auth
 
-                    <li class="flex items-center justify-between"><a href="/logout">Logout</a></li>
+                    <li class="flex items-center justify-between"><a href="/pspdb">Dashboard</a></li>
                 @endauth
                 @guest
                     <li class="flex items-center justify-between"><a href="/login">Login</a></li>

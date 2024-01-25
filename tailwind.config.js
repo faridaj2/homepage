@@ -20,7 +20,8 @@ module.exports = {
         background: "#F6F7FA",
         base: "#FFF",
         accentYellow: "#EBFF87",
-        accentDark: "#222222"
+        accentDark: "#222222",
+
       },
 
     },

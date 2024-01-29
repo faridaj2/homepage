@@ -18,7 +18,7 @@ class Controller extends BaseController
     public function index()
     {
         $data = [
-            'berita' => berita::orderBy('created_at', 'desc')->limit(6)->get()
+            'berita' => berita::orderBy('created_at', 'desc')->limit(3)->get()
         ];
         return view('page.index', $data);
     }

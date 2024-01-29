@@ -31,14 +31,14 @@
 
 </head>
 
-<body class="bg-background">
-    <nav class="bg-gray-800" x-data="navApp">
+<body class="bg-white">
+    <nav class="shadow" x-data="navApp">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                     <!-- Mobile menu button-->
                     <button @click="mobileMenu = !mobileMenu" @click.outside="mobileMenu = false" type="button"
-                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400"
                         aria-controls="mobile-menu" aria-expanded="false">
                         <span class="absolute -inset-0.5"></span>
                         <span class="sr-only">Open main menu</span>
@@ -71,41 +71,26 @@
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
-                            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="/pspdb" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                            <!-- Current: "bg-ga text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                            <a href="/pspdb"
+                                class="bg-blue-100 text-blue-500 rounded-md px-3 py-2 text-sm font-semibold"
                                 aria-current="page">Dashboard</a>
-                            {{-- <a href="#"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Team</a>
-                            <a href="#"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a>
-                            <a href="#"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a> --}}
                         </div>
                     </div>
                 </div>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    {{-- <button type="button"
-                        class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                        <span class="absolute -inset-1.5"></span>
-                        <span class="sr-only">View notifications</span>
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                        </svg>
-                    </button> --}}
+
 
                     <!-- Profile dropdown -->
                     <div class="relative ml-3">
                         <div>
                             <button type="button" @click="profile = !profile" @click.outside="profile = false"
-                                class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                class="relative flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-400"
                                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="absolute -inset-1.5"></span>
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full"
-                                    src="https://i.pinimg.com/236x/d9/7b/bb/d97bbb08017ac2309307f0822e63d082.jpg"
-                                    alt="">
+                                <ion-icon name="person-circle"
+                                    class="text-5xl text-blue-500 hover:text-blue-400 focus:text-blue-400"></ion-icon>
                             </button>
                         </div>
 
@@ -140,14 +125,8 @@
         <div class="sm:hidden " :class="mobileMenu ? '' : 'hidden'" id="mobile-menu" @click.outside="profile = false">
             <div class="space-y-1 px-2 pb-3 pt-2">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="/pspdb" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+                <a href="/pspdb" class="bg-blue-100 text-blue-500 block rounded-md px-3 py-2 text-base font-medium"
                     aria-current="page">Dashboard</a>
-                {{-- <a href="#"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
-                <a href="#"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-                <a href="#"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a> --}}
             </div>
         </div>
     </nav>

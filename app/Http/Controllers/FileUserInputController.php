@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\FileUserInput;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UpdateFileUserInputRequest;
 
 class FileUserInputController extends Controller
@@ -32,10 +33,17 @@ class FileUserInputController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'file' => 'max:2048|image', // Maksimal ukuran file 2 MB (2048 KB)
+        ]);
+
+
+
         // return $request;
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $filePath = $file->store('public/userfile');
+
             $fileUrl = Storage::url($filePath);
             $fileStore = FileUserInput::create([
                 'user_input_id' => $request->id,
@@ -51,6 +59,7 @@ class FileUserInputController extends Controller
             return redirect()->back()->with(['status' => 'Terjadi kesalahan, gagal memasukkan data', 'id' => $request->id]);
         }
     }
+
 
     /**
      * Display the specified resource.

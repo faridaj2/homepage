@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->onDelete('cascade');
             $table->string('nama')->nullable();
-            $table->integer('nik')->nullable();
-            $table->integer('nisn')->nullable();
+            $table->string('nik')->nullable();
+            $table->string('nisn')->nullable();
             $table->string('tpt_lahir')->nullable();
             $table->date('tgl_lahir')->nullable();
             $table->enum('kelamin', ['L', 'P'])->nullable();
@@ -26,9 +26,9 @@ return new class extends Migration
             $table->string('alamat')->nullable();
             $table->string('asal_sekolah')->nullable();
             $table->string('ayah')->nullable();
-            $table->integer('no_ayah')->nullable();
+            $table->string('no_ayah')->nullable();
             $table->string('ibu')->nullable();
-            $table->integer('no_ibu')->nullable();
+            $table->string('no_ibu')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

@@ -38,7 +38,7 @@
             open = window.innerWidth >= 768 ? true : false;
         });
     }">
-        <div x-show="open" class="min-h-screen w-full max-w-xs md:p-5">
+        <div x-show="open" class="min-h-screen w-full max-w-xs md:p-5 ">
             <x-dashboard.navbar />
         </div>
         <div class="w-full md:pr-5 " :class="open || 'md:pl-5'">

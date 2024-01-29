@@ -37,42 +37,40 @@
     {{-- Navbar --}}
     <x-layout.navbar />
     {{-- Main Content --}}
-    <div id="main-content">
+    <div id="main-content" class="max-w-7xl mx-auto">
         @yield('content')
     </div>
     <x-layout.footer />
     <script>
-        const csrfToken = document.cookie.match(/XSRF-TOKEN=([^;]+)/)[1];
-        const navbar = {
-            open: false,
-            search: false,
-            input: '',
-            news: [],
-            notFound: false,
-            loadingSearchMobile: false,
-            searchDesktop: false,
-            url: '',
-            handleSubmit() {
-                this.news = []
-                this.notFound = false
-                if (this.input == '') return
-                this.loadingSearchMobile = true
-                let search = encodeURIComponent(this.input)
-                this.url = search
-                axios.get(`/api/v1/search?q=${search}&mode=json`, {
-                        search
-                    }, {
-                        'X-CSRF-TOKEN': csrfToken
-                    })
-                    .then((r) => {
-                        this.loadingSearchMobile = false
-                        this.news = r.data.data
-                        if (this.news.length == 0) {
-                            this.notFound = true
-                        }
-                    })
+        const menus = document.querySelectorAll('.menu-parent')
+        const childMenu = document.querySelectorAll('.child-menu')
+
+
+        menus.forEach(menu => {
+            menu.addEventListener('click', function(e) {
+                menus.forEach(menu => menu.classList.remove('open'))
+                menu.classList.add('open');
+            })
+        });
+        childMenu.forEach(menu => {
+            menu.addEventListener('click', function(e) {
+                childMenu.forEach(menu => menu.classList.remove('open'))
+                menu.classList.add('open');
+            })
+        });
+
+        window.addEventListener('click', function(e) {
+            const openMenu = document.querySelectorAll('.open')
+            const isMenuClick = Array.from(menus).some(menu => menu.contains(e.target));
+            const isOpenClick = Array.from(openMenu).some(menu => menu.contains(e.target));
+            if (!isMenuClick) {
+                menus.forEach(menu => menu.classList.remove('open'));
+                childMenu.forEach(menu => menu.classList.remove('open'));
             }
-        }
+            if (isOpenClick) {
+
+            }
+        })
     </script>
 </body>
 

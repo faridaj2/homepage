@@ -2,7 +2,7 @@
 @section('content')
     <div class="container mx-auto">
         {{-- Breadcumbs --}}
-        <div class="text-slate-400 flex items-center gap-3 text-xs p-5">
+        <div class="text-slate-400 flex items-center gap-1 text-xs p-5 ">
             <ion-icon name="home"></ion-icon><ion-icon name="chevron-forward"></ion-icon>{{ $page }}<ion-icon
                 name="chevron-forward"></ion-icon><span>{{ $title }}</span>
         </div>

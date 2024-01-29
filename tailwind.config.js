@@ -21,7 +21,15 @@ module.exports = {
         base: "#FFF",
         accentYellow: "#EBFF87",
         accentDark: "#222222",
-
+        "primary": "#0370F3",
+        "secondary": "#68A6F4",
+        "accent": "#a3e635",
+        "neutral": "#271f34",
+        "base-100": "#fff",
+        "info": "#00d5ff",
+        "success": "#00de6c",
+        "warning": "#ff9100",
+        "error": "#d20019",
       },
 
     },

@@ -1,7 +1,7 @@
 <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
     x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300"
     x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
-    class=" top-1 bg-base rounded-lg py-3 mb-0 max-sm:fixed max-sm:w-full md:inline-block z-[999] w-full hover:shadow-costum1 transition-all">
+    class=" bg-base rounded-lg py-3 mb-0 max-sm:fixed max-sm:w-full md:inline-block z-[999] w-full hover:shadow-costum1 transition-all h-full top-0 overflow-scroll md:overflow-hidden">
     <div class="text-3xl absolute right-8 md:hidden">
         <ion-icon name="close-outline" @click="open=!open"></ion-icon>
     </div>
@@ -97,7 +97,7 @@
             </div>
         </a>
     </ul>
-    <ul class="flex flex-col px-3 grow mt-16 gap-3 md:hidden">
+    <ul class="flex flex-col px-3 grow mt-16 gap-3 md:hidden ">
         <li
             class="text-center font-bold text-sm  {{ Route::current()->getName() == 'dashboard' ? 'bg-black text-white' : 'bg-slate-100' }} rounded text-slate-900 py-3">
             <a class="block h-full" href="{{ route('dashboard') }}">Dashboard</a>

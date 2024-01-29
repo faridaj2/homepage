@@ -1,8 +1,7 @@
 @extends('pspdb.layout')
 @section('content')
     @if (session('status'))
-        <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 shadow"
-            role="alert">
+        <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50" role="alert">
             <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -14,78 +13,86 @@
             </div>
         </div>
     @endif
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-between px-4">
         <h1 class="font-bold py-6 text-xl">Informasi Peserta Didik</h1>
-        <a href="/pspdb/{{ $data->id }}/edit" class="btn">Edit</a>
+        <a href="/pspdb/{{ $data->id }}/edit"
+            class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full flex items-center gap-2 hover:bg-blue-200 tracking-wide"><ion-icon
+                name="pencil"></ion-icon>
+            Edit</a>
     </div>
     <div class="flex flex-col md:flex-row gap-3 font-Poppins">
-        <section class="bg-white p-3 rounded-md shadow w-full">
-            <h3 class="font-bold mb-3">Informasi Siswa</h3>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">Nama:</h4>
-                <span class="font-semibold">{{ $data->nama }}</span>
+        <section class="p-3 rounded-md w-full">
+            <h3 class="text-xl text-blue-900 font-semibold bg-sky-100 px-5 py-2 rounded-full">Informasi Siswa</h3>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">Nama:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->nama }}</span>
             </div>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">Gender:</h4>
-                <span class="font-semibold">{{ $data->kelamin == 'P' ? 'Santri Putri' : 'Santri Putra' }}</span>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">Gender:</h4>
+                <span
+                    class="py-2 text-gray-900 font-sans">{{ $data->kelamin == 'P' ? 'Santri Putri' : 'Santri Putra' }}</span>
             </div>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">Tempat Lahir:</h4>
-                <span class="font-semibold">{{ $data->tpt_lahir }}</span>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">Tempat Lahir:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->tpt_lahir }}</span>
             </div>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">Tanggal Lahir:</h4>
-                <span class="font-semibold">{{ $data->tgl_lahir }}</span>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">Tanggal Lahir:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->tgl_lahir }}</span>
             </div>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">NIK:</h4>
-                <span class="font-semibold">{{ $data->nik }}</span>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">NIK:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->nik }}</span>
             </div>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">NISN:</h4>
-                <span class="font-semibold">{{ $data->nisn }}</span>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">NISN:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->nisn }}</span>
             </div>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">Asal Sekolah:</h4>
-                <span class="font-semibold">{{ $data->asal_sekolah }}</span>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">Asal Sekolah:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->asal_sekolah }}</span>
             </div>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">Kelas Formal:</h4>
-                <span class="font-semibold">{{ $data->formal }}</span>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">Kelas Formal:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->formal }}</span>
             </div>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">Kelas non Formal:</h4>
-                <span class="font-semibold">{{ $data->diniyah }}</span>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">Kelas non Formal:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->diniyah }}</span>
             </div>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">Status:</h4>
-                <span class="bg-red-500 px-2 text-xs rounded-md text-white">Menunggu konfirmasi</span>
-            </div>
-        </section>
-        <section class="bg-white p-3 rounded-md shadow w-full">
-            <h3 class="font-bold mb-3">Alamat</h3>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">Alamat:</h4>
-                <span class="font-semibold">{{ $data->alamat }}</span>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">Status:</h4>
+                @if ($data->status == 1)
+                    <span class="bg-green-200 font-sans px-2 text-red-700 rounded-full text-xs">Diterima</span>
+                @else
+                    <span class="bg-red-200 font-sans px-2 text-red-700 rounded-full text-xs">Pending</span>
+                @endif
             </div>
         </section>
-        <section class="bg-white p-3 rounded-md shadow w-full">
-            <h3 class="font-bold mb-3">Identitas Orang Tua</h3>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">Nama Ayah:</h4>
-                <span class="font-semibold">{{ $data->ayah }}</span>
+        <section class="p-3 rounded-md w-full">
+            <h3 class="text-xl text-blue-900 font-semibold bg-sky-100 px-5 py-2 rounded-full">Alamat</h3>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">Alamat:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->alamat }}</span>
             </div>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">Nomor tlp. Ayah:</h4>
-                <span class="font-semibold">{{ $data->no_ayah }}</span>
+        </section>
+        <section class="p-3 rounded-md w-full">
+            <h3 class="text-xl text-blue-900 font-semibold bg-sky-100 px-5 py-2 rounded-full">Identitas Orang Tua</h3>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">Nama Ayah:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->ayah }}</span>
             </div>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">Nama Ibu:</h4>
-                <span class="font-semibold">{{ $data->ibu }}</span>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">Nomor tlp. Ayah:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->no_ayah }}</span>
             </div>
-            <div class="border p-3 rounded-lg bg-slate-100 my-2">
-                <h4 class="text-sm text-slate-500">Nomor tlp. Ibu:</h4>
-                <span class="font-semibold">{{ $data->no_ibu }}</span>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">Nama Ibu:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->ibu }}</span>
+            </div>
+            <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">Nomor tlp. Ibu:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->no_ibu }}</span>
             </div>
         </section>
     </div>
@@ -93,48 +100,47 @@
 
     <div>
 
-        <section class="flex justify-between gap-3 items-center my-5">
-            <h1 class="font-normal tracking-wide font-Poppins text-xl">Dokument Pendukung <ion-icon
-                    name="pricetags-outline"></ion-icon></h1> <a href="/pspdb/dokumen-pendukung/{{ $data->id }}/edit"
-                class="btn" @click="modal = true"><ion-icon name="cloud-upload"></ion-icon>
+        <section class="flex justify-between gap-3 items-center my-5 px-4">
+            <h1 class="font-bold py-6 text-xl">Dokument Pendukung </h1> <a
+                href="/pspdb/dokumen-pendukung/{{ $data->id }}/edit"
+                class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full flex items-center gap-2 hover:bg-blue-200 tracking-wide"
+                @click="modal = true"><ion-icon name="cloud-upload"></ion-icon>
                 Upload</a>
         </section>
 
-        <section class="font-light">
+        <section class="font-light px-4">
 
             <div class="">
                 <div class="flex flex-col">
-                    <div class="-m-1.5 overflow-x-auto">
+                    <div class=" overflow-x-auto scroll">
                         <div class="p-1.5 min-w-full inline-block align-middle">
-                            <div class="border rounded-lg shadow overflow-hidden dark:border-gray-700 dark:shadow-gray-900">
-                                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                                    <thead class="bg-gray-50 dark:bg-gray-700">
+                            <div class="rounded-lg overflow-hidden">
+                                <table class="min-w-full ">
+                                    <thead class="">
                                         <tr>
                                             <th scope="col"
-                                                class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-gray-400">
-                                                Name</th>
+                                                class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                Nama Dokumen</th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-gray-400">
+                                                class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
                                                 Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                         @foreach ($data->fileuserinput()->get() as $document)
                                             <tr>
-                                                <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                                                    <a href="#">{{ $document->original_name }}</a> <span
-                                                        class="bg-sky-300 px-2 py- rounded-md text-blue-800">{{ $document->typeFile }}</span>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 ">
+                                                    <span href="">{{ $document->original_name }}</span> <span
+                                                        class="bg-sky-100 px-3 py-2 rounded-full hover:bg-sky-200 text-gray-600 font-normal items-center gap-2">{{ $document->typeFile }}</span>
                                                 </td>
-                                                <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 ">
                                                     <form action="/pspdb/dokumen-pendukung/{{ $document->id }}"
                                                         method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit"
-                                                            class="bg-red-300 text-red-900 p-2 inline-flex items-center rounded-md"><ion-icon
-                                                                name="trash"></ion-icon></button>
+                                                            class="bg-gray-100 px-3 py-2 rounded-full hover:bg-gray-200 flex text-gray-600 font-normal items-center gap-2"><ion-icon
+                                                                name="trash"></ion-icon> Hapus</button>
                                                     </form>
                                                 </td>
                                             </tr>

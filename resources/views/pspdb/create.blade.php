@@ -1,8 +1,7 @@
 @extends('pspdb.layout')
 @section('content')
     @if (session('status'))
-        <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 shadow"
-            role="alert">
+        <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50" role="alert">
             <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -61,14 +60,14 @@
             <label for="small-input" class="block mb-2 text-sm font-normal text-gray-500 ">Tanggal
                 Lahir</label>
             <input type="date" name="tgl_lahir" id="small-input"
-                class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 ">
         </div>
 
         <div class="relative z-0 w-full mb-5 group max-w-md">
 
 
             <select id="jenis_kelamin" name="kelamin"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                 <option disabled selected value="L">Pilih Jenis Kelamin</option>
                 <option value="L">Santri Putra</option>
                 <option value="P">Santri Putri</option>
@@ -77,7 +76,7 @@
         </div>
         <div class="grid md:grid-cols-2 md:gap-6 gap-3 py-4">
             <select id="tingkat_formal" name="formal"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                 <option disabled selected value="smp">Pilih Tingkatan Formal</option>
                 <option value="1 smp">1 SMP</option>
                 <option value="2 smp">2 SMP</option>
@@ -87,7 +86,7 @@
                 <option value="3 smk">3 SMK</option>
             </select>
             <select id="tingkat_diniyah" name="diniyah"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                 <option disabled selected value="L">Pilih Tingkatan Diniyah</option>
                 <option value="1 ula">1 ULA</option>
                 <option value="2 ula">2 ULA</option>
@@ -109,7 +108,7 @@
         <div class="relative z-0 w-full mb-5 group">
             <label for="alamat" class="block mb-2 text-sm font-normal text-gray-500">Alamat</label>
             <textarea id="alamat" rows="4" name="alamat"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
                 placeholder="Isi Alamat"></textarea>
 
         </div>

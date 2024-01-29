@@ -1,14 +1,14 @@
 @extends('pspdb.layout')
 @section('content')
-    <div class="border-b my-3 flex justify-end">
+    <div class=" my-3 flex justify-end">
         <a href="/pspdb/create" type="button"
-            class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Buat
+            class="bg-blue-400 text-white focus:ring-4 flex items-center gap-2 hover:bg-blue-500 transition font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><ion-icon
+                name="document"></ion-icon> Buat
             Baru</a>
     </div>
     <div x-data="app">
         @if (session('status'))
-            <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 shadow"
-                role="alert">
+            <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50" role="alert">
                 <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor" viewBox="0 0 20 20">
                     <path
@@ -23,44 +23,49 @@
 
 
 
-        <section class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <section class="relative sm:rounded-lg overflow-x-auto scroll">
+            <table class="w-full text-sm text-left text-gray-500 ">
 
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Nama Siswa
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Status
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
-                        </th>
+                <tr class="text-xs text-gray-400 font-semibold text-left">
+                    <th scope="col" class="px-6 py-3">
+                        Nama Siswa
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
 
-                    </tr>
+                </tr>
                 </thead>
-                <tbody>
+                <tbody class="">
                     @foreach ($data as $siswa)
-                        <tr
-                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <a href="/pspdb/{{ $siswa->id }}" class="underline hover:text-blue-500">
+                        <tr class="border-b last:border-none border-gray-100">
+                            <th scope="" class="px-6 py-4 ">
+                                <a href="/pspdb/{{ $siswa->id }}"
+                                    class="hover:text-blue-500 font-medium uppercase whitespace-nowrap">
                                     {{ $siswa->nama }}
                                 </a>
                             </th>
                             <td class="px-6 py-4 ">
-                                Pending
+                                @if ($siswa->status == 1)
+                                    <span
+                                        class="inline-block font-sans text-xs py-1.5 px-3 m-1 rounded-full bg-success-100 bg-sky-200 text-sky-700 font-semibold
+                                      ">Diterima</span>
+                                @else
+                                    <span
+                                        class="bg-red-200 font-sans py-1.5 px-3 m-1 text-red-700 rounded-full text-xs font-semibold">Pending</span>
+                                @endif
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 flex gap-2">
 
                                 <a href="/pspdb/{{ $siswa->id }}/edit"
-                                    class="font-medium text-blue-600 hover:underline">Edit</a>
+                                    class="font-medium hover:bg-gray-200 bg-gray-100 px-3 py-1 rounded-full">Edit</a>
 
                                 <button type="submit"
                                     @click="() => openModal('{{ $siswa->id }}', '{{ $siswa->nama }}')"
-                                    class="font-medium text-red-600 hover:underline">Hapus</button>
+                                    class="font-medium px-3 py-1 bg-gray-100 rounded-full hover:bg-gray-200">Hapus</button>
                                 <form action="/pspdb/{{ $siswa->id }}" method="post">
                                     @csrf
                                     @method('DELETE')

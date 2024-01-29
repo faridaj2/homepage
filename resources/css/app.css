@@ -4,6 +4,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Scroll Bar */
+
+.scroll::-webkit-scrollbar-track {
+    @apply bg-sky-200;
+}
+
+.scroll::-webkit-scrollbar {
+    height: 3px;
+    background-color: #f5f5f5;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    @apply bg-blue-300;
+}
+
+/* Menu */
+.open {
+    @apply bg-gray-100;
+}
+.open > .menu-child,
+.open > .child-item {
+    @apply h-auto;
+}
+.open > div > .icon {
+    @apply rotate-180;
+}
+.active {
+    @apply bg-gray-100;
+}
 .line {
     @apply before:content-[''] before:absolute before:bg-black before:w-0 hover:before:w-full before:h-[2px] before:duration-500 before:transition-all before:-bottom-0 relative py-3;
 }

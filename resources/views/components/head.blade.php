@@ -1,2 +1,2 @@
-<link rel="stylesheet" href="/build/assets/app-97141950.css">
-{{-- @vite('resources/css/app.css') --}}
+{{-- <link rel="stylesheet" href="/build/assets/app-d7dd0e99.css"> --}}
+@vite('resources/css/app.css')

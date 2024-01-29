@@ -1,14 +1,13 @@
 @extends('pspdb.layout')
 
 @section('content')
-    @if (!session('id'))
+    {{-- @if (!session('id'))
         <script>
             window.location.href = '/pspdb/';
         </script>
-    @endif
+    @endif --}}
     @if (session('status'))
-        <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 shadow my-3"
-            role="alert">
+        <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50" role="alert">
             <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -25,7 +24,7 @@
         <input type="hidden" value="{{ session('id') }}" name="id">
         <div class="flex items-center justify-center w-full mt-5">
             <label for="dropzone-file"
-                class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 ">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6 p-5 ">
                     <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -46,16 +45,16 @@
         </div>
 
         <select id="fileType" name="fileType"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-3">
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-3 mb-3">
 
             <option value="Kartu Keluarga">Fotokopi Kartu Keluarga</option>
             <option value="Akta Kelahiran">Fotokopi Akta Kelahiran</option>
             <option value="Ijazah">Fotokopi Ijazah Terakhir</option>
             <option value="Raport">Fotokopi Raport Terakhir</option>
         </select>
-        <button class="bg-black text-white tracking-wide p-3 rounded-md mt-5" type="submit">Upload
+        <button class="bg-blue-100 hover:bg-blue-200 text-blue-700 p-3 rounded-full font-medium" type="submit">Upload
             File</button> <a href="/pspdb/{{ session('id') }}"
-            class="bg-yellow-300 text-yellow-700 tracking-wide p-3 rounded-md mt-5 font-semibold">Selesai</a>
+            class="bg-yellow-100 text-yellow-700 hover:bg-yellow-200  tracking-wide p-3 rounded-full mt-5 font-semibold">Selesai</a>
     </form>
 @endsection
 
@@ -65,9 +64,80 @@
             file: null,
             imageUrl: null,
             selectFile(e) {
-                this.file = e.target.files[0]
-                this.imageUrl = URL.createObjectURL(this.file)
+                const self = this;
+                this.file = e.target.files[0];
+
+                const maxWidth = 1000;
+                const maxHeight = 1000;
+                const quality = 0.7; // Mengubah kualitas menjadi 70%
+
+                compressImage(this.file, maxWidth, maxHeight, quality)
+                    .then(function(blob) {
+                        const url = URL.createObjectURL(blob);
+                        self.imageUrl = url;
+                        console.log(url);
+
+                        const compressedFileInput = document.getElementById('dropzone-file');
+                        const newFileInput = compressedFileInput.cloneNode(true);
+                        compressedFileInput.replaceWith(newFileInput);
+
+                        const fileList = new DataTransfer();
+                        fileList.items.add(new File([blob], self.file.name));
+
+                        newFileInput.files = fileList.files;
+                    })
+                    .catch(function(error) {
+                        console.error('Terjadi kesalahan:', error);
+                    });
             }
+        };
+
+        function compressImage(file, maxWidth, maxHeight, quality) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function(event) {
+                    const image = new Image();
+                    image.src = event.target.result;
+                    image.onload = function() {
+                        let width = image.width;
+                        let height = image.height;
+
+                        const aspectRatio = width / height;
+                        const maxAspectRatio = maxWidth / maxHeight;
+
+                        if (aspectRatio > maxAspectRatio) {
+                            if (width > maxWidth) {
+                                height *= maxWidth / width;
+                                width = maxWidth;
+                            }
+                        } else {
+                            if (height > maxHeight) {
+                                width *= maxHeight / height;
+                                height = maxHeight;
+                            }
+                        }
+
+                        const canvas = document.createElement('canvas');
+                        canvas.width = width;
+                        canvas.height = height;
+
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(image, 0, 0, width, height);
+
+                        canvas.toBlob(
+                            function(blob) {
+                                resolve(blob);
+                            },
+                            file.type,
+                            quality
+                        );
+                    };
+                };
+                reader.onerror = function(error) {
+                    reject(error);
+                };
+            });
         }
     </script>
 @endpush

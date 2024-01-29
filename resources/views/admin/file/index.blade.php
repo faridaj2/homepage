@@ -44,6 +44,7 @@
                 </div>
             @endforeach
 
+
         </div>
         <div class="mt-2">
             {{ $file->links() }}
@@ -52,12 +53,36 @@
             <button @click="upload=!upload" class="absolute top-10 right-10 text-3xl text-sky-400 hover:text-sky-700">
                 <ion-icon name="close-circle"></ion-icon>
             </button>
+
             <div class=" p-3 rounded max-w-md">
+
+
                 <input type="file" name="" id="fileInput" hidden @change="uploadFile">
                 <div>
+
                     <h1 class="font-bold text-violet-400 text-center my-4">Upload Image</h1>
                     <div class="w-full border-dashed border-2 border-violet-400 flex items-center justify-center flex-col rounded cursor-pointer p-28"
+                        x-show="loader">
+                        <div class="lds-default ">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="text-blue-500 mt-4">Sedang Mengupload file</div>
+                    </div>
+                    <div x-show="!loader"
+                        class="w-full border-dashed border-2 border-violet-400 flex items-center justify-center flex-col rounded cursor-pointer p-28"
                         @click="fileClick">
+
                         <div class="text-5xl text-violet-400">
                             <ion-icon name="cloud-upload"></ion-icon>
                         </div>
@@ -100,6 +125,7 @@
                 </div>
             </div>
         </div>
+
     </div>
     <x-toast />
     <script>
@@ -115,6 +141,7 @@
             percent: 0,
             loading: false,
             fileUploadName: 'as',
+            loader: false,
             fileClick() {
                 this.fileInput.click();
             },
@@ -155,37 +182,81 @@
             }
         };
 
+
         const handleUpload = async (file, app) => {
+            app.loader = true
             const formData = new FormData();
             formData.append('file', file);
 
-            await axios.post('/dashboard/file', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                    'X-CSRF-TOKEN': csrfToken,
-                    onUploadProgress: (progressEvent) => {
-                        const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
-                        app.loading = true
-                        app.percent = progress;
-                        app.progressBar.style.width = progress + '%';
-                        app.fileUploadName = file.name;
+            const image = new Image();
+            const reader = new FileReader();
 
-                        if (progress == 100) {
-                            setTimeout(() => {
+            reader.onload = function(e) {
+                image.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+
+                    // Menghitung tinggi dan lebar baru berdasarkan rasio kompresi
+                    const compressionRatio = 0.7; // Rasio kompresi 70%
+                    const maxWidth = 1300;
+                    const maxHeight = 1300;
+                    let newWidth = image.width;
+                    let newHeight = image.height;
+
+                    if (newWidth > maxWidth || newHeight > maxHeight) {
+                        const widthRatio = maxWidth / newWidth;
+                        const heightRatio = maxHeight / newHeight;
+                        const ratio = Math.min(widthRatio, heightRatio);
+
+                        newWidth *= ratio;
+                        newHeight *= ratio;
+                    }
+
+                    canvas.width = newWidth;
+                    canvas.height = newHeight;
+
+                    // Menggambar gambar pada elemen canvas dengan ukuran yang telah dikompressi
+                    ctx.drawImage(image, 0, 0, newWidth, newHeight);
+
+                    // Mengubah gambar pada elemen canvas menjadi blob
+                    canvas.toBlob(async (compressedBlob) => {
+                        formData.append('file', compressedBlob, file.name);
+
+                        await axios
+                            .post('/dashboard/file', formData, {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data',
+                                },
+                                'X-CSRF-TOKEN': csrfToken,
+                                onUploadProgress: (progressEvent) => {
+                                    const progress = Math.round(
+                                        (progressEvent.loaded / progressEvent
+                                            .total) * 100
+                                    );
+                                    app.loading = true;
+                                    app.percent = progress;
+                                    app.progressBar.style.width = progress + '%';
+                                    app.fileUploadName = file.name;
+
+
+                                },
+                            })
+                            .then((response) => {
+                                // Handle successful upload
+                                console.log(response.data);
                                 location.reload(true);
-                            }, 1000);
-                        }
-                    },
-                })
-                .then((response) => {
-                    // Handle successful upload
-                    console.log(response.data);
-                })
-                .catch((error) => {
-                    // Handle upload error
-                    console.error(error);
-                });
+                            })
+                            .catch((error) => {
+                                // Handle upload error
+                                console.error(error);
+                            });
+                    }, file.type);
+                };
+
+                image.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
         };
     </script>
 @endsection

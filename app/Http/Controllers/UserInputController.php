@@ -13,7 +13,7 @@ class UserInputController extends Controller
      */
     public function index()
     {
-        $data = UserInput::all();
+        $data = UserInput::where('user_id', auth()->user()->id)->get();
         return view('pspdb.index', compact('data'));
     }
 
@@ -37,6 +37,7 @@ class UserInputController extends Controller
             "nik" => "numeric|nullable",
             "asl_sklh" => "string|nullable",
             "nisn" => "numeric|nullable",
+            "kk" => "numeric|nullable",
             "tpt_lahir" => "string|nullable",
             "tgl_lahir" => "date|nullable",
             "kelamin" => "string|nullable",
@@ -56,6 +57,7 @@ class UserInputController extends Controller
             "nama" => $request->nama,
             "nik" => $request->nik,
             "nisn" => $request->nisn,
+            "kk" => $request->kk,
             "asal_sekolah" => $request->asal_sklh,
             "tpt_lahir" => $request->tpt_lahir,
             "tgl_lahir" => $request->tgl_lahir,
@@ -119,6 +121,7 @@ class UserInputController extends Controller
             "nik" => "numeric|nullable",
             "asl_sklh" => "string|nullable",
             "nisn" => "numeric|nullable",
+            "kk" => "numeric|nullable",
             "tpt_lahir" => "string|nullable",
             "tgl_lahir" => "date|nullable",
             "kelamin" => "string|nullable",
@@ -137,6 +140,7 @@ class UserInputController extends Controller
             "nama" => $request->nama,
             "nik" => $request->nik,
             "nisn" => $request->nisn,
+            "kk" => $request->kk,
             "asal_sekolah" => $request->asal_sklh,
             "tpt_lahir" => $request->tpt_lahir,
             "tgl_lahir" => $request->tgl_lahir,

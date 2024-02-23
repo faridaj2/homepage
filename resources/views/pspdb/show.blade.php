@@ -49,6 +49,10 @@
                 <span class="py-2 text-gray-900 font-sans">{{ $data->nisn }}</span>
             </div>
             <div class="p-3 rounded-lg my-2">
+                <h4 class="text-xs text-gray-500">KK:</h4>
+                <span class="py-2 text-gray-900 font-sans">{{ $data->kk }}</span>
+            </div>
+            <div class="p-3 rounded-lg my-2">
                 <h4 class="text-xs text-gray-500">Asal Sekolah:</h4>
                 <span class="py-2 text-gray-900 font-sans">{{ $data->asal_sekolah }}</span>
             </div>

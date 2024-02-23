@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama')->nullable();
             $table->string('nik')->nullable();
             $table->string('nisn')->nullable();
+            $table->string('kk')->nullable();
             $table->string('tpt_lahir')->nullable();
             $table->date('tgl_lahir')->nullable();
             $table->enum('kelamin', ['L', 'P'])->nullable();

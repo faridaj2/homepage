@@ -77,7 +77,7 @@
                             <div></div>
                             <div></div>
                         </div>
-                        <div class="text-blue-500 mt-4">Sedang Mengupload file</div>
+                        <div class="text-blue-500 mt-4 text-center w-full">loading...</div>
                     </div>
                     <div x-show="!loader"
                         class="w-full border-dashed border-2 border-violet-400 flex items-center justify-center flex-col rounded cursor-pointer p-28"
@@ -90,12 +90,13 @@
                         <p class="text-xs text-slate-500">or browse</p>
                     </div>
                 </div>
-                <div class="w-full" id="uploading" x-show="loading">
+                <div class="w-full hidden md:block" id="uploading" x-show="loading">
                     <div class="shadow flex items-center p-3 text-violet-400 mt-3 rounded-md">
                         <div class="text-5xl text-violet-500 mr-3"><ion-icon name="document"></ion-icon></div>
                         <div class="w-full">
                             <div class="flex justify-between w-full mb-3">
-                                <div class="text-blue-700 font-semibold text-sm" x-text="fileUploadName">File Name.jpg</div>
+                                <div class="text-blue-700 font-semibold text-sm truncate" x-text="fileUploadName">File
+                                    Name.jpg</div>
                                 <div class="text-xs font-semibold"><span x-text="percent"></span>%</div>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-[2px]">
@@ -117,7 +118,7 @@
         <div x-show="open" class="fixed top-0 left-0 w-full h-full bg-white/90  flex items-center justify-center">
             <div class="shadow-lg p-3 bg-white rounded-lg text-center">
                 <h1 class="font-bold p-4">Apakah Yakin Akan menghapus</h1>
-                <p class="py-2 font-bold text-2xl" x-html="data.originalName"></p>
+                <p class="py-2 font-bold text-2xl truncate" x-html="data.originalName"></p>
                 <hr>
                 <div class="flex justify-around">
                     <button class="p-3 text-slate-500 w-full hover:bg-sky-100" @click="hapus()">Hapus</button>

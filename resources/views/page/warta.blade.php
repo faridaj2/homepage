@@ -37,10 +37,10 @@
                         </div>
                         <div>
                             <h1 class="font-Petrona font-bold line-clamp-2">{{ $item->title }}</h1>
-                            <span class="text-xs text-slate-400">24, Nov 2023</span>
+                            <span class="text-xs text-slate-400">{{ $item->updated_at->format('d F Y') }}</span>
                             <p class="text-xs text-slate-500 line-clamp-3 my-4">
                                 {{ html_entity_decode(strip_tags($item->content)) }}</p>
-                            <a href="/warta/{{ $item->id }}"
+                            <a href="/warta/{{ $item->slug }}"
                                 class="my-3 bg-green-600 transition hover:bg-black text-sm p-2 font-bold text-white mt-3">Read
                                 more...</a>
                         </div>
@@ -56,7 +56,7 @@
                 <hr>
                 <div class="flex flex-col gap-4">
                     @foreach ($random as $item)
-                        <a href="/warta/{{ $item->id }}" class="hover:text-green-600">
+                        <a href="/warta/{{ $item->slug }}" class="hover:text-green-600">
                             <span class="text-sm font-Petrona tracking-tight cursor-pointer ">{{ $item->title }}</span><br>
                             <span class="text-xs bg-green-700 text-white p-1 hover:bg-green-500">Santri</span>
                         </a>

@@ -19,9 +19,7 @@ class ArticleLeaderController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
@@ -31,6 +29,7 @@ class ArticleLeaderController extends Controller
 
         $validateData =  $request->validate([
             'title' => 'required',
+            'slug' => 'required|unique:article_leaders,slug',
             'img' => 'required',
             'content' => 'required'
         ]);
@@ -39,6 +38,7 @@ class ArticleLeaderController extends Controller
         }
         articleLeader::create([
             'title' => $request->title,
+            'slug' => $request->slug,
             'image_url' => $request->img,
             'content' => $request->content
         ]);
@@ -69,6 +69,7 @@ class ArticleLeaderController extends Controller
     {
         articleLeader::find($id)->update([
             'title' => $request->title,
+            'slug' => $request->slug,
             'image_url' => $request->img,
             'content' => $request->content
         ]);

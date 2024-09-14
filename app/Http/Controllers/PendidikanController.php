@@ -31,6 +31,7 @@ class PendidikanController extends Controller
     {
         $validateData =  $request->validate([
             'title' => 'required',
+            'slug' => 'required|unique:pendidikans,slug',
             'img' => 'required',
             'content' => 'required'
         ]);
@@ -39,6 +40,7 @@ class PendidikanController extends Controller
         }
         pendidikan::create([
             'title' => $request->title,
+            'slug' => $request->slug,
             'image_url' => $request->img,
             'content' => $request->content
         ]);
@@ -69,6 +71,7 @@ class PendidikanController extends Controller
     {
         pendidikan::find($id)->update([
             'title' => $request->title,
+            'slug' => $request->slug,
             'image_url' => $request->img,
             'content' => $request->content
         ]);

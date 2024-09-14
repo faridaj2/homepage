@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pendidikans', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
             $table->string('image_url');
             $table->longText('content');
             $table->timestamps();

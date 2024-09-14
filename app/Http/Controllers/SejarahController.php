@@ -32,6 +32,7 @@ class SejarahController extends Controller
     {
         $validateData =  $request->validate([
             'title' => 'required',
+            'slug' => 'required|unique:sejarahs,slug',
             'img' => 'required',
             'content' => 'required'
         ]);
@@ -40,6 +41,7 @@ class SejarahController extends Controller
         }
         sejarah::create([
             'title' => $request->title,
+            'slug' => $request->slug,
             'image_url' => $request->img,
             'content' => $request->content
         ]);
@@ -70,6 +72,7 @@ class SejarahController extends Controller
     {
         sejarah::find($id)->update([
             'title' => $request->title,
+            'slug' => $request->slug,
             'image_url' => $request->img,
             'content' => $request->content
         ]);

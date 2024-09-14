@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\articleLeader;
+use App\Models\berita;
+use App\Models\pendidikan;
+use App\Models\sejarah;
 use App\Models\UserInput;
 use Illuminate\Http\Request;
 
@@ -38,5 +42,30 @@ class ApiController extends Controller
             ];
         }
         return response($response);
+    }
+    public function pemimpin(Request $request)
+    {
+        $slug = $request->slug;
+        $check = articleLeader::where('slug', 'LIKE', "$slug%")->count();
+        return response(['exists' => $check]);
+    }
+    public function pendidikans(Request $request)
+    {
+        $slug = $request->slug;
+        $check = pendidikan::where('slug', 'LIKE', "$slug%")->count();
+        return response(['exists' => $check]);
+    }
+    public function sejarahs(Request $request)
+    {
+        $slug = $request->slug;
+        $check = sejarah::where('slug', 'LIKE', "$slug%")->count();
+        return response(['exists' => $check]);
+    }
+
+    public function berita(Request $request)
+    {
+        $slug = $request->slug;
+        $check = berita::where('slug', 'LIKE', "$slug%")->count();
+        return response(['exists' => $check]);
     }
 }

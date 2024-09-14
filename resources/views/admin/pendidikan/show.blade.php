@@ -13,7 +13,7 @@
             <h1>{{ $data->title }}</h1>
             <div class="w-full">
                 <div class="max-h-96 w-52 mx-auto overflow-hidden">
-                    <img src="{{ $article->image_url }}" class="w-full h-full object-cover object-center m-3 rounded shadow"
+                    <img src="{{ $data->image_url }}" class="w-full h-full object-cover object-center m-3 rounded shadow"
                         alt="">
                 </div>
                 {!! $data->content !!}

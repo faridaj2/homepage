@@ -12,38 +12,7 @@
     </div>
     <div class="px-2 md:px-0 flex flex-col gap-3" x-data="app">
         @foreach ($article as $item)
-            <div class="flex gap-3">
-                <div
-                    class="flex flex-col md:flex-row gap-3 relative bg-base border border-solid border-violet-200 shadow rounded-lg p-3 w-full">
-                    <div class="md:h-[140px] h-[200px] w-full md:w-[350px] lg:w-[200px] overflow-hidden rounded-md ">
-                        <img src="{{ $item->image_url }}" class="w-full h-full object-cover" alt="">
-                    </div>
-                    <div class="w-full">
-                        <h1 class="font-bold">{{ $item->title }}</h1>
-                        @php
-                            $teks = substr(strip_tags($item->content), 0, 200);
-                        @endphp
-                        <p class="text-xs text-gray-400 mt-1 w-full line-clamp-2">
-                            {{ html_entity_decode(strip_tags($item->content)) }}</p>
-                        <div class="mt-5">
-                            <span
-                                class="text-xs bg-violet-100 p-1 rounded-full px-2 text-slate-600">{{ $item->created_at }}</span>
-                            <span class="text-xs bg-violet-100 p-1 rounded-full px-2 text-slate-600">Santri</span>
-                            <span class="text-xs bg-violet-100 p-1 rounded-full px-2 text-slate-600">Darussalam Blokagung
-                                2</span>
-                        </div>
-                        <div class="mt-4 md:justify-end border-t flex  gap-2 text-xl items-center">
-                            <a href="/dashboard/article-leader/{{ $item->id }}"
-                                class="text-violet-300 hover:text-violet-500"><ion-icon name="eye"></ion-icon></a>
-                            <a href="/dashboard/article-leader/{{ $item->id }}/edit"
-                                class="text-violet-300 hover:text-violet-500"><ion-icon name="create"></ion-icon></a>
-                            <button class="text-violet-300 hover:text-violet-500"
-                                @click="open=!open, data.id = {{ $item->id }}, data.title = '{{ $item->title }}'"><ion-icon
-                                    name="trash"></ion-icon></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <x-dashboard.grid.grid :url="'article-leader'" :item="$item" />
         @endforeach
         <x-toast />
         <div x-show="open" class="fixed top-0 left-0 w-full h-full bg-white/90  flex items-center justify-center">

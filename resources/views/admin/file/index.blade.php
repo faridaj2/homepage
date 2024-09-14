@@ -2,8 +2,8 @@
 @section('content')
     <div class="mx-2" x-data="app">
         <div class="flex justify-start my-3">
-            <button class="flex items-center gap-1 bg-black hover:bg-black/70 p-2 rounded text-white"
-                @click="upload=!upload"><ion-icon name="cloud-upload"></ion-icon> Upload
+            <button class="bg-blue-300 p-2 px-4 rounded-full" @click="upload=!upload"><ion-icon name="cloud-upload"></ion-icon>
+                Upload
                 File</button>
         </div>
         <div class="flex flex-wrap gap-3">

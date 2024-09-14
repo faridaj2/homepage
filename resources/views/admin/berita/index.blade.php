@@ -12,38 +12,15 @@
     @endphp
     <div class="" x-data="app">
         <div class="flex justify-between items-center m-2">
-            <div>
-                <h1>Berita berita</h1>
-            </div>
+            <div></div>
             <a href="/dashboard/berita/create" type="button"
-                class="text-white bg-black hover:bg-black/70 focus:outline-none font-medium rounded text-sm px-5 py-2.5 text-center me-2 mb-2 ">Create</a>
+                class="bg-blue-300 p-3 rounded-full text-sm hover:bg-blue-400 px-5">Create</a>
         </div>
         <div class="flex flex-wrap justify-center lg:justify-normal gap-2">
 
 
             @foreach ($data as $item)
-                <div class="max-w-sm w-full bg-white flex flex-col">
-                    <a href="#" class="overflow-hidden">
-                        <img class="w-full h-44 object-cover object-center" src="{{ $item->image_url }}" alt="" />
-                    </a>
-                    <div class="p-5">
-                        <a href="#">
-                            <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 line-clamp-2">{{ $item->title }}
-                            </h5>
-                        </a>
-                        <p class="mb-3 font-normal text-slate-400 text-xs line-clamp-2">
-                            {{ html_entity_decode(strip_tags($item->content)) }}</p>
-                    </div>
-                    <div class="flex p-2 gap-2 justify-end flex-wrap mt-auto">
-                        <a href="/dashboard/berita/{{ $item->id }}"
-                            class="text-violet-300 hover:text-violet-500"><ion-icon name="eye"></ion-icon></a>
-                        <a href="/dashboard/berita/{{ $item->id }}/edit"
-                            class="text-violet-300 hover:text-violet-500"><ion-icon name="create"></ion-icon></a>
-                        <button class="text-violet-300 hover:text-violet-500"
-                            @click="open=!open, data.id = {{ $item->id }}, data.title = '{{ $item->title }}'">
-                            <ion-icon name="trash"></ion-icon></button>
-                    </div>
-                </div>
+                <x-dashboard.grid.grid :url="'berita'" :item="$item" />
             @endforeach
 
 
@@ -73,8 +50,7 @@
             async hapus() {
                 await axios.delete('/dashboard/berita/' + this.data.id)
                     .then(r => {
-                        this.open = false,
-                            this.$dispatch('notice', {
+                        this.$dispatch('notice', {
                                 type: 'success',
                                 text: '✔️ Data Berhasil dihapus'
                             }),
@@ -82,7 +58,10 @@
                                 window.location.replace('/dashboard/berita')
                             }, 1000);
                     })
-                    .catch(e => console.log(e))
+                    .catch(e => {
+                        console.log(e)
+                        this.open = false;
+                    })
             }
         }
     </script>

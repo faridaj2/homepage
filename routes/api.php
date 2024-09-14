@@ -24,3 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/getAllData', [ApiController::class,  'getAllData']);
 Route::get('/getDataByID', [ApiController::class,  'getDataByID']);
 Route::get('/accept-status-siswa/{id}', [ApiController::class,  'acceptSiswa']);
+Route::get('/slug-pemimpin', [ApiController::class,  'pemimpin']);
+Route::get('/slug-pendidikan', [ApiController::class,  'pendidikans']);
+Route::get('/slug-sejarah', [ApiController::class,  'sejarahs']);
+Route::get('/slug-berita', [ApiController::class,  'berita']);

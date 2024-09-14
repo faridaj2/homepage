@@ -58,10 +58,10 @@
     @apply font-Petrona font-bold text-2xl mt-10 uppercase;
 }
 .activeDmenu {
-    @apply bg-black flex items-center gap-2 font-semibold px-2 pr-5 mx-2 py-2 rounded-md cursor-pointer text-white;
+    @apply text-black flex items-center gap-2 font-bold px-3 pr-5 mx-2 py-3 rounded-md cursor-pointer;
 }
 .Dmenu {
-    @apply flex items-center gap-2 font-semibold px-2 pr-5 mx-2 py-2 rounded-md text-slate-900 cursor-pointer hover:bg-slate-100;
+    @apply flex items-center gap-2 font-medium px-3 pr-5 mx-2 py-3 rounded-md text-slate-500 cursor-pointer hover:text-gray-700;
 }
 
 /* Loader */

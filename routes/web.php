@@ -30,11 +30,11 @@ Route::controller(Controller::class)->group(function () {
     Route::get('/', 'index');
     Route::get('kontak', 'kontak');
     Route::get('pendaftaran', 'pendaftaran');
-    Route::get('warta/{id}', 'GetWarta');
+    Route::get('warta/{slug}', 'GetWarta');
     Route::get('warta', 'Warta');
-    Route::get('sejarah/{id}', 'Sejarah');
-    Route::get('pendidikan/{id}', 'Pendidikan');
-    Route::get('profil-pimpinan/{id}', 'profilPimpinan');
+    Route::get('sejarah/{slug}', 'Sejarah');
+    Route::get('pendidikan/{slug}', 'Pendidikan');
+    Route::get('profil-pimpinan/{slug}', 'profilPimpinan');
     Route::get('/login', 'login');
     Route::get('/register', 'register');
     Route::get('/privacy', function () {

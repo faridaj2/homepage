@@ -30,26 +30,32 @@ class Controller extends BaseController
     {
         return view('page.register');
     }
-    public function profilPimpinan($id)
+    public function profilPimpinan($slug)
     {
+        $page = articleLeader::where('slug', $slug)->first();
+        if (!$page) return view('404');
         $data = [
-            'data' => articleLeader::find($id),
+            'data' => $page,
             'page' => 'Profil Pimpinan'
         ];
         return view('page.page', $data);
     }
-    public function Pendidikan($id)
+    public function Pendidikan($slug)
     {
+        $page = pendidikan::where('slug', $slug)->first();
+        if (!$page) return view('404');
         $data = [
-            'data' => pendidikan::find($id),
+            'data' => $page,
             'page' => 'Profil Instansi Pendidikan'
         ];
         return view('page.page', $data);
     }
-    public function sejarah($id)
+    public function sejarah($slug)
     {
+        $page = sejarah::where('slug', $slug)->first();
+        if (!$page) return view('404');
         $data = [
-            'data' => sejarah::find($id),
+            'data' => $page,
             'page' => 'Sejarah'
         ];
         return view('page.page', $data);
@@ -95,10 +101,12 @@ class Controller extends BaseController
             return view('page.warta', $data);
         }
     }
-    public function GetWarta($id)
+    public function GetWarta($slug)
     {
+        $page = berita::where('slug', $slug)->first();
+        if (!$page) return view('404');
         $data = [
-            'data' => berita::find($id),
+            'data' => berita::where('slug', $slug)->first(),
             'page' => 'Berita'
         ];
         return view('page.page', $data);

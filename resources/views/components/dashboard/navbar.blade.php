@@ -1,25 +1,18 @@
 <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
     x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300"
     x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
-    class=" bg-base rounded-lg py-3 mb-0 max-sm:fixed max-sm:w-full md:inline-block z-[999] w-full hover:shadow-costum1 transition-all h-full top-0 overflow-scroll md:overflow-hidden">
+    class=" bg-base rounded-lg py-3 mb-0 max-sm:fixed max-sm:w-full md:inline-block z-[999] w-full h-full top-0 overflow-scroll md:overflow-hidden">
     <div class="text-3xl absolute right-8 md:hidden">
         <ion-icon name="close-outline" @click="open=!open"></ion-icon>
     </div>
-    <div class="text-center font-bold mt-10 md:mt-2">Admin Page.</div>
+    <div class="text-center font-bold mt-10 md:mt-2 flex justify-start border-b pb-3">
+        <div class="flex items-center gap-2 pl-8">
+            <x-icon.dashboard />
+            <h2 class="font-semibold text-gray-700 text-xl">Dashboard</h2>
+        </div>
+    </div>
     <div class="px-5">
-        <div class="relative">
-            <div class="overflow-hidden w-16 h-16 rounded-full mx-auto mt-10">
-                <img src="https://i.pinimg.com/236x/d9/7b/bb/d97bbb08017ac2309307f0822e63d082.jpg"
-                    class=" object-cover w-full h-full" alt="">
 
-            </div>
-        </div>
-        <div class="flex flex-col text-center gap-0">
-            <span
-                class="font-bold text-lg -mb-1 mt-2 flex items-center justify-center gap-1 cursor-pointer">{{ Auth::user()->name }}
-                <ion-icon class="text-xs text-slate-500" name="chevron-down-outline"></ion-icon></span>
-            <span class="text-xs text-slate-400">New York, USA</span>
-        </div>
     </div>
 
     <ul class="mt-10 mx-5 flex-col gap-4 text-sm tracking-wide hidden md:flex">
@@ -30,31 +23,31 @@
             </div>
         </a>
         <a href="{{ route('pemimpin') }}" class="flex">
-            <div class="w-full  {{ Route::current()->getName() == 'pemimpin' ? 'activeDmenu' : 'Dmenu' }}">
+            <div class="w-full  {{ request()->is('*pemimpin*') ? 'activeDmenu' : 'Dmenu' }}">
                 <ion-icon name="people-outline"></ion-icon>
                 Pemimpin
             </div>
         </a>
         <a href="/dashboard/pendidikan" class="flex">
-            <div class="w-full  {{ Route::current()->getName() == 'pendidikan' ? 'activeDmenu' : 'Dmenu' }}">
+            <div class="w-full  {{ request()->is('*pendidikan*') ? 'activeDmenu' : 'Dmenu' }}">
                 <ion-icon name="business-outline"></ion-icon>
                 Pendidikan
             </div>
         </a>
         <a href="/dashboard/sejarah" class="flex">
-            <div class="w-full  {{ Route::current()->getName() == 'sejarah' ? 'activeDmenu' : 'Dmenu' }}">
+            <div class="w-full  {{ request()->is('*sejarah*') ? 'activeDmenu' : 'Dmenu' }}">
                 <ion-icon name="flag-outline"></ion-icon>
                 Sejarah
             </div>
         </a>
         <a href="{{ route('berita') }}" class="flex">
-            <div class="w-full  {{ Route::current()->getName() == 'berita' ? 'activeDmenu' : 'Dmenu' }}">
+            <div class="w-full  {{ request()->is('*berita*') ? 'activeDmenu' : 'Dmenu' }}">
                 <ion-icon name="newspaper-outline"></ion-icon>
                 Berita
             </div>
         </a>
         <a href="{{ route('file') }}" class="flex">
-            <div class="w-full  {{ Route::current()->getName() == 'file' ? 'activeDmenu' : 'Dmenu' }}">
+            <div class="w-full  {{ request()->is('*file*') ? 'activeDmenu' : 'Dmenu' }}">
                 <ion-icon name="cloud-upload"></ion-icon>
                 File Upload
             </div>
@@ -62,22 +55,21 @@
 
         <a href="{{ route('pendaftaran') }}" class="flex">
             <div class=""></div>
-            <div
-                class="text-nowrap w-full  {{ Route::current()->getName() == 'pendaftaran' ? 'activeDmenu' : 'Dmenu' }}">
+            <div class="text-nowrap w-full  {{ request()->is('*pendaftaran*') ? 'activeDmenu' : 'Dmenu' }}">
                 <ion-icon name="help-circle-outline"></ion-icon>
                 Info Pendaftaran
             </div>
         </a>
         <a href="{{ route('kontak') }}" class="flex">
             <div class=""></div>
-            <div class="text-nowrap w-full  {{ Route::current()->getName() == 'kontak' ? 'activeDmenu' : 'Dmenu' }}">
+            <div class="text-nowrap w-full  {{ request()->is('*kontak*') ? 'activeDmenu' : 'Dmenu' }}">
                 <ion-icon name="help-circle-outline"></ion-icon>
                 Kontak & Alamat
             </div>
         </a>
         <a href="{{ route('pspdb') }}" class="flex">
             <div class=""></div>
-            <div class="text-nowrap w-full  {{ Route::current()->getName() == 'pspdb' ? 'activeDmenu' : 'Dmenu' }}">
+            <div class="text-nowrap w-full  {{ request()->is('*pspdb*') ? 'activeDmenu' : 'Dmenu' }}">
                 <ion-icon name="help-circle-outline"></ion-icon>
                 PSPDB
             </div>

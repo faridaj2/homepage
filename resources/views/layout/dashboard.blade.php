@@ -42,8 +42,7 @@
             <x-dashboard.navbar />
         </div>
         <div class="w-full md:pr-5 " :class="open || 'md:pl-5'">
-            <div
-                class="bg-base min-w-full shrink md:my-5 flex items-center justify-between rounded-lg hover:shadow-costum1">
+            <div class="bg-base min-w-full shrink md:my-5 flex items-center justify-between rounded-lg">
                 <div class="p-3 font-bold">Admin Page</div>
                 <ion-icon name="menu" class="z-0 text-3xl p-3 cursor-pointer text-black"
                     @click="open=!open"></ion-icon>

@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="text-clip text-wrap overflow-hidden max-w-sm md:max-w-none px-5">
+            <div class="text-clip text-wrap text-justify overflow-hidden max-w-sm md:max-w-none px-5">
 
                 {!! $data->content !!}
             </div>

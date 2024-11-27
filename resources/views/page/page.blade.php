@@ -31,30 +31,36 @@
             </div>
         </div>
         <b>Share This:</b>
-        <a target="_blank"
-            href="http://www.facebook.com/sharer.php?u=@php the_permalink(); @endphp&t=@php the_title(); @endphp"> <img
-                src="http://i.minus.com/i1UqMXjOhoUzH.jpg" alt="Facebook" width="64" height="64"></a> |
-        <a href="http://twitter.com/share?text=@php echo urlencode(the_title()); @endphp&url=@php echo urlencode(the_permalink()); @endphp&via=shemul49rmc&related=@php echo urlencode('shemul49rmc:Support me'); @endphp"
-            title="Share on Twitter" rel="nofollow" target="_blank"><img src="http://i.minus.com/ibmtAwKz1BAcLO.png"
-                alt="Twitter" width="64" height="64"></a> |
-        <a href="https://plus.google.com/share?url=@php the_permalink(); @endphp"
-            onclick="window.open('https://plus.google.com/share?url=@php the_permalink(); @endphp','gplusshare','width=600,height=400,left='+(screen.availWidth/2-225)+',top='+(screen.availHeight/2-150)+'');return false;"><img
-                src="http://i.minus.com/izAImJGqELkX1.png" alt="Google Plus" width="64" height="64"></a> |
+        @php
+            $post = $data;
+            $url = url()->current();
+            $title = $post->title;
+            $imageUrl = $post->image_url;
+        @endphp
+
+        <a target="_blank" href="http://www.facebook.com/sharer.php?u={{ urlencode($url) }}&t={{ urlencode($title) }}">
+            <img src="http://i.minus.com/i1UqMXjOhoUzH.jpg" alt="Facebook" width="64" height="64"></a> |
+        <a href="http://twitter.com/share?text={{ urlencode($title) }}&url={{ urlencode($url) }}&via=shemul49rmc&related={{ urlencode('shemul49rmc:Support me') }}"
+            title="Share on Twitter" rel="nofollow" target="_blank">
+            <img src="http://i.minus.com/ibmtAwKz1BAcLO.png" alt="Twitter" width="64" height="64"></a> |
+        <a href="https://plus.google.com/share?url={{ urlencode($url) }}"
+            onclick="window.open('https://plus.google.com/share?url={{ urlencode($url) }}','gplusshare','width=600,height=400,left='+(screen.availWidth/2-225)+',top='+(screen.availHeight/2-150)+'');return false;">
+            <img src="http://i.minus.com/izAImJGqELkX1.png" alt="Google Plus" width="64" height="64"></a> |
         <div>
-            <a href="http://www.reddit.com/submit?url=@php the_permalink(); @endphp&amp;title=@php the_title(); @endphp"
+            <a href="http://www.reddit.com/submit?url={{ urlencode($url) }}&amp;title={{ urlencode($title) }}"
                 title="Reddit" rel="nofollow" target="_blank">Reddit</a> |
-            <a href="http://www.stumbleupon.com/submit?url=@php the_permalink(); @endphp&amp;title=@php the_title(); @endphp"
+            <a href="http://www.stumbleupon.com/submit?url={{ urlencode($url) }}&amp;title={{ urlencode($title) }}"
                 title="Stumble it" rel="nofollow" target="_blank">Stumble it</a> |
-            <a href="http://digg.com/submit?url=@php the_permalink(); @endphp&amp;title=@php the_title(); @endphp"
+            <a href="http://digg.com/submit?url={{ urlencode($url) }}&amp;title={{ urlencode($title) }}"
                 title="Digg this!" rel="nofollow" target="_blank">Digg this!</a> |
-            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;title=@php the_title(); @endphp&amp;url=@php the_permalink(); @endphp"
+            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;title={{ urlencode($title) }}&amp;url={{ urlencode($url) }}"
                 title="Share on LinkedIn" rel="external nofollow" rel="nofollow" target="_blank">Share on LinkedIn</a> |
-            <a href="http://pinterest.com/pin/create/button/?url=@php the_permalink(); @endphp&media=@php $url = wp_get_attachment_url(get_post_thumbnail_id($post->ID));
-            echo $url; @endphp"
+            <a href="http://pinterest.com/pin/create/button/?url={{ urlencode($url) }}&media={{ urlencode($imageUrl) }}"
                 title="Pinterest" rel="nofollow" target="_blank">Pinterest</a> |
-            <a href="http://del.icio.us/post?url=@php the_permalink(); @endphp&amp;title=@php the_title(); @endphp"
+            <a href="http://del.icio.us/post?url={{ urlencode($url) }}&amp;title={{ urlencode($title) }}"
                 title="Bookmark on del.icio.us" rel="nofollow" target="_blank">Del.icio.us</a>
         </div>
+    </div>
     </div>
 
     <div class="clear-left"></div>

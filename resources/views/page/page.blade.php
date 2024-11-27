@@ -1,4 +1,9 @@
 @extends('layout.home')
+@slot('scriptHead')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor89s+R7ZgvYgS6ZS+9lpjOP8Imw1XWhWcqE4l9F45D9w7j4lI9RpP/i9c="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endslot
 @section('content')
     <div class="container mx-auto">
         {{-- Breadcumbs --}}
@@ -39,27 +44,20 @@
         @endphp
 
         <a target="_blank" href="http://www.facebook.com/sharer.php?u={{ urlencode($url) }}&t={{ urlencode($title) }}">
-            <img src="http://i.minus.com/i1UqMXjOhoUzH.jpg" alt="Facebook" width="64" height="64"></a> |
+            <i class="fab fa-facebook-f"></i>
+        </a> |
         <a href="http://twitter.com/share?text={{ urlencode($title) }}&url={{ urlencode($url) }}&via=shemul49rmc&related={{ urlencode('shemul49rmc:Support me') }}"
             title="Share on Twitter" rel="nofollow" target="_blank">
-            <img src="http://i.minus.com/ibmtAwKz1BAcLO.png" alt="Twitter" width="64" height="64"></a> |
+            <i class="fab fa-twitter"></i>
+        </a> |
         <a href="https://plus.google.com/share?url={{ urlencode($url) }}"
             onclick="window.open('https://plus.google.com/share?url={{ urlencode($url) }}','gplusshare','width=600,height=400,left='+(screen.availWidth/2-225)+',top='+(screen.availHeight/2-150)+'');return false;">
-            <img src="http://i.minus.com/izAImJGqELkX1.png" alt="Google Plus" width="64" height="64"></a> |
-        <div>
-            <a href="http://www.reddit.com/submit?url={{ urlencode($url) }}&amp;title={{ urlencode($title) }}"
-                title="Reddit" rel="nofollow" target="_blank">Reddit</a> |
-            <a href="http://www.stumbleupon.com/submit?url={{ urlencode($url) }}&amp;title={{ urlencode($title) }}"
-                title="Stumble it" rel="nofollow" target="_blank">Stumble it</a> |
-            <a href="http://digg.com/submit?url={{ urlencode($url) }}&amp;title={{ urlencode($title) }}"
-                title="Digg this!" rel="nofollow" target="_blank">Digg this!</a> |
-            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;title={{ urlencode($title) }}&amp;url={{ urlencode($url) }}"
-                title="Share on LinkedIn" rel="external nofollow" rel="nofollow" target="_blank">Share on LinkedIn</a> |
-            <a href="http://pinterest.com/pin/create/button/?url={{ urlencode($url) }}&media={{ urlencode($imageUrl) }}"
-                title="Pinterest" rel="nofollow" target="_blank">Pinterest</a> |
-            <a href="http://del.icio.us/post?url={{ urlencode($url) }}&amp;title={{ urlencode($title) }}"
-                title="Bookmark on del.icio.us" rel="nofollow" target="_blank">Del.icio.us</a>
-        </div>
+            <i class="fab fa-google-plus-g"></i>
+        </a> |
+        <a href="https://api.whatsapp.com/send?text={{ urlencode($title) }}%20-%20{{ urlencode($url) }}" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a> |
+
     </div>
     </div>
 

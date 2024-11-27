@@ -44,18 +44,18 @@
         @endphp
 
         <a target="_blank" href="http://www.facebook.com/sharer.php?u={{ urlencode($url) }}&t={{ urlencode($title) }}">
-            <i class="fab fa-facebook-f"></i>
+            <ion-icon name="logo-facebook"></ion-icon>
         </a> |
         <a href="http://twitter.com/share?text={{ urlencode($title) }}&url={{ urlencode($url) }}&via=shemul49rmc&related={{ urlencode('shemul49rmc:Support me') }}"
             title="Share on Twitter" rel="nofollow" target="_blank">
-            <i class="fab fa-twitter"></i>
+            <ion-icon name="logo-twitter"></ion-icon>
         </a> |
         <a href="https://plus.google.com/share?url={{ urlencode($url) }}"
             onclick="window.open('https://plus.google.com/share?url={{ urlencode($url) }}','gplusshare','width=600,height=400,left='+(screen.availWidth/2-225)+',top='+(screen.availHeight/2-150)+'');return false;">
-            <i class="fab fa-google-plus-g"></i>
+            <ion-icon name="logo-google"></ion-icon>
         </a> |
         <a href="https://api.whatsapp.com/send?text={{ urlencode($title) }}%20-%20{{ urlencode($url) }}" target="_blank">
-            <i class="fab fa-whatsapp"></i>
+            <ion-icon name="logo-whatsapp"></ion-icon>
         </a> |
 
     </div>

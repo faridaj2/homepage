@@ -1,11 +1,8 @@
 @extends('layout.home')
-@slot('scriptHead')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor89s+R7ZgvYgS6ZS+9lpjOP8Imw1XWhWcqE4l9F45D9w7j4lI9RpP/i9c="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-@endslot
+@push('scriptHead')
+@endpush
 @section('content')
-    <div class="container mx-auto">
+    <div class="container mx-auto" x-data="data">
         {{-- Breadcumbs --}}
         <div class="text-slate-400 flex items-center gap-2 text-xs p-5">
             <ion-icon name="home"></ion-icon><ion-icon name="chevron-forward"></ion-icon><span
@@ -27,39 +24,36 @@
                     <div class="font-bold text-3xl">
                         {{ $data->title }}
                     </div>
+                    <div>
+                        <button @click="share" type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Bagikan
+                            halaman ini.</button>
+                    </div>
                 </div>
             </div>
 
             <div class="text-clip text-wrap text-justify overflow-hidden max-w-sm md:max-w-none px-5">
-
                 {!! $data->content !!}
+
             </div>
+
         </div>
-        <b>Share This:</b>
-        @php
-            $post = $data;
-            $url = url()->current();
-            $title = $post->title;
-            $imageUrl = $post->image_url;
-        @endphp
-
-        <a target="_blank" href="http://www.facebook.com/sharer.php?u={{ urlencode($url) }}&t={{ urlencode($title) }}">
-            <ion-icon name="logo-facebook"></ion-icon>
-        </a> |
-        <a href="http://twitter.com/share?text={{ urlencode($title) }}&url={{ urlencode($url) }}&via=shemul49rmc&related={{ urlencode('shemul49rmc:Support me') }}"
-            title="Share on Twitter" rel="nofollow" target="_blank">
-            <ion-icon name="logo-twitter"></ion-icon>
-        </a> |
-        <a href="https://plus.google.com/share?url={{ urlencode($url) }}"
-            onclick="window.open('https://plus.google.com/share?url={{ urlencode($url) }}','gplusshare','width=600,height=400,left='+(screen.availWidth/2-225)+',top='+(screen.availHeight/2-150)+'');return false;">
-            <ion-icon name="logo-google"></ion-icon>
-        </a> |
-        <a href="https://api.whatsapp.com/send?text={{ urlencode($title) }}%20-%20{{ urlencode($url) }}" target="_blank">
-            <ion-icon name="logo-whatsapp"></ion-icon>
-        </a> |
-
     </div>
     </div>
 
     <div class="clear-left"></div>
 @endsection
+
+@push('scriptBody')
+    <script>
+        const data = {
+            share() {
+                const data = {
+                    title: "{{ $data->title }}",
+                    url: "{{ url()->current() }}"
+                }
+                navigator.share(data);
+            }
+        }
+    </script>
+@endpush

@@ -6,8 +6,8 @@
             </div>
             <p class="font-Petrona font-bold">Krajan Jalan Raden Wijaya No, Jl. R Supono, Jalen I, Setail, Kec. Genteng,
                 Kabupaten Banyuwangi, Jawa Timur 68486</p>
-            <p class="font-Petrona text-sm font-thin">Sekretariat / WA: <a
-                    href="https://wa.me/628127604401">628127604401</a> <br>
+            <p class="font-Petrona text-sm font-thin">Sekretariat / WA: <a href="https://wa.me/6281249991951">+62 812 4999
+                    1951</a> <br>
                 Email: <a href="mailto:darstachannel@gmail.com">darstachannel@gmail.com</a></p>
         </div>
         <div class="mt-14 p-10 flex justify-center gap-1">

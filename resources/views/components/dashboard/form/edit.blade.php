@@ -97,7 +97,7 @@
 
     tinymce.init({
         selector: 'textarea',
-        height: "720",
+        height: "1052",
         setup: function(editor) {
             editor.on('change', function() {
                 content = editor.getContent();

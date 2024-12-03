@@ -70,7 +70,10 @@ class ApiController extends Controller
     }
     public function getBerita()
     {
-        $data =  berita::select('id', 'title', 'slug', 'image_url')->limit(5)->orderBy('DESC')->get();
+        $data = berita::select('id', 'title', 'slug', 'image_url')
+            ->limit(5)
+            ->orderBy('created_at', 'DESC') // Assuming you want to order by 'created_at'
+            ->get();
         return response()->json($data);
     }
 }

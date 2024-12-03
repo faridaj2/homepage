@@ -30,7 +30,7 @@
 
 
         </div>
-        <div class="prose lg:prose-xl">
+        <div class="prose lg:prose-xl px-3 md:px-0">
             {!! $data->content !!}
         </div>
         <div class="group relative flex justify-center items-center text-zinc-600 text-sm font-bold mt-10" @click="share">

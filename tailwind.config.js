@@ -10,7 +10,8 @@ module.exports = {
     extend: {
       fontFamily: {
         'Petrona': ['Petrona', 'serif'],
-        'sans': ['Poppins', 'sans-serif']
+        'sans': ['Poppins', 'sans-serif'],
+        'Inter': ['Inter', 'sans-serif'],
       },
       boxShadow: {
         'costum1': '6px 2px 16px 0px rgba(136, 165, 191, 0.48) , -6px -2px 16px 0px rgba(255, 255, 255, 0.8)',

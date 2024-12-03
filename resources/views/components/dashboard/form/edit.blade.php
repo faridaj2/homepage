@@ -62,7 +62,7 @@
                         setTimeout(() => {
                             window.location.replace(
                                 '{{ $url == '/dashboard/article-leader' ? '/dashboard/pemimpin' : $url }}'
-                                )
+                            )
                         }, 500);
                 })
                 .catch(error => {
@@ -97,6 +97,7 @@
 
     tinymce.init({
         selector: 'textarea',
+        height: "720",
         setup: function(editor) {
             editor.on('change', function() {
                 content = editor.getContent();

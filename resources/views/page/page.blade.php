@@ -30,7 +30,7 @@
 
 
         </div>
-        <div class="text-clip text-wrap text-justify overflow-hidden max-w-sm md:max-w-none">
+        <div class="text-clip text-wrap text-justify overflow-hidden max-w-sm md:max-w-none mx-auto">
             {!! $data->content !!}
         </div>
         <div class="group relative flex justify-center items-center text-zinc-600 text-sm font-bold mt-10" @click="share">

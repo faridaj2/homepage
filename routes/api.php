@@ -28,3 +28,5 @@ Route::get('/slug-pemimpin', [ApiController::class,  'pemimpin']);
 Route::get('/slug-pendidikan', [ApiController::class,  'pendidikans']);
 Route::get('/slug-sejarah', [ApiController::class,  'sejarahs']);
 Route::get('/slug-berita', [ApiController::class,  'berita']);
+
+Route::get('/get-berita', [ApiController::class,  'getBerita']);

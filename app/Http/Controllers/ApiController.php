@@ -68,4 +68,9 @@ class ApiController extends Controller
         $check = berita::where('slug', 'LIKE', "$slug%")->count();
         return response(['exists' => $check]);
     }
+    public function getBerita()
+    {
+        $data =  berita::limit(5)->get();
+        return response()->json($data);
+    }
 }

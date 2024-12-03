@@ -17,7 +17,7 @@
         </a>
         <a href="/dashboard/{{ $url }}/{{ $item->id }}/edit"
             class="text-black bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-md hover:bg-gray-300 transition-all">
-            <ion-icon name="create-outline"></ion-icon>
+            <i data-lucide="pencil"></i>
         </a>
         <button
             class="text-black bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-md hover:bg-gray-300 transition-all"

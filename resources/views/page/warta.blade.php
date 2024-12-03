@@ -37,7 +37,7 @@
                         </div>
                         <div>
                             <h1 class="font-Petrona font-bold line-clamp-2">{{ $item->title }}</h1>
-                            <span class="text-xs text-slate-400">{{ $item->updated_at->format('d F Y') }}</span>
+                            <span class="text-xs text-slate-400">{{ $item->created_at->format('d F Y') }}</span>
                             <p class="text-xs text-slate-500 line-clamp-3 my-4">
                                 {{ html_entity_decode(strip_tags($item->content)) }}</p>
                             <a href="/warta/{{ $item->slug }}"

@@ -55,6 +55,7 @@ class ApiController extends Controller
         $check = pendidikan::where('slug', 'LIKE', "$slug%")->count();
         return response(['exists' => $check]);
     }
+
     public function sejarahs(Request $request)
     {
         $slug = $request->slug;

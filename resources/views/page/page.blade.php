@@ -34,7 +34,7 @@
         <div class="text-clip text-wrap text-justify overflow-hidden max-w-sm md:max-w-none px-5">
             {!! $data->content !!}
         </div>
-        <div class="group relative flex justify-center items-center text-zinc-600 text-sm font-bold" @click="share">
+        <div class="group relative flex justify-center items-center text-zinc-600 text-sm font-bold mt-10" @click="share">
             <div
                 class="absolute opacity-0 group-hover:opacity-100 group-hover:-translate-y-[150%] -translate-y-[300%] duration-500 group-hover:delay-500 skew-y-[20deg] group-hover:skew-y-0 shadow-md">
                 <div class="bg-lime-200 flex items-center gap-1 p-2 rounded-md">

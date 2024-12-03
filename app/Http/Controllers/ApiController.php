@@ -70,7 +70,7 @@ class ApiController extends Controller
     }
     public function getBerita()
     {
-        $data =  berita::limit(5)->get();
+        $data =  berita::select('id', 'title', 'slug', 'image_url')->limit(5)->get();
         return response()->json($data);
     }
 }

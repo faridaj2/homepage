@@ -10,8 +10,7 @@
                 class="truncate w-28">{{ $data->title }}</span>
         </div>
         <div class="prose md:max-w-none">
-            <div
-                class="bg-gray-50 md:bg-transparent md:border-b md:pb-20 p-5 grid grid-cols-1 md:grid-cols-2 md:gap-10 xl:gap-20">
+            <div class="bg-gray-50 md:bg-transparent md:pb-20 p-5 grid grid-cols-1 md:grid-cols-2 md:gap-10 xl:gap-20">
                 <div class="h-72 md:h-96 overflow-hidden rounded-xl">
                     <img src="{{ $data->image_url }}" class="w-full h-full rounded-xl object-contain" alt="">
                 </div>

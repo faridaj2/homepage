@@ -21,7 +21,7 @@
                             Darussalam
                             Blokagung 2</span>
                     </div>
-                    <div class="font-bold text-3xl">
+                    <div class="font-bold text-3xl text-center md:text-left">
                         {{ $data->title }}
                     </div>
 

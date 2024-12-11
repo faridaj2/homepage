@@ -84,7 +84,8 @@ class SejarahController extends Controller
      */
     public function destroy(Request $r, $id)
     {
-        sejarah::destroy($id);
+        sejarah::destroy($id
+        );
         return response()->json(['success' => 'oke'], 200);
     }
 }

@@ -169,7 +169,7 @@
                     .catch(e => console.log(e))
             },
             copy(copy) {
-                const stringToCopy = window.location.host + copy;
+                const stringToCopy ='https://' + window.location.host + copy;
                 const tempInput = document.createElement('input');
                 tempInput.value = stringToCopy;
                 document.body.appendChild(tempInput);

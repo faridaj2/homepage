@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div>
-                        @php
+                        {{-- @php
                             $fileName = $item->originalName;
                             $newFileName;
 
@@ -38,8 +38,8 @@
                                 $newFileName = $item->originalName;
                             }
 
-                        @endphp
-                        <p class="font-bold py-3 text-xs">{{ $newFileName }}</p>
+                        @endphp --}}
+                        <p class="font-bold py-3 text-xs truncate">{{ $$item->originalName }}</p>
                     </div>
                 </div>
             @endforeach

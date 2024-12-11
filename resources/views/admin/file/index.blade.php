@@ -39,7 +39,7 @@
                             }
 
                         @endphp --}}
-                        <p class="font-bold py-3 text-xs truncate">{{ $$item->originalName }}</p>
+                        <p class="font-bold py-3 text-xs truncate">{{ $item->originalName }}</p>
                     </div>
                 </div>
             @endforeach

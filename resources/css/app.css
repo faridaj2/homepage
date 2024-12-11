@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 /* Scroll Bar */
+[x-cloak] { display: none !important; }
 
 .scroll::-webkit-scrollbar-track {
     @apply bg-sky-200;

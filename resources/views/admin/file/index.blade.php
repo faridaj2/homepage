@@ -8,7 +8,7 @@
         </div>
         <div class="flex flex-wrap gap-3">
             @foreach ($file as $item)
-                <div class="bg-white p-3 border inline-block rounded w-[200px] max-md:w-full">
+                <div class="bg-white p-3 border inline-block rounded-md w-[200px] max-md:w-full">
                     <div class="overflow-hidden h-[200px] object-center relative">
                         <img src="{{ in_array($item->ext, ['png', 'svg', 'jpg', 'jpeg']) ? asset('/storage/file/' . $item->name) : 'https://img.icons8.com/fluency/240/file.png' }}"
                             class="rounded object-contain w-full" alt="">

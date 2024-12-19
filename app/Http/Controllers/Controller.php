@@ -107,7 +107,7 @@ class Controller extends BaseController
         $page = Berita::where('slug', $slug)->first();
         if (!$page) return view('404');
         $data = [
-            'data' => Berita::where('slug', $slug)->first()->addSEO(),
+            'data' => Berita::where('slug', $slug)->first(),
             'page' => 'Berita'
         ];
         return view('page.page', $data);

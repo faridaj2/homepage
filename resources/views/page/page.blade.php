@@ -1,5 +1,14 @@
 @extends('layout.home')
 @push('scriptHead')
+    <link 
+      href="https://cdn.jsdelivr.net/npm/shareon@2/dist/shareon.min.css"
+      rel="stylesheet"
+    >
+    <script
+      src="https://cdn.jsdelivr.net/npm/shareon@2/dist/shareon.iife.js"
+      defer
+      init
+    ></script>
 @endpush
 @section('content')
     <div class="container mx-auto" x-data="data">
@@ -22,6 +31,34 @@
                     </div>
                     <div class="font-bold text-3xl text-center md:text-left">
                         {{ $data->title }}
+                    </div>
+                    <div>
+                        <div class="shareon">
+    <a class="bluesky"></a>
+    <a class="facebook"></a>
+    <a class="fediverse"></a>
+    <a class="hackernews"></a>
+    <a class="linkedin"></a>
+    <a class="mastodon"></a>
+    <!-- FB App ID is required for the Messenger button to function -->
+    <a class="messenger" data-fb-app-id="0123456789012345"></a>
+    <a class="odnoklassniki"></a>
+    <a class="pinterest"></a>
+    <a class="pocket"></a>
+    <a class="reddit"></a>
+    <a class="teams"></a>
+    <a class="telegram"></a>
+    <a class="tumblr"></a>
+    <a class="twitter"></a>
+    <a class="viber"></a>
+    <a class="vkontakte"></a>
+    <a class="whatsapp"></a>
+    <a class="copy-url"></a>
+    <a class="email"></a>
+    <a class="print"></a>
+    <!-- Does not work in every browser -->
+    <a class="web-share"></a>
+</div>
                     </div>
 
                 </div>

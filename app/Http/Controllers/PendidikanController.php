@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pendidikan;
+use App\Models\Pendidikan;
 use Illuminate\Http\Request;
 
 class PendidikanController extends Controller
@@ -12,7 +12,7 @@ class PendidikanController extends Controller
      */
     public function index()
     {
-        $data = pendidikan::all();
+        $data = Pendidikan::all();
         return view('admin.pendidikan.index', compact('data'));
     }
 
@@ -38,7 +38,7 @@ class PendidikanController extends Controller
         if (!$validateData) {
             return response()->json(['data' => '✖️ Terjadi kesalahan dalam validasi'], 422);
         }
-        pendidikan::create([
+        Pendidikan::create([
             'title' => $request->title,
             'slug' => $request->slug,
             'image_url' => $request->img,
@@ -51,7 +51,7 @@ class PendidikanController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $data = pendidikan::find($id);
+        $data = Pendidikan::find($id);
         return view('admin.pendidikan.show', compact('data'));
     }
 
@@ -60,7 +60,7 @@ class PendidikanController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $data = pendidikan::find($id);
+        $data = Pendidikan::find($id);
         return view('admin.pendidikan.edit', compact('data'));
     }
 
@@ -69,7 +69,7 @@ class PendidikanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        pendidikan::find($id)->update([
+        Pendidikan::find($id)->update([
             'title' => $request->title,
             'slug' => $request->slug,
             'image_url' => $request->img,
@@ -83,7 +83,7 @@ class PendidikanController extends Controller
      */
     public function destroy(Request $r, $id)
     {
-        pendidikan::destroy($id);
+        Pendidikan::destroy($id);
         return response()->json(['success' => 'oke'], 200);
     }
 }

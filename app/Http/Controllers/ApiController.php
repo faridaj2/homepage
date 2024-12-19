@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\articleLeader;
-use App\Models\berita;
-use App\Models\pendidikan;
-use App\Models\sejarah;
+use App\Models\ArticleLeader;
+use App\Models\Berita;
+use App\Models\Pendidikan;
+use App\Models\Sejarah;
 use App\Models\UserInput;
 use Illuminate\Http\Request;
 
@@ -46,32 +46,32 @@ class ApiController extends Controller
     public function pemimpin(Request $request)
     {
         $slug = $request->slug;
-        $check = articleLeader::where('slug', 'LIKE', "$slug%")->count();
+        $check = ArticleLeader::where('slug', 'LIKE', "$slug%")->count();
         return response(['exists' => $check]);
     }
     public function pendidikans(Request $request)
     {
         $slug = $request->slug;
-        $check = pendidikan::where('slug', 'LIKE', "$slug%")->count();
+        $check = Pendidikan::where('slug', 'LIKE', "$slug%")->count();
         return response(['exists' => $check]);
     }
 
     public function sejarahs(Request $request)
     {
         $slug = $request->slug;
-        $check = sejarah::where('slug', 'LIKE', "$slug%")->count();
+        $check = Sejarah::where('slug', 'LIKE', "$slug%")->count();
         return response(['exists' => $check]);
     }
 
-    public function berita(Request $request)
+    public function Berita(Request $request)
     {
         $slug = $request->slug;
-        $check = berita::where('slug', 'LIKE', "$slug%")->count();
+        $check = Berita::where('slug', 'LIKE', "$slug%")->count();
         return response(['exists' => $check]);
     }
-    public function getBerita()
+    public function getberita()
     {
-        $data = berita::select('id', 'title', 'slug', 'image_url')
+        $data = Berita::select('id', 'title', 'slug', 'image_url')
             ->limit(5)
             ->orderBy('created_at', 'DESC') // Assuming you want to order by 'created_at'
             ->get();

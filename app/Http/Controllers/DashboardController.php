@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\articleLeader;
+use App\Models\ArticleLeader;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,7 +13,7 @@ class DashboardController extends Controller
     }
     public function pemimpin()
     {
-        $article = articleLeader::all();
+        $article = ArticleLeader::all();
         return view('admin.articleLeader', compact('article'));
     }
 }

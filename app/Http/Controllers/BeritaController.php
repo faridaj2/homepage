@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\berita;
+use App\Models\Berita;
 use Illuminate\Http\Request;
 
 class BeritaController extends Controller
@@ -12,7 +12,7 @@ class BeritaController extends Controller
      */
     public function index()
     {
-        $data = berita::orderByDesc('created_at')->paginate(15);
+        $data = Berita::orderByDesc('created_at')->paginate(15);
         return view('admin.berita.index', compact('data'));
     }
 
@@ -38,7 +38,7 @@ class BeritaController extends Controller
         if (!$validateData) {
             return response()->json(['data' => '✖️ Terjadi kesalahan dalam validasi'], 422);
         }
-        berita::create([
+        Berita::create([
             'title' => $request->title,
             'slug' => $request->slug,
             'image_url' => $request->img,
@@ -51,7 +51,7 @@ class BeritaController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $data = berita::find($id);
+        $data = Berita::find($id);
         return view('admin.berita.show', compact('data'));
     }
 
@@ -60,7 +60,7 @@ class BeritaController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $data = berita::find($id);
+        $data = Berita::find($id);
         return view('admin.berita.edit', compact('data'));
     }
 
@@ -69,7 +69,7 @@ class BeritaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        berita::find($id)->update([
+        Berita::find($id)->update([
             'title' => $request->title,
             'slug' => $request->slug,
             'image_url' => $request->img,
@@ -83,7 +83,7 @@ class BeritaController extends Controller
      */
     public function destroy(Request $r, $id)
     {
-        berita::destroy($id);
+        Berita::destroy($id);
         return response()->json(['success' => 'oke'], 200);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\others;
+use App\Models\Others;
 use App\Http\Requests\UpdateothersRequest;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,7 @@ class PendaftaranController extends Controller
     public function index()
     {
         $data = null;
-        $check = others::where('type', 'pendaftaran');
+        $check = Others::where('type', 'pendaftaran');
         if ($check->count() === 0) {
         } else {
             $data = $check->first();
@@ -28,7 +28,7 @@ class PendaftaranController extends Controller
     public function create()
     {
         $data = null;
-        $check = others::where('type', 'pendaftaran');
+        $check = Others::where('type', 'pendaftaran');
         if ($check->count() === 0) {
             $data = '';
         } else {
@@ -43,9 +43,9 @@ class PendaftaranController extends Controller
     public function store(Request $request)
     {
         $content = $request->content;
-        $check = others::where('type', 'pendaftaran');
+        $check = Others::where('type', 'pendaftaran');
         if ($check->count() === 0) {
-            others::create([
+            Others::create([
                 'type' => 'pendaftaran',
                 'content' => $content,
             ]);

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 
-class berita extends Model
+class Berita extends Model
 {
     use HasFactory;
     use HasSEO;
@@ -15,7 +15,7 @@ class berita extends Model
     {
         return new SEOData(
             title: $this->title,
-            description: "Desc",
+            description: "",
             author: "Admin",
             image: "https://darussalam2.com/storage/file/" . $this->image_url
         );

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\sejarah;
+use App\Models\Sejarah;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdatesejarahRequest;
 
@@ -13,7 +13,7 @@ class SejarahController extends Controller
      */
     public function index()
     {
-        $data = sejarah::all();
+        $data = Sejarah::all();
         return view('admin.sejarah.index', compact('data'));
     }
 
@@ -39,7 +39,7 @@ class SejarahController extends Controller
         if (!$validateData) {
             return response()->json(['data' => '✖️ Terjadi kesalahan dalam validasi'], 422);
         }
-        sejarah::create([
+        Sejarah::create([
             'title' => $request->title,
             'slug' => $request->slug,
             'image_url' => $request->img,
@@ -52,7 +52,7 @@ class SejarahController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $data = sejarah::find($id);
+        $data = Sejarah::find($id);
         return view('admin.sejarah.show', compact('data'));
     }
 
@@ -61,7 +61,7 @@ class SejarahController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $data = sejarah::find($id);
+        $data = Sejarah::find($id);
         return view('admin.sejarah.edit', compact('data'));
     }
 
@@ -70,7 +70,7 @@ class SejarahController extends Controller
      */
     public function update(Request $request, $id)
     {
-        sejarah::find($id)->update([
+        Sejarah::find($id)->update([
             'title' => $request->title,
             'slug' => $request->slug,
             'image_url' => $request->img,
@@ -84,7 +84,7 @@ class SejarahController extends Controller
      */
     public function destroy(Request $r, $id)
     {
-        sejarah::destroy($id
+        Sejarah::destroy($id
         );
         return response()->json(['success' => 'oke'], 200);
     }

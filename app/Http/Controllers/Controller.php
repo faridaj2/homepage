@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\articleLeader;
-use App\Models\berita;
-use App\Models\others;
-use App\Models\pendidikan;
-use App\Models\sejarah;
+use App\Models\ArticleLeader;
+use App\Models\Berita;
+use App\Models\Others;
+use App\Models\Pendidikan;
+use App\Models\Sejarah;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class Controller extends BaseController
     public function index()
     {
         $data = [
-            'berita' => berita::orderBy('created_at', 'desc')->limit(3)->get()
+            'berita' => Berita::orderBy('created_at', 'desc')->limit(3)->get()
         ];
         return view('page.index', $data);
     }
@@ -32,7 +32,7 @@ class Controller extends BaseController
     }
     public function profilPimpinan($slug)
     {
-        $page = articleLeader::where('slug', $slug)->first();
+        $page = ArticleLeader::where('slug', $slug)->first();
         if (!$page) return view('404');
         $data = [
             'data' => $page,
@@ -42,7 +42,7 @@ class Controller extends BaseController
     }
     public function Pendidikan($slug)
     {
-        $page = pendidikan::where('slug', $slug)->first();
+        $page = Pendidikan::where('slug', $slug)->first();
         if (!$page) return view('404');
         $data = [
             'data' => $page,
@@ -52,7 +52,7 @@ class Controller extends BaseController
     }
     public function sejarah($slug)
     {
-        $page = sejarah::where('slug', $slug)->first();
+        $page = Sejarah::where('slug', $slug)->first();
         if (!$page) return view('404');
         $data = [
             'data' => $page,
@@ -65,7 +65,7 @@ class Controller extends BaseController
         $data = [
             'page' => 'Pendaftaran',
             'title' => 'Info Pendaftaran',
-            'content' => others::where('type', 'pendaftaran')->first()
+            'content' => Others::where('type', 'pendaftaran')->first()
         ];
         return view('page.others', $data);
     }
@@ -74,7 +74,7 @@ class Controller extends BaseController
         $data = [
             'page' => 'Kontak',
             'title' => 'Kontak & Alamat',
-            'content' => others::where('type', 'kontak')->first()
+            'content' => Others::where('type', 'kontak')->first()
         ];
         return view('page.others', $data);
     }
@@ -83,30 +83,30 @@ class Controller extends BaseController
     {
         $query = $request->q;
         if ($query) {
-            $data = berita::where('title', 'like', '%' . $query . '%')
+            $data = Berita::where('title', 'like', '%' . $query . '%')
                 ->orWhere('content', 'like', '%' . $query . '%')
                 ->orderByDesc('created_at')->paginate(15);
 
             $data = [
                 'data' => $data,
-                'random' => berita::inRandomOrder()->limit(7)->get()
+                'random' => Berita::inRandomOrder()->limit(7)->get()
             ];
             return view('page.warta', $data);
         } else {
-            $data = berita::orderByDesc('created_at')->paginate(15);
+            $data = Berita::orderByDesc('created_at')->paginate(15);
             $data = [
                 'data' => $data,
-                'random' => berita::inRandomOrder()->limit(7)->get()
+                'random' => Berita::inRandomOrder()->limit(7)->get()
             ];
             return view('page.warta', $data);
         }
     }
     public function GetWarta($slug)
     {
-        $page = berita::where('slug', $slug)->first();
+        $page = Berita::where('slug', $slug)->first();
         if (!$page) return view('404');
         $data = [
-            'data' => berita::where('slug', $slug)->first(),
+            'data' => Berita::where('slug', $slug)->first(),
             'page' => 'Berita'
         ];
         return view('page.page', $data);
@@ -115,7 +115,7 @@ class Controller extends BaseController
     {
         $query = $request->q;
         $mode = $request->mode;
-        $berita = berita::where('title', 'like', '%' . $query . '%')
+        $berita = Berita::where('title', 'like', '%' . $query . '%')
             ->orWhere('content', 'like', '%' . $query . '%')
             ->limit(5)->get();
         if ($query == '') {
@@ -129,9 +129,9 @@ class Controller extends BaseController
     public function navData()
     {
         $data = [
-            'pemimpin' => articleLeader::get(),
-            'pendidikan' => pendidikan::get(),
-            'sejarah' => sejarah::get()
+            'pemimpin' => ArticleLeader::get(),
+            'pendidikan' => Pendidikan::get(),
+            'sejarah' => Sejarah::get()
         ];
         return $data;
     }

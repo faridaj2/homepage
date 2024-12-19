@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\file;
+use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdatefileRequest;
@@ -14,7 +14,7 @@ class FileController extends Controller
      */
     public function index()
     {
-        $file = file::orderByDesc('created_at')->paginate(25);
+        $file = File::orderByDesc('created_at')->paginate(25);
         return view('admin.file.index', compact('file'));
     }
 
@@ -35,7 +35,7 @@ class FileController extends Controller
             $file = $request->file('file');
             $filePath = $file->store('public/file');
             $fileUrl = Storage::url($filePath);
-            $fileStore = file::create([
+            $fileStore = File::create([
                 'originalName' => $file->getClientOriginalName(),
                 'name' => $file->hashName(),
                 'url' => $filePath,
@@ -79,9 +79,9 @@ class FileController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $file = file::find($id);
+        $file = File::find($id);
         Storage::delete($file->url);
-        file::destroy($id);
+        File::destroy($id);
         return response()->json(['data' => 'success'], 200);
     }
 }

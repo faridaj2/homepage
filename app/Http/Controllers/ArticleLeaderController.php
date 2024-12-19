@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\articleLeader;
+use App\Models\ArticleLeader;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdatearticleLeaderRequest;
 
@@ -36,7 +36,7 @@ class ArticleLeaderController extends Controller
         if (!$validateData) {
             return response()->json(['data' => '✖️ Terjadi kesalahan dalam validasi'], 422);
         }
-        articleLeader::create([
+        ArticleLeader::create([
             'title' => $request->title,
             'slug' => $request->slug,
             'image_url' => $request->img,
@@ -49,7 +49,7 @@ class ArticleLeaderController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $article = articleLeader::find($id);
+        $article = ArticleLeader::find($id);
         return view('admin.leader.show', compact('article'));
     }
 
@@ -58,7 +58,7 @@ class ArticleLeaderController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $data = articleLeader::find($id);
+        $data = ArticleLeader::find($id);
         return view('admin.leader.edit', compact('data'));
     }
 
@@ -67,7 +67,7 @@ class ArticleLeaderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        articleLeader::find($id)->update([
+        ArticleLeader::find($id)->update([
             'title' => $request->title,
             'slug' => $request->slug,
             'image_url' => $request->img,
@@ -81,7 +81,7 @@ class ArticleLeaderController extends Controller
      */
     public function destroy(Request $r, $id)
     {
-        articleLeader::destroy($id);
+        ArticleLeader::destroy($id);
         return response()->json(['success' => 'oke'], 200);
     }
 }

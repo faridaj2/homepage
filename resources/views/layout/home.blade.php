@@ -4,9 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {!! seo() !!}
-
     <title>Home - Pondok Pesantren Darussalam Blokagung 2</title>
+    {!! seo()->for($berita) !!}
 
     {{-- Css & Js --}}
 

@@ -10,6 +10,7 @@ use App\Models\Sejarah;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Spatie\Sitemap\SitemapGenerator;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
@@ -20,6 +21,7 @@ class Controller extends BaseController
         $data = [
             'berita' => Berita::orderBy('created_at', 'desc')->limit(3)->get()
         ];
+        SitemapGenerator::create('https://darussalam2.com')->writeToFile(public_path('sitemap.xml'));
         return view('page.index', $data);
     }
     public function login()

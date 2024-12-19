@@ -104,7 +104,7 @@ class Controller extends BaseController
     }
     public function GetWarta($slug)
     {
-        $page = Berita::where('slug', $slug)->first();
+        $page = Berita::where('slug', $slug)->addSEO()->first();
         if (!$page) return view('404');
         $data = [
             'data' => Berita::where('slug', $slug)->first(),

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{-- <title>Home - Pondok Pesantren Darussalam Blokagung 2</title> --}}
-    {!! seo() !!}
+    {!! seo($berita ?? null) !!}
 
     {{-- Css & Js --}}
 

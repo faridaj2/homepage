@@ -106,5 +106,6 @@
         }
         const div = document.querySelector('#placeUrl')
         div.innerText = "{{ $data->title }}"
+        document.title = "{{ $data->title }} | Ponsok Pesantren Darussalam Blokagung 2"
     </script>
 @endpush

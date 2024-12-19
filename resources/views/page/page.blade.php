@@ -32,17 +32,13 @@
                     <div class="font-bold text-3xl text-center md:text-left">
                         {{ $data->title }}
                     </div>
-                    <div>
-                        <div class="shareon">
+                    <div class="mx-auto">
+                        <div class="shareon flex justify-center">
                             <a class="facebook"></a>
-                            <a class="fediverse"></a>
                             <a class="linkedin"></a>
-                            <a class="mastodon"></a>
                             <a class="pinterest"></a>
-                            <a class="teams"></a>
                             <a class="telegram"></a>
                             <a class="twitter"></a>
-                            <a class="vkontakte"></a>
                             <a class="whatsapp"></a>
                             <a class="copy-url"></a>
                             <a class="email"></a>

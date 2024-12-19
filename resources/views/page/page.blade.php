@@ -34,31 +34,31 @@
                     </div>
                     <div>
                         <div class="shareon">
-    <a class="bluesky"></a>
-    <a class="facebook"></a>
-    <a class="fediverse"></a>
-    <a class="hackernews"></a>
-    <a class="linkedin"></a>
-    <a class="mastodon"></a>
-    <!-- FB App ID is required for the Messenger button to function -->
-    <a class="messenger" data-fb-app-id="0123456789012345"></a>
-    <a class="odnoklassniki"></a>
-    <a class="pinterest"></a>
-    <a class="pocket"></a>
-    <a class="reddit"></a>
-    <a class="teams"></a>
-    <a class="telegram"></a>
-    <a class="tumblr"></a>
-    <a class="twitter"></a>
-    <a class="viber"></a>
-    <a class="vkontakte"></a>
-    <a class="whatsapp"></a>
-    <a class="copy-url"></a>
-    <a class="email"></a>
-    <a class="print"></a>
-    <!-- Does not work in every browser -->
-    <a class="web-share"></a>
-</div>
+                            <a class="bluesky"></a>
+                            <a class="facebook"></a>
+                            <a class="fediverse"></a>
+                            <a class="hackernews"></a>
+                            <a class="linkedin"></a>
+                            <a class="mastodon"></a>
+                            <!-- FB App ID is required for the Messenger button to function -->
+                            <a class="messenger" data-fb-app-id="0123456789012345"></a>
+                            <a class="odnoklassniki"></a>
+                            <a class="pinterest"></a>
+                            <a class="pocket"></a>
+                            <a class="reddit"></a>
+                            <a class="teams"></a>
+                            <a class="telegram"></a>
+                            <a class="tumblr"></a>
+                            <a class="twitter"></a>
+                            <a class="viber"></a>
+                            <a class="vkontakte"></a>
+                            <a class="whatsapp"></a>
+                            <a class="copy-url"></a>
+                            <a class="email"></a>
+                            <a class="print"></a>
+                            <!-- Does not work in every browser -->
+                            <a class="web-share"></a>
+                        </div>
                     </div>
 
                 </div>
@@ -125,6 +125,7 @@
             </div>
         </div>
     </div>
+    
     </div>
 
     <div class="clear-left"></div>
@@ -143,6 +144,6 @@
         }
         const div = document.querySelector('#placeUrl')
         div.innerText = "{{ $data->title }}"
-        document.title = "{{ $data->title }} | Ponsok Pesantren Darussalam Blokagung 2"
+        document.title = "{{ $data->title }} | PP. Darussalam Blokagung 2"
     </script>
 @endpush

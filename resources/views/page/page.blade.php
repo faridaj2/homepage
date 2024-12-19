@@ -32,8 +32,8 @@
                     <div class="font-bold text-3xl text-center md:text-left">
                         {{ $data->title }}
                     </div>
-                    <div class="mx-auto">
-                        <div class="shareon flex justify-center">
+                    <div class="mx-auto mt-2">
+                        <div class="shareon flex justify-center flex-wrap">
                             <a class="facebook"></a>
                             <a class="linkedin"></a>
                             <a class="pinterest"></a>

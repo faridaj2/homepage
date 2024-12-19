@@ -15,7 +15,7 @@ class berita extends Model
         title: $this->title,
         description: $this->excerpt,
         author: "Admin",
-        image: "https://darussalam2.com/storage/file/" . $this->image_url;
+        image: "https://darussalam2.com/storage/file/" . $this->image_url
     );
 }
 }

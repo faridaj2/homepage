@@ -10,7 +10,7 @@
     {{-- Css & Js --}}
 
     <x-head />
-
+    <meta name="google-site-verification" content="i_Ys03MP2YwO3Mbtvb0AL_5ARnPoHV_8xnVda22ep0k" />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />

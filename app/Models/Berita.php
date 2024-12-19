@@ -18,7 +18,7 @@ class Berita extends Model
             title: $this->title,
             description: "DSC",
             author: "Admin",
-            image: "https://darussalam2.com/storage/file/" . $this->image_url
+            image: $this->image_url
         );
     }
 }

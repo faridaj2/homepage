@@ -26,6 +26,7 @@ use App\Http\Controllers\UserInputController;
 */
 
 // Homepaeg Route Resource
+Route::get('/create-sitemap', [Controller::class, 'createSiteMap']);
 Route::controller(Controller::class)->group(function () {
     Route::get('/', 'index');
     Route::get('kontak', 'kontak');

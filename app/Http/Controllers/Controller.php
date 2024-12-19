@@ -21,7 +21,6 @@ class Controller extends BaseController
         $data = [
             'berita' => Berita::orderBy('created_at', 'desc')->limit(3)->get()
         ];
-        SitemapGenerator::create('https://darussalam2.com')->writeToFile(public_path('sitemap.xml'));
         return view('page.index', $data);
     }
     public function login()
@@ -136,5 +135,9 @@ class Controller extends BaseController
             'sejarah' => Sejarah::get()
         ];
         return $data;
+    }
+    public function createSiteMap()
+    {
+        SitemapGenerator::create('https://darussalam2.com')->writeToFile(public_path('sitemap.xml'));
     }
 }

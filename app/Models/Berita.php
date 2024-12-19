@@ -15,7 +15,7 @@ class Berita extends Model
     {
         return new SEOData(
             title: $this->title,
-            description: "",
+            description: "DSC",
             author: "Admin",
             image: "https://darussalam2.com/storage/file/" . $this->image_url
         );

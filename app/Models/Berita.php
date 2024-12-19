@@ -11,7 +11,7 @@ class Berita extends Model
     use HasFactory;
     use HasSEO;
     protected $guarded = ['id'];
-    protected function getDynamicSEOData(): SEOData
+    public function getDynamicSEOData(): SEOData
     {
         return new SEOData(
             title: $this->title,

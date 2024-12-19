@@ -33,7 +33,7 @@
                         {{ $data->title }}
                     </div>
                     <div class="mx-auto mt-2">
-                        <div class="shareon flex justify-center flex-wrap">
+                        <div class="shareon flex justify-center md:justify-start flex-wrap">
                             <a class="facebook"></a>
                             <a class="linkedin"></a>
                             <a class="pinterest"></a>

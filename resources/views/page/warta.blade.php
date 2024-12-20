@@ -22,14 +22,14 @@
             </div>
         </form>
 
-        @if (count($beritas) == 0)
+        @if (count($data) == 0)
             <div class="px-6 flex justify-center">
                 <div class="text-slate-500">Data tidak ditemukan</div>
             </div>
         @endif
         <div class="px-4 flex flex-wrap">
             <div class="w-full md:w-12/12 lg:w-10/12 flex flex-wrap">
-                @foreach ($beritas as $item)
+                @foreach ($data as $item)
                     <div class="w-full md:w-1/3 lg:w-1/4 p-2">
                         <div class="w-full h-36 overflow-hidden">
                             <img src="{{ $item->image_url }}" alt=""
@@ -47,7 +47,7 @@
                     </div>
                 @endforeach
                 <div class="w-full">
-                    {{ $beritas->links() }}
+                    {{ $data->links() }}
                 </div>
             </div>
 

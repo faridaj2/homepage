@@ -89,7 +89,7 @@ class Controller extends BaseController
                 ->orderByDesc('created_at')->paginate(15);
 
             $beritas = [
-                'data' => $data,
+                'beritas' => $data,
                 'random' => Berita::inRandomOrder()->limit(7)->get()
             ];
             return view('page.warta', $beritas);

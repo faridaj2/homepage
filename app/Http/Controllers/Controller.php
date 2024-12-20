@@ -84,12 +84,12 @@ class Controller extends BaseController
     {
         $query = $request->q;
         if ($query) {
-            $data = Berita::where('title', 'like', '%' . $query . '%')
+            $item = Berita::where('title', 'like', '%' . $query . '%')
                 ->orWhere('content', 'like', '%' . $query . '%')
                 ->orderByDesc('created_at')->paginate(15);
 
             $beritas = [
-                'beritas' => $data,
+                'beritas' => $item,
                 'random' => Berita::inRandomOrder()->limit(7)->get()
             ];
             return view('page.warta', $beritas);

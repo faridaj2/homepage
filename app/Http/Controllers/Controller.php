@@ -88,11 +88,11 @@ class Controller extends BaseController
                 ->orWhere('content', 'like', '%' . $query . '%')
                 ->orderByDesc('created_at')->paginate(15);
 
-            $data = [
+            $beritas = [
                 'data' => $data,
                 'random' => Berita::inRandomOrder()->limit(7)->get()
             ];
-            return view('page.warta', $data);
+            return view('page.warta', $beritas);
         } else {
             $data = Berita::orderByDesc('created_at')->paginate(15);
             $data = [

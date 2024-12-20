@@ -15,7 +15,7 @@ class Berita extends Model
     public function getDynamicSEOData(): SEOData
     {
         return new SEOData(
-            title: $this->title,
+            title: $this->title . '| Pondok Pesantren Darussalam Blokagung 2',
             author: "Farid Anjali",
             image: $this->image_url
         );

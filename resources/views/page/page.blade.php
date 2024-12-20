@@ -75,8 +75,5 @@
                 navigator.share(data);
             }
         }
-        const div = document.querySelector('#placeUrl')
-        div.innerText = "{{ $data->title }}"
-        document.title = "{{ $data->title }} | PP. Darussalam Blokagung 2"
     </script>
 @endpush

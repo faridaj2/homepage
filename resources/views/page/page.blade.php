@@ -24,12 +24,7 @@
                     <img src="{{ $data->image_url }}" class="w-full h-full rounded-xl object-contain" alt="">
                 </div>
                 <div>
-                    <div class="my-10 md:my-7 flex justify-center md:justify-start">
-                        <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs shadow-md shadow-blue-300 ">PP.
-                            Darussalam
-                            Blokagung 2</span>
-                    </div>
-                    <div class="font-bold text-3xl text-center md:text-left">
+                    <div class="font-bold text-3xl text-center md:text-left my-3">
                         {{ $data->title }}
                     </div>
                     <div class="mx-auto mt-2">

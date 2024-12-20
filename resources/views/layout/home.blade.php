@@ -8,6 +8,9 @@
     {!! seo($seo ?? null) !!}
 
     {{-- Css & Js --}}
+    <meta name="description" content="Pondok Pesantren Darussalam Blokagung 2 adalah lembaga pendidikan Islam yang berfokus pada pengembangan ilmu agama dan keterampilan untuk mencetak generasi muda yang berakhlak mulia, berpengetahuan luas, dan siap berkontribusi dalam masyarakat. Dengan fasilitas yang lengkap dan pengajaran yang mengintegrasikan kurikulum agama dan umum, pondok pesantren ini bertujuan untuk menciptakan santri yang tangguh dalam menghadapi tantangan kehidupan di era modern.">
+    <meta name="keywords" content="Pondok pesantren, darussalam, darussalam blokagung, blokagung, darussalam blokagung 2, pondok pesantren dibanyuwangi, pondok pesantren di jawa timur">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 
     <x-head />
     <meta name="google-site-verification" content="i_Ys03MP2YwO3Mbtvb0AL_5ARnPoHV_8xnVda22ep0k" />

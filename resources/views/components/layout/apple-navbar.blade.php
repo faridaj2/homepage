@@ -214,10 +214,11 @@
          x-transition:leave="transition-all duration-300 ease-apple"
          x-transition:leave-start="translate-x-0"
          x-transition:leave-end="translate-x-full"
-         class="fixed inset-y-0 right-0 z-50 w-72 bg-white shadow-2xl md:hidden">
+         class="fixed inset-y-0 right-0 z-50 w-72 overflow-y-auto bg-white shadow-2xl md:hidden"
+         style="overscroll-behavior: contain;">
         
-        <div class="flex h-full flex-col pt-20">
-            <div class="flex-1 space-y-1 overflow-y-auto px-4">
+        <div class="flex min-h-full flex-col pt-16 pb-6">
+            <div class="flex-1 space-y-1 px-4">
                 <a href="/" 
                    @click="mobileOpen = false; document.body.style.overflow = ''"
                    class="flex items-center gap-3 rounded-2xl px-4 py-3.5 text-lg font-medium transition-all duration-300 ease-apple hover:bg-emerald-50 {{ $currentUrl === '/' ? 'text-emerald-600 bg-emerald-50' : 'text-apple-text' }}">

@@ -7,7 +7,7 @@
     kontenOpen: true,
     pengaturanOpen: false
 }" 
-    class="flex h-screen w-64 flex-col bg-[#1d1d1f]">
+    class="flex h-full w-64 flex-col bg-[#1d1d1f]">
     
     {{-- Logo & Title --}}
     <div class="flex items-center gap-3 border-b border-white/[0.06] px-6 py-5">

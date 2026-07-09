@@ -33,7 +33,7 @@
             });
         }
     }" class="flex min-h-screen">
-        {{-- Desktop Sidebar (always visible) --}}
+        {{-- Sidebar (fixed/sticky on all screens) --}}
         <div x-show="sidebarOpen || window.innerWidth >= 768" 
              x-transition:enter="transition-all duration-400 ease-apple"
              x-transition:enter-start="-translate-x-full"
@@ -41,7 +41,7 @@
              x-transition:leave="transition-all duration-300 ease-apple"
              x-transition:leave-start="translate-x-0"
              x-transition:leave-end="-translate-x-full"
-             class="fixed inset-y-0 left-0 z-50 md:relative md:z-auto"
+             class="fixed inset-y-0 left-0 z-50"
              :class="sidebarOpen ? 'block' : 'hidden md:hidden'">
             <x-layout.apple-dashboard-sidebar />
         </div>
@@ -60,7 +60,7 @@
         </div>
 
         {{-- Main Content Area --}}
-        <div class="flex flex-1 flex-col" :class="sidebarOpen ? 'md:ml-64' : ''">
+        <div class="flex flex-1 flex-col md:ml-64">
             {{-- Top Bar --}}
             <x-layout.apple-dashboard-topbar />
 

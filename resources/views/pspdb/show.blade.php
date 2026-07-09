@@ -1,195 +1,193 @@
 @extends('pspdb.layout')
 @section('content')
-    @if (session('status'))
-        <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50" role="alert">
-            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor" viewBox="0 0 20 20">
-                <path
-                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-            </svg>
-            <span class="sr-only">Info</span>
-            <div>
-                {{ session('status') }}
+    <div class="mx-auto max-w-4xl">
+        {{-- Header --}}
+        <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-center gap-3">
+                <a href="/pspdb" class="flex h-9 w-9 items-center justify-center rounded-full text-[#86868b] transition-colors hover:bg-[#f5f5f7] hover:text-[#1d1d1f]">
+                    <ion-icon name="arrow-back" class="text-xl"></ion-icon>
+                </a>
+                <div>
+                    <h1 class="font-serif text-xl font-semibold tracking-tight text-[#1d1d1f]">{{ $data->nama }}</h1>
+                    <p class="text-sm text-[#86868b]">Informasi Peserta Didik</p>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <a href="/pspdb/{{ $data->id }}/edit"
+                   class="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-600 transition-all duration-200 hover:bg-blue-100">
+                    <ion-icon name="pencil" class="text-base"></ion-icon>
+                    Edit
+                </a>
+                <a href="/pspdb/dokumen-pendukung/{{ $data->id }}/edit"
+                   class="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-medium text-emerald-600 transition-all duration-200 hover:bg-emerald-100">
+                    <ion-icon name="cloud-upload" class="text-base"></ion-icon>
+                    Upload
+                </a>
             </div>
         </div>
-    @endif
-    <div class="flex items-center justify-between px-4">
-        <h1 class="font-bold py-6 text-xl">Informasi Peserta Didik</h1>
-        <a href="/pspdb/{{ $data->id }}/edit"
-            class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full flex items-center gap-2 hover:bg-blue-200 tracking-wide"><ion-icon
-                name="pencil"></ion-icon>
-            Edit</a>
-    </div>
-    <div class="flex flex-col md:flex-row gap-3 font-Poppins">
-        <section class="p-3 rounded-md w-full">
-            <h3 class="text-xl text-blue-900 font-semibold bg-sky-100 px-5 py-2 rounded-full">Informasi Siswa</h3>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">Nama:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->nama }}</span>
-            </div>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">Gender:</h4>
-                <span
-                    class="py-2 text-gray-900 font-sans">{{ $data->kelamin == 'P' ? 'Santri Putri' : 'Santri Putra' }}</span>
-            </div>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">Tempat Lahir:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->tpt_lahir }}</span>
-            </div>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">Tanggal Lahir:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->tgl_lahir }}</span>
-            </div>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">NIK:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->nik }}</span>
-            </div>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">NISN:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->nisn }}</span>
-            </div>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">KK:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->kk }}</span>
-            </div>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">Asal Sekolah:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->asal_sekolah }}</span>
-            </div>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">Kelas Formal:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->formal }}</span>
-            </div>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">Kelas non Formal:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->diniyah }}</span>
-            </div>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">Status:</h4>
-                @if ($data->status == 1)
-                    <span class="bg-green-200 font-sans px-2 text-red-700 rounded-full text-xs">Diterima</span>
-                @else
-                    <span class="bg-red-200 font-sans px-2 text-red-700 rounded-full text-xs">Pending</span>
-                @endif
-            </div>
-        </section>
-        <section class="p-3 rounded-md w-full">
-            <h3 class="text-xl text-blue-900 font-semibold bg-sky-100 px-5 py-2 rounded-full">Alamat</h3>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">Alamat:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->alamat }}</span>
-            </div>
-        </section>
-        <section class="p-3 rounded-md w-full">
-            <h3 class="text-xl text-blue-900 font-semibold bg-sky-100 px-5 py-2 rounded-full">Identitas Orang Tua</h3>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">Nama Ayah:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->ayah }}</span>
-            </div>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">Nomor tlp. Ayah:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->no_ayah }}</span>
-            </div>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">Nama Ibu:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->ibu }}</span>
-            </div>
-            <div class="p-3 rounded-lg my-2">
-                <h4 class="text-xs text-gray-500">Nomor tlp. Ibu:</h4>
-                <span class="py-2 text-gray-900 font-sans">{{ $data->no_ibu }}</span>
-            </div>
-        </section>
-    </div>
 
+        @if (session('status'))
+            <div class="mb-6 flex items-center gap-3 rounded-2xl bg-emerald-50 px-5 py-4 text-sm text-emerald-800 shadow-sm" role="alert">
+                <div class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100">
+                    <ion-icon name="checkmark-circle" class="text-lg text-emerald-600"></ion-icon>
+                </div>
+                <div>{{ session('status') }}</div>
+            </div>
+        @endif
 
-    <div>
+        <div class="grid gap-6 lg:grid-cols-3">
+            {{-- Status Card --}}
+            <div class="lg:col-span-3">
+                <div class="rounded-2xl bg-white p-5 shadow-apple-sm">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-medium text-[#86868b]">Status Pendaftaran</span>
+                        @if ($data->status == 1)
+                            <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-4 py-1.5 text-sm font-semibold text-emerald-700">
+                                <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                                Diterima
+                            </span>
+                        @else
+                            <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-4 py-1.5 text-sm font-semibold text-amber-700">
+                                <span class="h-2 w-2 rounded-full bg-amber-400"></span>
+                                Pending
+                            </span>
+                        @endif
+                    </div>
+                </div>
+            </div>
 
-        <section class="flex justify-between gap-3 items-center my-5 px-4">
-            <h1 class="font-bold py-6 text-xl">Dokument Pendukung </h1> <a
-                href="/pspdb/dokumen-pendukung/{{ $data->id }}/edit"
-                class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full flex items-center gap-2 hover:bg-blue-200 tracking-wide"
-                @click="modal = true"><ion-icon name="cloud-upload"></ion-icon>
-                Upload</a>
-        </section>
-
-        <section class="font-light px-4">
-
-            <div class="">
-                <div class="flex flex-col">
-                    <div class=" overflow-x-auto scroll">
-                        <div class="p-1.5 min-w-full inline-block align-middle">
-                            <div class="rounded-lg overflow-hidden">
-                                <table class="min-w-full ">
-                                    <thead class="">
-                                        <tr>
-                                            <th scope="col"
-                                                class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
-                                                Nama Dokumen</th>
-                                            <th scope="col"
-                                                class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
-                                                Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                                        @foreach ($data->fileuserinput()->get() as $document)
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 ">
-                                                    <span href="">{{ $document->original_name }}</span> <span
-                                                        class="bg-sky-100 px-3 py-2 rounded-full hover:bg-sky-200 text-gray-600 font-normal items-center gap-2">{{ $document->typeFile }}</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 ">
-                                                    <form action="/pspdb/dokumen-pendukung/{{ $document->id }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit"
-                                                            class="bg-gray-100 px-3 py-2 rounded-full hover:bg-gray-200 flex text-gray-600 font-normal items-center gap-2"><ion-icon
-                                                                name="trash"></ion-icon> Hapus</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-
-                                    </tbody>
-                                </table>
-                            </div>
+            {{-- Informasi Siswa --}}
+            <div class="lg:col-span-2">
+                <div class="rounded-2xl bg-white p-6 shadow-apple-sm">
+                    <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-[#86868b]">Informasi Siswa</h2>
+                    <div class="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+                        <div>
+                            <p class="text-xs text-[#86868b]">Nama Lengkap</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->nama }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-[#86868b]">Jenis Kelamin</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->kelamin == 'P' ? 'Santri Putri' : 'Santri Putra' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-[#86868b]">Tempat Lahir</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->tpt_lahir ?: '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-[#86868b]">Tanggal Lahir</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->tgl_lahir ?: '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-[#86868b]">NIK</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->nik ?: '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-[#86868b]">NISN</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->nisn ?: '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-[#86868b]">No. KK</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->kk ?: '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-[#86868b]">Asal Sekolah</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->asal_sekolah ?: '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-[#86868b]">Tingkat Formal</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->formal ?: '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-[#86868b]">Tingkat Diniyah</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->diniyah ?: '-' }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
+            {{-- Sidebar: Alamat + Orang Tua --}}
+            <div class="space-y-6">
+                <div class="rounded-2xl bg-white p-6 shadow-apple-sm">
+                    <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-[#86868b]">Alamat</h2>
+                    <p class="text-sm leading-relaxed text-[#1d1d1f]">{{ $data->alamat ?: '-' }}</p>
+                </div>
+
+                <div class="rounded-2xl bg-white p-6 shadow-apple-sm">
+                    <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-[#86868b]">Orang Tua</h2>
+                    <div class="space-y-3">
+                        <div>
+                            <p class="text-xs text-[#86868b]">Nama Ayah</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->ayah ?: '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-[#86868b]">No. Telp Ayah</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->no_ayah ?: '-' }}</p>
+                        </div>
+                        <div class="border-t border-apple-border/50 pt-3">
+                            <p class="text-xs text-[#86868b]">Nama Ibu</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->ibu ?: '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-[#86868b]">No. Telp Ibu</p>
+                            <p class="mt-0.5 font-medium text-[#1d1d1f]">{{ $data->no_ibu ?: '-' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Dokumen Pendukung --}}
+            <div class="lg:col-span-3">
+                <div class="rounded-2xl bg-white p-6 shadow-apple-sm">
+                    <div class="mb-4 flex items-center justify-between">
+                        <h2 class="text-sm font-semibold uppercase tracking-wider text-[#86868b]">Dokumen Pendukung</h2>
+                        <a href="/pspdb/dokumen-pendukung/{{ $data->id }}/edit"
+                           class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-medium text-emerald-600 transition-colors hover:bg-emerald-100">
+                            <ion-icon name="cloud-upload"></ion-icon>
+                            Upload
+                        </a>
+                    </div>
+                    @php $documents = $data->fileuserinput()->get(); @endphp
+                    @if ($documents->isEmpty())
+                        <div class="flex flex-col items-center justify-center rounded-xl bg-[#f5f5f7] py-8">
+                            <ion-icon name="document-text" class="text-3xl text-[#86868b]"></ion-icon>
+                            <p class="mt-2 text-sm text-[#86868b]">Belum ada dokumen</p>
+                        </div>
+                    @else
+                        <div class="overflow-hidden rounded-xl border border-apple-border/50">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-[#f5f5f7]">
+                                    <tr>
+                                        <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-[#86868b]">Nama Dokumen</th>
+                                        <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-[#86868b]">Tipe</th>
+                                        <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-[#86868b]">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-apple-border/50">
+                                    @foreach ($documents as $document)
+                                        <tr class="transition-colors hover:bg-[#fafafa]">
+                                            <td class="px-4 py-3 font-medium text-[#1d1d1f]">{{ $document->original_name }}</td>
+                                            <td class="px-4 py-3">
+                                                <span class="rounded-full bg-sky-50 px-3 py-1 text-xs font-medium text-sky-600">{{ $document->typeFile }}</span>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <form action="/pspdb/dokumen-pendukung/{{ $document->id }}" method="post"
+                                                      onsubmit="return confirm('Hapus dokumen ini?')">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit"
+                                                            class="flex h-8 w-8 items-center justify-center rounded-lg bg-red-50 text-red-500 transition-all duration-200 hover:bg-red-500 hover:text-white">
+                                                        <ion-icon name="trash" class="text-sm"></ion-icon>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
-
-@push('headScript')
-    <style>
-        .btn {
-            padding: 1.3em 3em;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            font-weight: 500;
-            color: #000;
-            background-color: #fff;
-            border: none;
-            border-radius: 45px;
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease 0s;
-            cursor: pointer;
-            outline: none;
-        }
-
-        .btn:hover {
-            background-color: #7042cb;
-            box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-            color: #fff;
-            transform: translateY(-7px);
-        }
-
-        .btn:active {
-            transform: translateY(-1px);
-        }
-    </style>
-@endpush

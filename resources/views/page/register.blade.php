@@ -1,36 +1,55 @@
 @extends('layout.home')
 @section('content')
-    <div class="container mx-auto flex items-center justify-center my-20">
-        <div class="w-full px-5 md:w-1/3">
-            <h1 class="font-bold text-3xl text-green-600 font-Petrona text-center underline mb-3">Register</h1>
-            <form action="{{ route('register') }}" method="POST" class="flex flex-col text-slate-500 gap-3 ">
+    <section class="flex min-h-screen items-center justify-center bg-white px-5 pt-20">
+        <div class="reveal w-full max-w-sm">
+            {{-- Logo --}}
+            <div class="mb-8 text-center">
+                <img src="/img/Logo.png" class="mx-auto h-10 w-auto" alt="Pondok Pesantren Darussalam Blokagung 2">
+                <h1 class="mt-4 font-serif text-2xl font-semibold text-apple-text">Buat Akun</h1>
+                <p class="mt-1 text-sm text-apple-text-secondary">Daftar untuk melanjutkan</p>
+            </div>
+
+            <form action="{{ route('register') }}" method="POST" class="space-y-4">
                 @csrf
-                <div class="shadow p-3 rounded-md flex items-center text-xl">
-                    <ion-icon name="person-circle-outline"></ion-icon> <input placeholder="Nama"
-                        class="w-full border-none focus:ring-0" type="text" name="name" :value="old('name')" required
-                        autofocus autocomplete="name">
+                
+                <div>
+                    <label for="name" class="block text-sm font-medium text-apple-text">Nama</label>
+                    <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name"
+                           class="mt-1 block w-full rounded-xl border border-apple-border bg-white px-4 py-3 text-sm text-apple-text transition-all duration-300 ease-apple placeholder:text-apple-text-secondary focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20"
+                           placeholder="Nama lengkap">
                 </div>
-                <div class="shadow p-3 rounded-md flex items-center text-xl">
-                    <ion-icon name="person-circle-outline"></ion-icon> <input placeholder="Email"
-                        class="w-full border-none focus:ring-0" type="email" name="email" :value="old('email')"
-                        required autocomplete="username">
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-apple-text">Email</label>
+                    <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username"
+                           class="mt-1 block w-full rounded-xl border border-apple-border bg-white px-4 py-3 text-sm text-apple-text transition-all duration-300 ease-apple placeholder:text-apple-text-secondary focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20"
+                           placeholder="email@example.com">
                 </div>
-                <div class="shadow p-3 rounded-md flex items-center text-xl">
-                    <ion-icon name="lock-closed"></ion-icon></ion-icon> <input placeholder="Password"
-                        class="w-full border-none focus:ring-0" type="password" name="password" required
-                        autocomplete="new-password">
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-apple-text">Password</label>
+                    <input id="password" type="password" name="password" required autocomplete="new-password"
+                           class="mt-1 block w-full rounded-xl border border-apple-border bg-white px-4 py-3 text-sm text-apple-text transition-all duration-300 ease-apple placeholder:text-apple-text-secondary focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20"
+                           placeholder="Minimal 8 karakter">
                 </div>
-                <div class="shadow p-3 rounded-md flex items-center text-xl">
-                    <ion-icon name="lock-closed"></ion-icon></ion-icon> <input placeholder="Verifikasi Password"
-                        class="w-full border-none focus:ring-0" type="password" name="password_confirmation" required
-                        autocomplete="new-password">
+
+                <div>
+                    <label for="password_confirmation" class="block text-sm font-medium text-apple-text">Verifikasi Password</label>
+                    <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password"
+                           class="mt-1 block w-full rounded-xl border border-apple-border bg-white px-4 py-3 text-sm text-apple-text transition-all duration-300 ease-apple placeholder:text-apple-text-secondary focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20"
+                           placeholder="Ulangi password">
                 </div>
-                <div class="flex justify-between items-center"> <span>Sudah Punya Akun? <a href="/login"
-                            class="underline text-blue-500">Login</a></span>
-                    <input type="submit" value="Login"
-                        class="bg-black text-white font-bold text-xs rounded py-2 px-4 mt-5 hover:bg-sky-600 cursor-pointer transition">
-                </div>
+
+                <button type="submit"
+                        class="w-full rounded-full bg-emerald-600 px-6 py-3 text-sm font-medium text-white transition-all duration-300 ease-apple hover:bg-emerald-700 hover:shadow-lg">
+                    Daftar
+                </button>
             </form>
+
+            <p class="mt-8 text-center text-sm text-apple-text-secondary">
+                Sudah punya akun?
+                <a href="/login" class="font-medium text-emerald-600 transition-colors duration-300 hover:text-emerald-700">Login</a>
+            </p>
         </div>
-    </div>
+    </section>
 @endsection

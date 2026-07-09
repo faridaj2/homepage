@@ -1,72 +1,109 @@
 @extends('layout.home')
 @section('content')
-    <div class="container mx-auto mt-5 px-2 -z-10">
-
-        <form class="mx-6 mb-5" method="get" action="/warta">
-            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
-            <div class="relative">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
-                    <svg class="w-4 h-4 text-gray-500 
-                    " aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                    </svg>
-                </div>
-                <input type="search" name="q" id="default-search"
-                    class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-100 rounded-lg bg-gray-50 focus:border-gray-200  focus:ring-0 placeholder:text-gray-400
-                    "
-                    placeholder="Cari Berita..." required>
-                <button type="submit"
-                    class="text-green-700 absolute end-2.5 bottom-2.5 bg-green-300 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 flex items-center h-9 ">Search</button>
+    {{-- Search Header --}}
+    <section class="bg-[#f5f5f7] pt-24 md:pt-28">
+        <div class="mx-auto max-w-7xl px-5 pb-8 pt-12 lg:px-8">
+            <div class="reveal text-center">
+                <span class="text-xs font-semibold uppercase tracking-widest text-emerald-600">Informasi</span>
+                <h1 class="mt-2 font-serif text-3xl font-semibold tracking-tight text-apple-text md:text-4xl">Warta</h1>
+                <p class="mt-2 text-apple-text-secondary">Berita dan informasi terbaru dari pondok pesantren</p>
             </div>
-        </form>
 
-        @if (count($data) == 0)
-            <div class="px-6 flex justify-center">
-                <div class="text-slate-500">Data tidak ditemukan</div>
-            </div>
-        @endif
-        <div class="px-4 flex flex-wrap">
-            <div class="w-full md:w-12/12 lg:w-10/12 flex flex-wrap">
-                @foreach ($data as $item)
-                    <div class="w-full md:w-1/3 lg:w-1/4 p-2">
-                        <div class="w-full h-36 overflow-hidden">
-                            <img src="{{ $item->image_url }}" alt=""
-                                class="w-full h-full object-center object-cover">
-                        </div>
-                        <div>
-                            <h1 class="font-Petrona font-bold line-clamp-2">{{ $item->title }}</h1>
-                            <span class="text-xs text-slate-400">{{ $item->created_at->format('d F Y') }}</span>
-                            <p class="text-xs text-slate-500 line-clamp-3 my-4">
-                                {{ html_entity_decode(strip_tags($item->content)) }}</p>
-                            <a href="/warta/{{ $item->slug }}"
-                                class="my-3 bg-green-600 transition hover:bg-black text-sm p-2 font-bold text-white mt-3">Read
-                                more...</a>
-                        </div>
+            <form method="get" action="/warta" class="reveal mx-auto mt-8 max-w-lg">
+                <div class="relative">
+                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+                        <svg class="h-4 w-4 text-apple-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+                        </svg>
                     </div>
-                @endforeach
-                <div class="w-full">
+                    <input type="search" name="q" id="default-search"
+                           value="{{ request('q') }}"
+                           class="block w-full rounded-full border border-apple-border bg-white py-3.5 pl-11 pr-20 text-sm text-apple-text transition-all duration-300 ease-apple placeholder:text-apple-text-secondary focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20"
+                           placeholder="Cari berita...">
+                    <button type="submit"
+                            class="absolute right-1.5 top-1/2 -translate-y-1/2 rounded-full bg-emerald-600 px-5 py-2 text-xs font-medium text-white transition-all duration-300 ease-apple hover:bg-emerald-700">
+                        Cari
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    {{-- Content --}}
+    <section class="bg-white py-12 md:py-16">
+        <div class="mx-auto max-w-7xl px-5 lg:px-8">
+            @if (count($data) == 0)
+                <div class="flex flex-col items-center justify-center py-16 text-center">
+                    <svg class="mb-4 h-16 w-16 text-apple-border" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"/>
+                    </svg>
+                    <p class="text-apple-text-secondary">Data tidak ditemukan</p>
+                    @if(request('q'))
+                        <p class="mt-1 text-sm text-apple-text-tertiary">Tidak ada hasil untuk "{{ request('q') }}"</p>
+                    @endif
+                </div>
+            @else
+                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    @foreach ($data as $item)
+                        <article class="reveal group relative overflow-hidden rounded-2xl bg-white shadow-apple-sm transition-all duration-500 ease-apple hover:shadow-apple-lg">
+                            <div class="aspect-[4/3] overflow-hidden">
+                                <img src="{{ $item->image_url }}"
+                                     alt="{{ $item->title }}"
+                                     class="h-full w-full object-cover transition-transform duration-700 ease-apple group-hover:scale-105">
+                            </div>
+                            <div class="p-5">
+                                <div class="mb-2 flex items-center gap-2">
+                                    <span class="text-xs text-apple-text-secondary">{{ $item->created_at->format('d F Y') }}</span>
+                                </div>
+                                <h3 class="font-serif text-base font-semibold leading-snug text-apple-text">
+                                    <a href="/warta/{{ $item->slug }}"
+                                       class="line-clamp-2 transition-colors duration-300 ease-apple hover:text-emerald-600">
+                                        {{ $item->title }}
+                                    </a>
+                                </h3>
+                                <p class="mt-2 line-clamp-2 text-sm text-apple-text-secondary">
+                                    {{ html_entity_decode(strip_tags($item->content)) }}
+                                </p>
+                                <a href="/warta/{{ $item->slug }}"
+                                   class="mt-3 inline-flex items-center gap-1 text-xs font-medium text-emerald-600 transition-colors duration-300 ease-apple hover:text-emerald-700">
+                                    Baca selengkapnya
+                                    <svg class="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </article>
+                    @endforeach
+                </div>
+
+                {{-- Pagination --}}
+                <div class="reveal mt-12">
                     {{ $data->links() }}
                 </div>
+            @endif
+        </div>
+    </section>
+
+    {{-- Sidebar artikel populer --}}
+    @if(count($random) > 0)
+    <section class="bg-[#f5f5f7] py-16">
+        <div class="mx-auto max-w-7xl px-5 lg:px-8">
+            <div class="reveal mb-8 text-center">
+                <span class="text-xs font-semibold uppercase tracking-widest text-emerald-600">Populer</span>
+                <h2 class="mt-2 font-serif text-2xl font-semibold text-apple-text">Artikel Populer</h2>
             </div>
-
-            <div class="px-3 lg:pl-8 w-full lg:w-2/12">
-                <h1 class="font-bold text-green-600 uppercase tracking-wide my-3">Random Artikel</h1>
-                <hr>
-                <div class="flex flex-col gap-4">
-                    @foreach ($random as $item)
-                        <a href="/warta/{{ $item->slug }}" class="hover:text-green-600">
-                            <span class="text-sm font-Petrona tracking-tight cursor-pointer ">{{ $item->title }}</span><br>
-                            <span class="text-xs bg-green-700 text-white p-1 hover:bg-green-500">Santri</span>
-                        </a>
-                    @endforeach
-
-
-                </div>
+            <div class="reveal grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                @foreach ($random as $item)
+                    <a href="/warta/{{ $item->slug }}"
+                       class="group rounded-2xl bg-white p-5 shadow-apple-sm transition-all duration-300 ease-apple hover:shadow-apple-lg">
+                        <h3 class="font-serif text-sm font-semibold text-apple-text transition-colors duration-300 group-hover:text-emerald-600">
+                            {{ $item->title }}
+                        </h3>
+                        <span class="mt-2 inline-block text-xs text-apple-text-secondary">{{ $item->created_at->format('d M Y') }}</span>
+                    </a>
+                @endforeach
             </div>
         </div>
-
-
-    </div>
+    </section>
+    @endif
 @endsection

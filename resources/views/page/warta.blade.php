@@ -32,7 +32,7 @@
     {{-- Content --}}
     <section class="bg-white py-12 md:py-16">
         <div class="mx-auto max-w-7xl px-5 lg:px-8">
-            @if (count($data) == 0)
+            @if (!$data || count($data) == 0)
                 <div class="flex flex-col items-center justify-center py-16 text-center">
                     <svg class="mb-4 h-16 w-16 text-apple-border" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"/>
@@ -55,9 +55,9 @@
                                 <div class="mb-2 flex items-center gap-2">
                                     <span class="text-xs text-apple-text-secondary">{{ $item->created_at->format('d F Y') }}</span>
                                 </div>
-                                <h3 class="font-serif text-base font-semibold leading-snug text-apple-text">
+                                <h3 class="font-serif text-base font-semibold leading-snug">
                                     <a href="/warta/{{ $item->slug }}"
-                                       class="line-clamp-2 transition-colors duration-300 ease-apple hover:text-emerald-600">
+                                       class="line-clamp-2 text-apple-text transition-colors duration-300 ease-apple hover:text-emerald-600">
                                         {{ $item->title }}
                                     </a>
                                 </h3>
@@ -85,7 +85,7 @@
     </section>
 
     {{-- Sidebar artikel populer --}}
-    @if(count($random) > 0)
+    @if($random && count($random) > 0)
     <section class="bg-[#f5f5f7] py-16">
         <div class="mx-auto max-w-7xl px-5 lg:px-8">
             <div class="reveal mb-8 text-center">

@@ -43,16 +43,16 @@
                                 <td class="px-5 py-4">
                                     <div class="flex justify-end gap-1">
                                         <a href="/dashboard/berita/{{ $item->id }}"
-                                           class="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 shadow-sm transition-all duration-200 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-600">
-                                            <ion-icon name="eye-outline" class="text-base"></ion-icon>
+                                           class="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 transition-all duration-200 hover:bg-emerald-600 hover:text-white hover:shadow-sm">
+                                            <ion-icon name="eye-outline" class="text-sm"></ion-icon>
                                         </a>
                                         <a href="/dashboard/berita/{{ $item->id }}/edit"
-                                           class="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 shadow-sm transition-all duration-200 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600">
-                                            <ion-icon name="create-outline" class="text-base"></ion-icon>
+                                           class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600 transition-all duration-200 hover:bg-blue-600 hover:text-white hover:shadow-sm">
+                                            <ion-icon name="create-outline" class="text-sm"></ion-icon>
                                         </a>
                                         <button @click="openDelete({{ $item->id }}, '{{ addslashes($item->title) }}')"
-                                                class="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 shadow-sm transition-all duration-200 hover:border-red-200 hover:bg-red-50 hover:text-red-500">
-                                            <ion-icon name="trash-outline" class="text-base"></ion-icon>
+                                                class="flex h-8 w-8 items-center justify-center rounded-lg bg-red-50 text-red-500 transition-all duration-200 hover:bg-red-500 hover:text-white hover:shadow-sm">
+                                            <ion-icon name="trash-outline" class="text-sm"></ion-icon>
                                         </button>
                                     </div>
                                 </td>

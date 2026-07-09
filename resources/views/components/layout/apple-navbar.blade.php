@@ -1,4 +1,5 @@
 @php
+    $navbarData = app('App\\Http\\Controllers\\Controller')->navData();
     $currentUrl = request()->path();
 @endphp
 
@@ -28,6 +29,119 @@
                style="{{ $currentUrl === '/' ? 'color: #10b981;' : '' }}">
                 Beranda
             </a>
+
+            {{-- Tentang Dropdown --}}
+            <div x-data="{ open: false }" class="relative"
+                 @mouseenter="open = true" 
+                 @mouseleave="open = false">
+                <button class="nav-link flex items-center gap-1 px-4 py-2 text-sm font-medium transition-all duration-300 ease-apple"
+                        :class="scrolled ? 'text-apple-text' : 'text-white'"
+                        style="{{ strpos($currentUrl, 'profil-pimpinan') !== false || strpos($currentUrl, 'pendidikan') !== false ? 'color: #10b981;' : '' }}">
+                    Tentang
+                    <svg class="h-3 w-3 transition-transform duration-300 ease-apple" 
+                         :class="open ? 'rotate-180' : ''"
+                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                    </svg>
+                </button>
+                <div x-show="open" 
+                     x-cloak
+                     x-transition:enter="transition-all duration-300 ease-apple"
+                     x-transition:enter-start="opacity-0 translate-y-2"
+                     x-transition:enter-end="opacity-100 translate-y-0"
+                     x-transition:leave="transition-all duration-200 ease-apple"
+                     x-transition:leave-start="opacity-100 translate-y-0"
+                     x-transition:leave-end="opacity-0 translate-y-2"
+                     class="absolute left-0 top-full mt-1 w-56 rounded-2xl bg-white/95 backdrop-blur-xl p-2 shadow-apple-lg ring-1 ring-black/5">
+                    <div x-data="{ subOpen: false }" class="relative">
+                        <button @click="subOpen = !subOpen"
+                                class="flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-sm text-apple-text transition-all duration-200 hover:bg-emerald-50">
+                            Profil Pimpinan
+                            <svg class="h-3 w-3 transition-transform duration-300" 
+                                 :class="subOpen ? 'rotate-180' : ''"
+                                 fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                            </svg>
+                        </button>
+                        <div x-show="subOpen" 
+                             x-cloak
+                             x-transition:enter="transition-all duration-200 ease-apple"
+                             x-transition:enter-start="opacity-0"
+                             x-transition:enter-end="opacity-100"
+                             class="ml-3 space-y-0.5 border-l-2 border-emerald-100 pl-2">
+                            @forelse ($navbarData['pemimpin'] as $item)
+                                <a href="/profil-pimpinan/{{ $item->slug }}"
+                                   class="block truncate rounded-lg px-3 py-2 text-sm text-apple-text-secondary transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-600">
+                                    {{ $item->title }}
+                                </a>
+                            @empty
+                                <span class="block px-3 py-2 text-sm text-apple-text-tertiary">Belum ada data</span>
+                            @endforelse
+                        </div>
+                    </div>
+                    <div x-data="{ subOpen: false }" class="relative">
+                        <button @click="subOpen = !subOpen"
+                                class="flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-sm text-apple-text transition-all duration-200 hover:bg-emerald-50">
+                            Pendidikan
+                            <svg class="h-3 w-3 transition-transform duration-300" 
+                                 :class="subOpen ? 'rotate-180' : ''"
+                                 fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                            </svg>
+                        </button>
+                        <div x-show="subOpen" 
+                             x-cloak
+                             x-transition:enter="transition-all duration-200 ease-apple"
+                             x-transition:enter-start="opacity-0"
+                             x-transition:enter-end="opacity-100"
+                             class="ml-3 space-y-0.5 border-l-2 border-emerald-100 pl-2">
+                            @forelse ($navbarData['pendidikan'] as $item)
+                                <a href="/pendidikan/{{ $item->slug }}"
+                                   class="block truncate rounded-lg px-3 py-2 text-sm text-apple-text-secondary transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-600">
+                                    {{ $item->title }}
+                                </a>
+                            @empty
+                                <span class="block px-3 py-2 text-sm text-apple-text-tertiary">Belum ada data</span>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Sejarah Dropdown --}}
+            <div x-data="{ open: false }" class="relative"
+                 @mouseenter="open = true" 
+                 @mouseleave="open = false">
+                <button class="nav-link flex items-center gap-1 px-4 py-2 text-sm font-medium transition-all duration-300 ease-apple"
+                        :class="scrolled ? 'text-apple-text' : 'text-white'"
+                        style="{{ strpos($currentUrl, 'sejarah') !== false ? 'color: #10b981;' : '' }}">
+                    Sejarah
+                    <svg class="h-3 w-3 transition-transform duration-300 ease-apple" 
+                         :class="open ? 'rotate-180' : ''"
+                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                    </svg>
+                </button>
+                <div x-show="open" 
+                     x-cloak
+                     x-transition:enter="transition-all duration-300 ease-apple"
+                     x-transition:enter-start="opacity-0 translate-y-2"
+                     x-transition:enter-end="opacity-100 translate-y-0"
+                     x-transition:leave="transition-all duration-200 ease-apple"
+                     x-transition:leave-start="opacity-100 translate-y-0"
+                     x-transition:leave-end="opacity-0 translate-y-2"
+                     class="absolute left-0 top-full mt-1 w-56 rounded-2xl bg-white/95 backdrop-blur-xl p-2 shadow-apple-lg ring-1 ring-black/5">
+                    @forelse ($navbarData['sejarah'] as $item)
+                        <a href="/sejarah/{{ $item->slug }}"
+                           class="block rounded-xl px-4 py-2.5 text-sm text-apple-text transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-600">
+                            {{ $item->title }}
+                        </a>
+                    @empty
+                        <span class="block px-4 py-2.5 text-sm text-apple-text-tertiary">Belum ada data</span>
+                    @endforelse
+                </div>
+            </div>
+
             <a href="/warta" 
                class="nav-link px-4 py-2 text-sm font-medium transition-all duration-300 ease-apple"
                :class="scrolled ? 'text-apple-text' : 'text-white'"
@@ -103,7 +217,7 @@
          class="fixed inset-y-0 right-0 z-50 w-72 bg-white shadow-2xl md:hidden">
         
         <div class="flex h-full flex-col pt-20">
-            <div class="flex-1 space-y-1 px-4">
+            <div class="flex-1 space-y-1 overflow-y-auto px-4">
                 <a href="/" 
                    @click="mobileOpen = false; document.body.style.overflow = ''"
                    class="flex items-center gap-3 rounded-2xl px-4 py-3.5 text-lg font-medium transition-all duration-300 ease-apple hover:bg-emerald-50 {{ $currentUrl === '/' ? 'text-emerald-600 bg-emerald-50' : 'text-apple-text' }}">
@@ -112,6 +226,112 @@
                     </svg>
                     Beranda
                 </a>
+
+                {{-- Mobile Tentang --}}
+                <div x-data="{ open: false }">
+                    <button @click="open = !open"
+                            class="flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-3.5 text-lg font-medium transition-all duration-300 ease-apple hover:bg-emerald-50 {{ strpos($currentUrl, 'profil-pimpinan') !== false || strpos($currentUrl, 'pendidikan') !== false ? 'text-emerald-600 bg-emerald-50' : 'text-apple-text' }}">
+                        <span class="flex items-center gap-3">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>
+                            </svg>
+                            Tentang
+                        </span>
+                        <svg class="h-4 w-4 transition-transform duration-300" 
+                             :class="open ? 'rotate-180' : ''"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                        </svg>
+                    </button>
+                    <div x-show="open" 
+                         x-cloak
+                         x-transition:enter="transition-all duration-300 ease-apple"
+                         x-transition:enter-start="opacity-0 max-h-0"
+                         x-transition:enter-end="opacity-100 max-h-96"
+                         class="ml-8 space-y-0.5 overflow-hidden">
+                        <div x-data="{ subOpen: false }">
+                            <button @click="subOpen = !subOpen"
+                                    class="flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-sm text-apple-text transition-all duration-200 hover:bg-emerald-50">
+                                Profil Pimpinan
+                                <svg class="h-3 w-3 transition-transform duration-300" 
+                                     :class="subOpen ? 'rotate-180' : ''"
+                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                                </svg>
+                            </button>
+                            <div x-show="subOpen" x-cloak
+                                 class="ml-4 space-y-0.5 border-l-2 border-emerald-100 pl-2">
+                                @forelse ($navbarData['pemimpin'] as $item)
+                                    <a href="/profil-pimpinan/{{ $item->slug }}"
+                                       @click="mobileOpen = false; document.body.style.overflow = ''"
+                                       class="block truncate rounded-lg px-3 py-2 text-sm text-apple-text-secondary transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-600">
+                                        {{ $item->title }}
+                                    </a>
+                                @empty
+                                    <span class="block px-3 py-2 text-sm text-apple-text-tertiary">Belum ada data</span>
+                                @endforelse
+                            </div>
+                        </div>
+                        <div x-data="{ subOpen: false }">
+                            <button @click="subOpen = !subOpen"
+                                    class="flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-sm text-apple-text transition-all duration-200 hover:bg-emerald-50">
+                                Pendidikan
+                                <svg class="h-3 w-3 transition-transform duration-300" 
+                                     :class="subOpen ? 'rotate-180' : ''"
+                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                                </svg>
+                            </button>
+                            <div x-show="subOpen" x-cloak
+                                 class="ml-4 space-y-0.5 border-l-2 border-emerald-100 pl-2">
+                                @forelse ($navbarData['pendidikan'] as $item)
+                                    <a href="/pendidikan/{{ $item->slug }}"
+                                       @click="mobileOpen = false; document.body.style.overflow = ''"
+                                       class="block truncate rounded-lg px-3 py-2 text-sm text-apple-text-secondary transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-600">
+                                        {{ $item->title }}
+                                    </a>
+                                @empty
+                                    <span class="block px-3 py-2 text-sm text-apple-text-tertiary">Belum ada data</span>
+                                @endforelse
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Mobile Sejarah --}}
+                <div x-data="{ open: false }">
+                    <button @click="open = !open"
+                            class="flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-3.5 text-lg font-medium transition-all duration-300 ease-apple hover:bg-emerald-50 {{ strpos($currentUrl, 'sejarah') !== false ? 'text-emerald-600 bg-emerald-50' : 'text-apple-text' }}">
+                        <span class="flex items-center gap-3">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
+                            </svg>
+                            Sejarah
+                        </span>
+                        <svg class="h-4 w-4 transition-transform duration-300" 
+                             :class="open ? 'rotate-180' : ''"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                        </svg>
+                    </button>
+                    <div x-show="open" 
+                         x-cloak
+                         x-transition:enter="transition-all duration-300 ease-apple"
+                         x-transition:enter-start="opacity-0 max-h-0"
+                         x-transition:enter-end="opacity-100 max-h-96"
+                         class="ml-8 space-y-0.5 overflow-hidden">
+                        @forelse ($navbarData['sejarah'] as $item)
+                            <a href="/sejarah/{{ $item->slug }}"
+                               @click="mobileOpen = false; document.body.style.overflow = ''"
+                               class="block rounded-xl px-4 py-2.5 text-sm text-apple-text transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-600">
+                                {{ $item->title }}
+                            </a>
+                        @empty
+                            <span class="block px-4 py-2.5 text-sm text-apple-text-tertiary">Belum ada data</span>
+                        @endforelse
+                    </div>
+                </div>
+
                 <a href="/warta" 
                    @click="mobileOpen = false; document.body.style.overflow = ''"
                    class="flex items-center gap-3 rounded-2xl px-4 py-3.5 text-lg font-medium transition-all duration-300 ease-apple hover:bg-emerald-50 {{ strpos($currentUrl, 'warta') !== false ? 'text-emerald-600 bg-emerald-50' : 'text-apple-text' }}">
@@ -155,5 +375,3 @@
         </div>
     </div>
 </nav>
-
-

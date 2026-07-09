@@ -13,7 +13,8 @@
             this.scrolled = window.scrollY > 20;
         });
     }
-}" 
+}"
+     @close-mobile.window="mobileOpen = false; document.body.style.overflow = ''" 
     class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-apple"
     :class="scrolled || {{ $isHome ? 'false' : 'true' }} ? 'bg-white/80 backdrop-blur-xl shadow-apple-sm border-b border-gray-100/50' : 'bg-transparent'">
     
@@ -198,6 +199,7 @@
 {{-- Mobile Menu (outside nav to avoid stacking context issues) --}}
 <div x-data="{ mobileOpen: false }"
      @toggle-mobile.window="mobileOpen = !mobileOpen; if(mobileOpen) document.body.style.overflow = 'hidden'; else document.body.style.overflow = ''"
+     @close-mobile.window="mobileOpen = false; document.body.style.overflow = ''"
      x-show="mobileOpen"
      x-cloak
      x-transition:enter="transition-all duration-300 ease-apple"
@@ -208,19 +210,19 @@
      x-transition:leave-end="opacity-0"
      class="fixed inset-0 z-[100] flex md:hidden"
      style="overscroll-behavior: contain;"
-     @click.self="mobileOpen = false; document.body.style.overflow = ''">
+     @click.self="$dispatch('close-mobile')">
     
     {{-- Backdrop --}}
     <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"
-         @click="mobileOpen = false; document.body.style.overflow = ''"></div>
+         @click="$dispatch('close-mobile')"></div>
     
     {{-- Panel --}}
     <div class="relative ml-auto h-full w-72 overflow-y-auto bg-white shadow-2xl"
-         @click.away="mobileOpen = false; document.body.style.overflow = ''">
+         @click.away="$dispatch('close-mobile')">
         <div class="flex min-h-full flex-col pt-16 pb-6">
             <div class="flex-1 space-y-1 px-4">
                 <a href="/" 
-                   @click="mobileOpen = false; document.body.style.overflow = ''"
+                   @click="$dispatch('close-mobile')"
                    class="flex items-center gap-3 rounded-2xl px-4 py-3.5 text-lg font-medium transition-all duration-300 ease-apple hover:bg-emerald-50 {{ $currentUrl === '/' ? 'text-emerald-600 bg-emerald-50' : 'text-apple-text' }}">
                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.126 1.126 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
@@ -257,7 +259,7 @@
                             <div x-show="subOpen" x-cloak class="ml-4 space-y-0.5 border-l-2 border-emerald-100 pl-2">
                                 @forelse ($navbarData['pemimpin'] as $item)
                                     <a href="/profil-pimpinan/{{ $item->slug }}"
-                                       @click="mobileOpen = false; document.body.style.overflow = ''"
+                                       @click="$dispatch('close-mobile')"
                                        class="block truncate rounded-lg px-3 py-2 text-sm text-apple-text-secondary transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-600">{{ $item->title }}</a>
                                 @empty
                                     <span class="block px-3 py-2 text-sm text-apple-text-tertiary">Belum ada data</span>
@@ -274,7 +276,7 @@
                             <div x-show="subOpen" x-cloak class="ml-4 space-y-0.5 border-l-2 border-emerald-100 pl-2">
                                 @forelse ($navbarData['pendidikan'] as $item)
                                     <a href="/pendidikan/{{ $item->slug }}"
-                                       @click="mobileOpen = false; document.body.style.overflow = ''"
+                                       @click="$dispatch('close-mobile')"
                                        class="block truncate rounded-lg px-3 py-2 text-sm text-apple-text-secondary transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-600">{{ $item->title }}</a>
                                 @empty
                                     <span class="block px-3 py-2 text-sm text-apple-text-tertiary">Belum ada data</span>
@@ -305,7 +307,7 @@
                          class="ml-8 space-y-0.5 overflow-hidden">
                         @forelse ($navbarData['sejarah'] as $item)
                             <a href="/sejarah/{{ $item->slug }}"
-                               @click="mobileOpen = false; document.body.style.overflow = ''"
+                               @click="$dispatch('close-mobile')"
                                class="block rounded-xl px-4 py-2.5 text-sm text-apple-text transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-600">{{ $item->title }}</a>
                         @empty
                             <span class="block px-4 py-2.5 text-sm text-apple-text-tertiary">Belum ada data</span>
@@ -313,21 +315,21 @@
                     </div>
                 </div>
 
-                <a href="/warta" @click="mobileOpen = false; document.body.style.overflow = ''"
+                <a href="/warta" @click="$dispatch('close-mobile')"
                    class="flex items-center gap-3 rounded-2xl px-4 py-3.5 text-lg font-medium transition-all duration-300 ease-apple hover:bg-emerald-50 {{ strpos($currentUrl, 'warta') !== false ? 'text-emerald-600 bg-emerald-50' : 'text-apple-text' }}">
                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"/>
                     </svg>
                     Warta
                 </a>
-                <a href="/pendaftaran" @click="mobileOpen = false; document.body.style.overflow = ''"
+                <a href="/pendaftaran" @click="$dispatch('close-mobile')"
                    class="flex items-center gap-3 rounded-2xl px-4 py-3.5 text-lg font-medium transition-all duration-300 ease-apple hover:bg-emerald-50 {{ $currentUrl === 'pendaftaran' ? 'text-emerald-600 bg-emerald-50' : 'text-apple-text' }}">
                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
                     </svg>
                     Pendaftaran
                 </a>
-                <a href="/kontak" @click="mobileOpen = false; document.body.style.overflow = ''"
+                <a href="/kontak" @click="$dispatch('close-mobile')"
                    class="flex items-center gap-3 rounded-2xl px-4 py-3.5 text-lg font-medium transition-all duration-300 ease-apple hover:bg-emerald-50 {{ $currentUrl === 'kontak' ? 'text-emerald-600 bg-emerald-50' : 'text-apple-text' }}">
                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>

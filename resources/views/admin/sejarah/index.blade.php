@@ -1,46 +1,53 @@
 @extends('layout.dashboard')
 @section('content')
-    <div class="flex justify-between p-3">
-        <div>
-            <h1 class="font-bold text-xl">Artikel Sejarah</h1>
-        </div>
-        <a href="/dashboard/sejarah/create" class="bg-blue-300 p-3 rounded-full text-sm hover:bg-blue-400 px-5">
-            Create</a>
-    </div>
-    <div class="flex flex-wrap justify-center lg:justify-normal gap-2" x-data="app">
-        @foreach ($data as $item)
-            <x-dashboard.grid.grid :url="'sejarah'" :item="$item" />
-        @endforeach
-        <x-toast />
-        <div x-show="open" class="fixed top-0 left-0 w-full h-full bg-white/90  flex items-center justify-center">
-            <div class="shadow-lg p-3 bg-white rounded-lg text-center">
-                <h1 class="font-bold p-4">Apakah Yakin Akan menghapus</h1>
-                <p class="py-2 font-bold text-2xl" x-html="data.title"></p>
-                <hr>
-                <div class="flex justify-around">
-                    <button class="p-3 text-slate-500 w-full hover:bg-sky-100" @click="hapus()">Hapus</button>
-                    <button class="p-3 text-slate-500 w-full hover:bg-sky-100" @click="open=!open">Batal</button>
-                </div>
+    <div x-data="app">
+        {{-- Header --}}
+        <div class="mb-6 flex items-center justify-between">
+            <div>
+                <h1 class="font-serif text-xl font-semibold text-[#1d1d1f]">Sejarah</h1>
+                <p class="mt-1 text-sm text-[#86868b]">Kelola artikel sejarah pondok pesantren</p>
             </div>
+            <a href="/dashboard/sejarah/create"
+               class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 ease-apple hover:bg-emerald-700 hover:shadow-lg">
+                <ion-icon name="add-outline"></ion-icon>
+                Tambah
+            </a>
         </div>
+
+        {{-- Grid --}}
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            @forelse ($data as $item)
+                <x-dashboard.grid.grid :url="'sejarah'" :item="$item" />
+            @empty
+                <div class="col-span-full flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 py-16 text-center">
+                    <ion-icon name="flag-outline" class="text-4xl text-[#86868b]"></ion-icon>
+                    <p class="mt-3 text-sm text-[#86868b]">Belum ada artikel sejarah.</p>
+                    <a href="/dashboard/sejarah/create" class="mt-2 text-sm font-medium text-emerald-600 hover:text-emerald-700">Tambah sekarang</a>
+                </div>
+            @endforelse
+        </div>
+
+        {{-- Delete Modal --}}
+        <x-dashboard.delete-modal />
+        <x-toast />
     </div>
+
     <script>
         const app = {
             open: false,
-            data: {},
+            data: { id: null, title: '' },
+            openDelete(id, title) {
+                this.data = { id, title };
+                this.open = true;
+            },
             async hapus() {
                 await axios.delete('/dashboard/sejarah/' + this.data.id)
                     .then(r => {
-                        this.open = false,
-                            this.$dispatch('notice', {
-                                type: 'success',
-                                text: '✔️ Data Berhasil dihapus'
-                            }),
-                            setTimeout(() => {
-                                window.location.replace('/dashboard/sejarah')
-                            }, 1000);
+                        this.open = false;
+                        this.$dispatch('notice', { type: 'success', text: '✔️ Data Berhasil dihapus' });
+                        setTimeout(() => window.location.replace('/dashboard/sejarah'), 1000);
                     })
-                    .catch(e => console.log(e))
+                    .catch(e => console.log(e));
             }
         }
     </script>

@@ -1,49 +1,53 @@
 @extends('layout.dashboard')
 @section('content')
-    <div class="flex justify-between p-3">
-        <div>
-            <h1 class="font-bold text-xl">Article Pemimpin</h1>
-            <h6 class="text-xs text-slate-400">Lorem ipsum dolor sit amet.</h6>
-        </div>
-        <a href="/dashboard/article-leader"
-            class="flex items-center gap-1 bg-black hover:bg-black/70 text-white px-6 font-semibold rounded-md"><ion-icon
-                name="add-outline"></ion-icon>
-            Create</a>
-    </div>
-    <div class="px-2 md:px-0 flex flex-col gap-3" x-data="app">
-        @foreach ($article as $item)
-            <x-dashboard.grid.grid :url="'article-leader'" :item="$item" />
-        @endforeach
-        <x-toast />
-        <div x-show="open" class="fixed top-0 left-0 w-full h-full bg-white/90  flex items-center justify-center">
-            <div class="shadow-lg p-3 bg-white rounded-lg text-center">
-                <h1 class="font-bold p-4">Apakah Yakin Akan menghapus</h1>
-                <p class="py-2 font-bold text-2xl" x-html="data.title"></p>
-                <hr>
-                <div class="flex justify-around">
-                    <button class="p-3 text-slate-500 w-full hover:bg-sky-100" @click="hapus()">Hapus</button>
-                    <button class="p-3 text-slate-500 w-full hover:bg-sky-100" @click="open=!open">Batal</button>
-                </div>
+    <div x-data="app">
+        {{-- Header --}}
+        <div class="mb-6 flex items-center justify-between">
+            <div>
+                <h1 class="font-serif text-xl font-semibold text-[#1d1d1f]">Profil Pimpinan</h1>
+                <p class="mt-1 text-sm text-[#86868b]">Kelola artikel profil pimpinan pondok pesantren</p>
             </div>
+            <a href="/dashboard/article-leader/create"
+               class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 ease-apple hover:bg-emerald-700 hover:shadow-lg">
+                <ion-icon name="add-outline"></ion-icon>
+                Tambah
+            </a>
         </div>
+
+        {{-- Grid --}}
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            @forelse ($article as $item)
+                <x-dashboard.grid.grid :url="'article-leader'" :item="$item" />
+            @empty
+                <div class="col-span-full flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 py-16 text-center">
+                    <ion-icon name="people-outline" class="text-4xl text-[#86868b]"></ion-icon>
+                    <p class="mt-3 text-sm text-[#86868b]">Belum ada profil pimpinan.</p>
+                    <a href="/dashboard/article-leader/create" class="mt-2 text-sm font-medium text-emerald-600 hover:text-emerald-700">Tambah sekarang</a>
+                </div>
+            @endforelse
+        </div>
+
+        {{-- Delete Modal --}}
+        <x-dashboard.delete-modal />
+        <x-toast />
     </div>
+
     <script>
         const app = {
             open: false,
-            data: {},
+            data: { id: null, title: '' },
+            openDelete(id, title) {
+                this.data = { id, title };
+                this.open = true;
+            },
             async hapus() {
                 await axios.delete('/dashboard/article-leader/' + this.data.id)
                     .then(r => {
-                        this.open = false,
-                            this.$dispatch('notice', {
-                                type: 'success',
-                                text: '✔️ Data Berhasil dihapus'
-                            }),
-                            setTimeout(() => {
-                                window.location.replace('/dashboard/pemimpin')
-                            }, 1000);
+                        this.open = false;
+                        this.$dispatch('notice', { type: 'success', text: '✔️ Data Berhasil dihapus' });
+                        setTimeout(() => window.location.replace('/dashboard/pemimpin'), 1000);
                     })
-                    .catch(e => console.log(e))
+                    .catch(e => console.log(e));
             }
         }
     </script>

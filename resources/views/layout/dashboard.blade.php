@@ -5,55 +5,74 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Home - Pondok Pesantren Darussalam Blokagung 2</title>
+    <title>Dashboard - Pondok Pesantren Darussalam Blokagung 2</title>
 
     {{-- Css & Js --}}
     <x-head />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
     {{-- Icon IonIcons --}}
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-    {{-- Alpine JS --}}
+    {{-- Alpine JS (collapse plugin BEFORE Alpine core) --}}
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.13.3/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
 
-    {{-- Font Google --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,100;0,200;0,500;0,600;0,700;0,800;0,900;1,300&display=swap"
-        rel="stylesheet">
     @stack('headScript')
-
 </head>
 
-<body class="bg-background">
-    {{-- Navbar --}}
-    <div class="flex" x-data="{ open: window.innerWidth >= 768 ? true : false }" x-init="() => {
-        window.addEventListener('resize', () => {
-            open = window.innerWidth >= 768 ? true : false;
-        });
-    }">
-        <div x-show="open" class="min-h-screen w-full max-w-xs md:p-5 ">
-            <x-dashboard.navbar />
+<body class="bg-white">
+    <div x-data="{ 
+        sidebarOpen: window.innerWidth >= 768,
+        init() {
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) this.sidebarOpen = true;
+            });
+            this.$el.addEventListener('toggle-sidebar', () => {
+                this.sidebarOpen = !this.sidebarOpen;
+            });
+        }
+    }" class="flex min-h-screen">
+        {{-- Desktop Sidebar (always visible) --}}
+        <div x-show="sidebarOpen || window.innerWidth >= 768" 
+             x-transition:enter="transition-all duration-400 ease-apple"
+             x-transition:enter-start="-translate-x-full"
+             x-transition:enter-end="translate-x-0"
+             x-transition:leave="transition-all duration-300 ease-apple"
+             x-transition:leave-start="translate-x-0"
+             x-transition:leave-end="-translate-x-full"
+             class="fixed inset-y-0 left-0 z-50 md:relative md:z-auto"
+             :class="sidebarOpen ? 'block' : 'hidden md:hidden'">
+            <x-layout.apple-dashboard-sidebar />
         </div>
-        <div class="w-full md:pr-5 " :class="open || 'md:pl-5'">
-            <div class="bg-base min-w-full shrink md:my-5 flex items-center justify-between rounded-lg">
-                <div class="p-3 font-bold">Admin Page</div>
-                <ion-icon name="menu" class="z-0 text-3xl p-3 cursor-pointer text-black"
-                    @click="open=!open"></ion-icon>
-            </div>
-            <div id="main-content">
-                @yield('content')
-            </div>
+
+        {{-- Mobile overlay --}}
+        <div x-show="sidebarOpen && window.innerWidth < 768" 
+             x-cloak
+             @click="sidebarOpen = false"
+             x-transition:enter="transition-all duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition-all duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             class="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden">
+        </div>
+
+        {{-- Main Content Area --}}
+        <div class="flex flex-1 flex-col" :class="sidebarOpen ? 'md:ml-64' : ''">
+            {{-- Top Bar --}}
+            <x-layout.apple-dashboard-topbar />
+
+            {{-- Content --}}
+            <main class="flex-1 bg-white">
+                <div class="mx-auto max-w-7xl px-4 py-6 md:px-6 lg:px-8">
+                    @yield('content')
+                </div>
+            </main>
         </div>
     </div>
-    {{-- Main Content --}}
 
+    @stack('scriptBody')
 </body>
-
 </html>

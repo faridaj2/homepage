@@ -1,56 +1,55 @@
 @extends('layout.dashboard')
 @section('content')
-    <div class="flex justify-between p-3">
-
-        <div>
-            <h1 class="font-bold text-xl">Info Pendaftaran</h1>
-            <h6 class="text-xs text-slate-400">Lorem ipsum dolor sit amet.</h6>
+    <div x-data="app">
+        {{-- Header --}}
+        <div class="mb-6 flex items-center justify-between">
+            <div>
+                <h1 class="font-serif text-xl font-semibold text-[#1d1d1f]">Info Pendaftaran</h1>
+                <p class="mt-1 text-sm text-[#86868b]">Kelola informasi pendaftaran pondok pesantren</p>
+            </div>
+            <a href="/dashboard/info-pendaftaran/create"
+               class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 ease-apple hover:bg-emerald-700 hover:shadow-lg">
+                <ion-icon name="create-outline"></ion-icon>
+                Edit
+            </a>
         </div>
-        <a href="/dashboard/info-pendaftaran/create"
-            class="flex items-center gap-1 bg-black hover:bg-black/70 text-white px-6 font-semibold rounded-md">
-            <ion-icon name="create-outline"></ion-icon>
-            Edit</a>
-    </div>
-    <div class="px-2 md:px-0 flex flex-col gap-3" x-data="app">
-        <div class="px-3">
+
+        {{-- Content --}}
+        <div class="rounded-2xl border border-gray-100/80 bg-white p-6 shadow-apple-sm">
             @if ($data)
-                <div class="prose max-w-none bg-white w-full border rounded-xl p-3">
+                <div class="prose max-w-none">
                     {!! $data->content !!}
                 </div>
             @else
-                <div>Data tidak ditemukan</div>
+                <div class="flex flex-col items-center justify-center py-12 text-center">
+                    <ion-icon name="help-circle-outline" class="text-4xl text-[#86868b]"></ion-icon>
+                    <p class="mt-3 text-sm text-[#86868b]">Data tidak ditemukan</p>
+                    <a href="/dashboard/info-pendaftaran/create" class="mt-2 text-sm font-medium text-emerald-600 hover:text-emerald-700">Buat sekarang</a>
+                </div>
             @endif
         </div>
+
+        {{-- Delete Modal --}}
+        <x-dashboard.delete-modal />
         <x-toast />
-        <div x-show="open" class="fixed top-0 left-0 w-full h-full bg-white/90  flex items-center justify-center">
-            <div class="shadow-lg p-3 bg-white rounded-lg text-center">
-                <h1 class="font-bold p-4">Apakah Yakin Akan menghapus</h1>
-                <p class="py-2 font-bold text-2xl" x-html="data.title"></p>
-                <hr>
-                <div class="flex justify-around">
-                    <button class="p-3 text-slate-500 w-full hover:bg-sky-100" @click="hapus()">Hapus</button>
-                    <button class="p-3 text-slate-500 w-full hover:bg-sky-100" @click="open=!open">Batal</button>
-                </div>
-            </div>
-        </div>
     </div>
+
     <script>
         const app = {
             open: false,
-            data: {},
+            data: { id: null, title: '' },
+            openDelete(id, title) {
+                this.data = { id, title };
+                this.open = true;
+            },
             async hapus() {
-                await axios.delete('/dashboard/pendidikan/' + this.data.id)
+                await axios.delete('/dashboard/info-pendaftaran/' + this.data.id)
                     .then(r => {
-                        this.open = false,
-                            this.$dispatch('notice', {
-                                type: 'success',
-                                text: '✔️ Data Berhasil dihapus'
-                            }),
-                            setTimeout(() => {
-                                window.location.replace('/dashboard/pendidikan')
-                            }, 1000);
+                        this.open = false;
+                        this.$dispatch('notice', { type: 'success', text: '✔️ Data Berhasil dihapus' });
+                        setTimeout(() => window.location.replace('/dashboard/info-pendaftaran'), 1000);
                     })
-                    .catch(e => console.log(e))
+                    .catch(e => console.log(e));
             }
         }
         tinymce.init({
@@ -61,23 +60,11 @@
                     content = editor.getContent();
                 });
             },
-            plugins: 'textcolor ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss image',
-            toolbar: 'forecolor backcolor | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name',
-            image_uploadtab: true,
-            mergetags_list: [{
-                    value: 'First.Name',
-                    title: 'First Name'
-                },
-                {
-                    value: 'Email',
-                    title: 'Email'
-                },
-            ],
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject(
-                "See docs to implement AI Assistant")),
-
+            promotion: false,
         });
     </script>
 @endsection

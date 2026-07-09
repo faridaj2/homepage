@@ -1,262 +1,235 @@
 @extends('layout.dashboard')
 @section('content')
-    <div class="mx-2" x-data="app">
-        <div class="flex justify-start my-3">
-            <button class="bg-blue-300 p-2 px-4 rounded-full" @click="upload=!upload"><ion-icon name="cloud-upload"></ion-icon>
+    <div x-data="app">
+        {{-- Header --}}
+        <div class="mb-6 flex items-center justify-between">
+            <div>
+                <h1 class="font-serif text-xl font-semibold text-[#1d1d1f]">File Upload</h1>
+                <p class="mt-1 text-sm text-[#86868b]">Kelola file dan gambar pondok pesantren</p>
+            </div>
+            <button @click="upload=!upload"
+               class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 ease-apple hover:bg-emerald-700 hover:shadow-lg">
+                <ion-icon name="cloud-upload-outline"></ion-icon>
                 Upload
-                File</button>
-        </div>
-        <div class="flex flex-wrap gap-3">
-            @foreach ($file as $item)
-                <div class="bg-white p-3 border inline-block rounded-md w-[200px] max-md:w-full">
-                    <div class="overflow-hidden h-[200px] object-center relative">
-                        <img src="{{ in_array($item->ext, ['png', 'svg', 'jpg', 'jpeg']) ? asset('/storage/file/' . $item->name) : 'https://img.icons8.com/fluency/240/file.png' }}"
-                            class="rounded object-contain w-full" alt="">
-                        <div class="absolute top-0 right-0 bg-white text-green-700 flex gap-3 px-2 rounded-bl">
-                            <button class="hover:text-green-950"
-                                @click="() => copy('{{ '/storage/file/' . $item->name }}')"><ion-icon
-                                    name="link"></ion-icon></button>
-                            <button class="hover:text-green-950 cursor-pointer"
-                                @click="()=> deleteItem({{ $item }})"><ion-icon name="trash"></ion-icon></button>
-                        </div>
-                    </div>
-                    <div>
-                        {{-- @php
-                            $fileName = $item->originalName;
-                            $newFileName;
-
-                            // Memotong nama file menjadi 7 karakter pertama
-                            if (strlen($fileName) > 7) {
-                                $shortenedName = substr($fileName, 0, 7);
-
-                                // Mendapatkan ekstensi file
-                                $extension = pathinfo($fileName, PATHINFO_EXTENSION);
-
-                                // Menggabungkan nama file yang dipotong dengan ekstensi
-                                $newFileName = $shortenedName . '.. .' . $extension;
-                            } else {
-                                $newFileName = $item->originalName;
-                            }
-
-                        @endphp --}}
-                        <p class="font-bold py-3 text-xs truncate">{{ $item->originalName }}</p>
-                    </div>
-                </div>
-            @endforeach
-
-
-        </div>
-        <div class="mt-2">
-            {{ $file->links() }}
-        </div>
-        <div class="fixed top-0 left-0 w-full h-full bg-white flex items-center justify-center" x-show="upload">
-            <button @click="upload=!upload" class="absolute top-10 right-10 text-3xl text-sky-400 hover:text-sky-700">
-                <ion-icon name="close-circle"></ion-icon>
             </button>
-
-            <div class=" p-3 rounded max-w-md">
-
-
-                <input type="file" name="" id="fileInput" hidden @change="uploadFile">
-                <div>
-
-                    <h1 class="font-bold text-violet-400 text-center my-4">Upload Image</h1>
-                    <div class="w-full border-dashed border-2 border-violet-400 flex items-center justify-center flex-col rounded cursor-pointer p-28"
-                        x-show="loader">
-                        <div class="lds-default ">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                        <div class="text-blue-500 mt-4 text-center w-full">loading...</div>
-                    </div>
-                    <div x-show="!loader"
-                        class="w-full border-dashed border-2 border-violet-400 flex items-center justify-center flex-col rounded cursor-pointer p-28"
-                        @click="fileClick">
-
-                        <div class="text-5xl text-violet-400">
-                            <ion-icon name="cloud-upload"></ion-icon>
-                        </div>
-                        <p class="text-md font-bold text-violet-500 text-center">Drag & Drop to Upload</p>
-                        <p class="text-xs text-slate-500">or browse</p>
-                    </div>
-                </div>
-                <div class="w-full hidden md:block" id="uploading" x-show="loading">
-                    <div class="shadow flex items-center p-3 text-violet-400 mt-3 rounded-md">
-                        <div class="text-5xl text-violet-500 mr-3"><ion-icon name="document"></ion-icon></div>
-                        <div class="w-full">
-                            <div class="flex justify-between w-full mb-3">
-                                <div class="text-blue-700 font-semibold text-sm truncate" x-text="fileUploadName">File
-                                    Name.jpg</div>
-                                <div class="text-xs font-semibold"><span x-text="percent"></span>%</div>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-[2px]">
-                                <div class="bg-blue-600 h-[2px] rounded-full" id="progressBar" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        <div class="flex items-center pl-2">
-                            <button class="bg-sky-100 rounded-full flex items-center p-3"><ion-icon
-                                    name="close"></ion-icon></button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
 
+        {{-- File Grid --}}
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            @forelse ($file as $item)
+                <div class="group relative overflow-hidden rounded-2xl border border-gray-100/80 bg-white shadow-apple-sm transition-all duration-300 ease-apple hover:shadow-apple-lg">
+                    <div class="aspect-square overflow-hidden bg-gray-50">
+                        <img src="{{ in_array($item->ext, ['png', 'svg', 'jpg', 'jpeg']) ? asset('/storage/file/' . $item->name) : 'https://img.icons8.com/fluency/240/file.png' }}"
+                             class="h-full w-full object-contain p-4">
+                    </div>
+                    <div class="p-3">
+                        <p class="truncate text-sm font-medium text-[#1d1d1f]">{{ $item->originalName }}</p>
+                        <p class="text-xs text-[#86868b]">{{ strtoupper($item->ext) }} file</p>
+                    </div>
+                    <div class="absolute right-2 top-2 flex gap-1 opacity-0 transition-all duration-200 group-hover:opacity-100">
+                        <button @click="copy('{{ '/storage/file/' . $item->name }}')"
+                                class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-[#86868b] shadow-apple-sm backdrop-blur-sm transition-all duration-200 hover:bg-emerald-500 hover:text-white">
+                            <ion-icon name="link-outline" class="text-sm"></ion-icon>
+                        </button>
+                        <button @click="deleteItem({{ $item->id }}, '{{ $item->originalName }}')"
+                                class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-[#86868b] shadow-apple-sm backdrop-blur-sm transition-all duration-200 hover:bg-red-500 hover:text-white">
+                            <ion-icon name="trash-outline" class="text-sm"></ion-icon>
+                        </button>
+                    </div>
+                </div>
+            @empty
+                <div class="col-span-full flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 py-16 text-center">
+                    <ion-icon name="cloud-upload-outline" class="text-4xl text-[#86868b]"></ion-icon>
+                    <p class="mt-3 text-sm text-[#86868b]">Belum ada file.</p>
+                    <button @click="upload=true" class="mt-2 text-sm font-medium text-emerald-600 hover:text-emerald-700">Upload sekarang</button>
+                </div>
+            @endforelse
+        </div>
 
-        <div x-show="open" class="fixed top-0 left-0 w-full h-full bg-white/90  flex items-center justify-center">
-            <div class="shadow-lg p-3 bg-white rounded-lg text-center">
-                <h1 class="font-bold p-4">Apakah Yakin Akan menghapus</h1>
-                <p class="py-2 font-bold text-2xl truncate" x-html="data.originalName"></p>
-                <hr>
-                <div class="flex justify-around">
-                    <button class="p-3 text-slate-500 w-full hover:bg-sky-100" @click="hapus()">Hapus</button>
-                    <button class="p-3 text-slate-500 w-full hover:bg-sky-100" @click="open=!open">Batal</button>
+        {{-- Pagination --}}
+        @if(method_exists($file, 'links'))
+            <div class="mt-6">
+                {{ $file->links() }}
+            </div>
+        @endif
+
+        {{-- Upload Modal --}}
+        <div x-show="upload" 
+             x-cloak
+             x-transition:enter="transition-all duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             class="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" @click="upload=false"></div>
+            <div x-show="upload"
+                 x-transition:enter="transition-all duration-300 ease-apple"
+                 x-transition:enter-start="opacity-0 scale-95"
+                 x-transition:enter-end="opacity-100 scale-100"
+                 class="relative w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
+                <button @click="upload=false" class="absolute right-4 top-4 text-2xl text-[#86868b] hover:text-[#1d1d1f]">
+                    <ion-icon name="close"></ion-icon>
+                </button>
+
+                <input type="file" id="fileInput" hidden @change="uploadFile">
+                
+                {{-- Upload Area --}}
+                <div x-show="!loader"
+                     class="flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-emerald-200 p-12 transition-all duration-300 hover:border-emerald-400 hover:bg-emerald-50/50"
+                     @click="fileClick">
+                    <div class="text-5xl text-emerald-400">
+                        <ion-icon name="cloud-upload-outline"></ion-icon>
+                    </div>
+                    <p class="mt-4 text-sm font-medium text-[#1d1d1f]">Upload File</p>
+                    <p class="text-xs text-[#86868b]">Klik untuk memilih file</p>
+                </div>
+
+                {{-- Loading --}}
+                <div x-show="loader" class="flex flex-col items-center justify-center py-12">
+                    <div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                    <p class="mt-4 text-sm text-emerald-600">Uploading...</p>
+                </div>
+
+                {{-- Progress --}}
+                <div x-show="loading && !loader" class="mt-4">
+                    <div class="flex items-center gap-3">
+                        <ion-icon name="document-outline" class="text-2xl text-emerald-500"></ion-icon>
+                        <div class="flex-1">
+                            <div class="flex justify-between text-xs text-[#86868b]">
+                                <span class="truncate" x-text="fileUploadName"></span>
+                                <span x-text="percent + '%'"></span>
+                            </div>
+                            <div class="mt-1 h-1.5 w-full rounded-full bg-gray-100">
+                                <div class="h-1.5 rounded-full bg-emerald-500 transition-all duration-300" id="progressBar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
+        {{-- Delete Modal --}}
+        <div x-show="open" 
+             x-cloak
+             x-transition:enter="transition-all duration-300 ease-apple"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             class="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+            <div x-show="open"
+                 x-transition:enter="transition-all duration-300 ease-apple"
+                 x-transition:enter-start="opacity-0 scale-95"
+                 x-transition:enter-end="opacity-100 scale-100"
+                 class="relative w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl">
+                <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-50">
+                    <svg class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+                    </svg>
+                </div>
+                <div class="mt-4 text-center">
+                    <h3 class="text-lg font-semibold text-[#1d1d1f]">Konfirmasi Hapus</h3>
+                    <p class="mt-2 text-sm text-[#86868b]">
+                        Apakah Anda yakin ingin menghapus 
+                        <span class="font-medium text-[#1d1d1f]" x-html="data.originalName"></span>?
+                    </p>
+                </div>
+                <div class="mt-6 flex justify-center gap-3">
+                    <button @click="open=false" class="rounded-full border border-gray-200 px-6 py-2.5 text-sm font-medium text-[#86868b] transition-all hover:bg-gray-50">Batal</button>
+                    <button @click="hapus()" class="rounded-full bg-red-500 px-6 py-2.5 text-sm font-medium text-white transition-all hover:bg-red-600">Hapus</button>
+                </div>
+            </div>
+        </div>
+
+        <x-toast />
     </div>
-    <x-toast />
+
     <script>
         const csrfToken = document.cookie.match(/XSRF-TOKEN=([^;]+)/)[1];
         const app = {
             open: false,
-            data: {},
+            data: { id: null, originalName: '' },
             upload: false,
             fileInput: document.getElementById('fileInput'),
-            uploading: document.getElementById('uploading'),
-            uploaded: document.getElementById('uploaded'),
             progressBar: document.getElementById('progressBar'),
             percent: 0,
             loading: false,
-            fileUploadName: 'as',
+            fileUploadName: '',
             loader: false,
             fileClick() {
-                this.fileInput.click();
+                document.getElementById('fileInput').click();
             },
             uploadFile(files) {
                 let file = files.target.files[0];
                 handleUpload(file, this);
             },
-            deleteItem(item) {
+            deleteItem(id, name) {
+                this.data = { id, originalName: name };
                 this.open = true;
-                this.data = item
             },
             async hapus() {
                 await axios.delete('/dashboard/file/' + this.data.id)
                     .then(r => {
-                        this.open = false,
-                            this.$dispatch('notice', {
-                                type: 'success',
-                                text: '✔️ Data Berhasil dihapus'
-                            }),
-                            setTimeout(() => {
-                                location.reload();
-                            }, 1000);
+                        this.open = false;
+                        this.$dispatch('notice', { type: 'success', text: '✔️ File Berhasil dihapus' });
+                        setTimeout(() => location.reload(), 1000);
                     })
-                    .catch(e => console.log(e))
+                    .catch(e => console.log(e));
             },
             copy(copy) {
-                const stringToCopy ='https://' + window.location.host + copy;
+                const stringToCopy = 'https://' + window.location.host + copy;
                 const tempInput = document.createElement('input');
                 tempInput.value = stringToCopy;
                 document.body.appendChild(tempInput);
                 tempInput.select();
                 document.execCommand('copy');
                 document.body.removeChild(tempInput);
-                this.$dispatch('notice', {
-                    type: 'success',
-                    text: '📜 Tautan telah disalin'
-                })
+                this.$dispatch('notice', { type: 'success', text: '📜 Tautan telah disalin' });
             }
         };
 
-
         const handleUpload = async (file, app) => {
-            app.loader = true
+            app.loader = true;
             const formData = new FormData();
             formData.append('file', file);
 
             const image = new Image();
             const reader = new FileReader();
-
             reader.onload = function(e) {
                 image.onload = function() {
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
-
-                    // Menghitung tinggi dan lebar baru berdasarkan rasio kompresi
-                    const compressionRatio = 0.7; // Rasio kompresi 70%
+                    const compressionRatio = 0.7;
                     const maxWidth = 1300;
                     const maxHeight = 1300;
                     let newWidth = image.width;
                     let newHeight = image.height;
-
                     if (newWidth > maxWidth || newHeight > maxHeight) {
                         const widthRatio = maxWidth / newWidth;
                         const heightRatio = maxHeight / newHeight;
                         const ratio = Math.min(widthRatio, heightRatio);
-
                         newWidth *= ratio;
                         newHeight *= ratio;
                     }
-
                     canvas.width = newWidth;
                     canvas.height = newHeight;
-
-                    // Menggambar gambar pada elemen canvas dengan ukuran yang telah dikompressi
                     ctx.drawImage(image, 0, 0, newWidth, newHeight);
-
-                    // Mengubah gambar pada elemen canvas menjadi blob
                     canvas.toBlob(async (compressedBlob) => {
                         formData.append('file', compressedBlob, file.name);
-
-                        await axios
-                            .post('/dashboard/file', formData, {
-                                headers: {
-                                    'Content-Type': 'multipart/form-data',
-                                },
-                                'X-CSRF-TOKEN': csrfToken,
-                                onUploadProgress: (progressEvent) => {
-                                    const progress = Math.round(
-                                        (progressEvent.loaded / progressEvent
-                                            .total) * 100
-                                    );
-                                    app.loading = true;
-                                    app.percent = progress;
-                                    app.progressBar.style.width = progress + '%';
-                                    app.fileUploadName = file.name;
-
-
-                                },
-                            })
-                            .then((response) => {
-                                // Handle successful upload
-                                console.log(response.data);
-                                location.reload(true);
-                            })
-                            .catch((error) => {
-                                // Handle upload error
-                                console.error(error);
-                            });
+                        await axios.post('/dashboard/file', formData, {
+                            headers: { 'Content-Type': 'multipart/form-data' },
+                            'X-CSRF-TOKEN': csrfToken,
+                            onUploadProgress: (progressEvent) => {
+                                const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+                                app.loading = true;
+                                app.percent = progress;
+                                app.progressBar.style.width = progress + '%';
+                                app.fileUploadName = file.name;
+                            },
+                        }).then(() => location.reload())
+                          .catch(error => console.error(error));
                     }, file.type);
                 };
-
                 image.src = e.target.result;
             };
-
             reader.readAsDataURL(file);
         };
     </script>

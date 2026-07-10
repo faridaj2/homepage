@@ -36,7 +36,7 @@
                     Mencetak generasi berakhlak mulia, berpengetahuan luas, dan siap berkontribusi dalam masyarakat.
                 </p>
                 <div class="mt-8 flex items-center justify-center gap-4">
-                    <a href="/pendaftaran"
+                    <a href="/pspdb"
                        class="inline-flex items-center rounded-full bg-emerald-600 px-8 py-3 text-sm font-medium text-white transition-all duration-300 ease-apple hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-600/25">
                         Daftar Sekarang
                     </a>

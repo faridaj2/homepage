@@ -2,7 +2,7 @@
 
 ## Overview
 
-Redesign the admin dashboard of Pondok Pesantren Darussalam Blokagung 2's website to be modern, intuitive, and responsive for both desktop and mobile. The redesign will use the same Apple-inspired design language as the public-facing homepage.
+Redesign the admin dashboard of Pondok Pesantren Darussalam Blokagung Dua's website to be modern, intuitive, and responsive for both desktop and mobile. The redesign will use the same Apple-inspired design language as the public-facing homepage.
 
 ---
 

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dashboard - Pondok Pesantren Darussalam Blokagung 2</title>
+    <title>Dashboard - Pondok Pesantren Darussalam Blokagung Dua</title>
 
     {{-- Css & Js --}}
     <x-head />

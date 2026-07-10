@@ -3,9 +3,9 @@
         {{-- Top: Logo + Description --}}
         <div class="mb-10 flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
             <div class="flex items-center gap-3">
-                <img src="/img/Logo.png" class="h-8 w-auto md:h-10" alt="Pondok Pesantren Darussalam Blokagung 2">
+                <img src="/img/Logo.png" class="h-8 w-auto md:h-10" alt="Pondok Pesantren Darussalam Blokagung Dua">
                 <div class="h-8 w-px bg-apple-border"></div>
-                <span class="text-sm font-medium text-apple-text-secondary">Pondok Pesantren Darussalam Blokagung 2</span>
+                <span class="text-sm font-medium text-apple-text-secondary">Pondok Pesantren Darussalam Blokagung Dua</span>
             </div>
             {{-- Social Icons --}}
             <div class="flex items-center gap-2">
@@ -90,7 +90,7 @@
         {{-- Bottom: Copyright --}}
         <div class="mt-10 border-t border-apple-border/50 pt-6">
             <p class="text-center text-xs text-apple-text-tertiary">
-                &copy; {{ date('Y') }} Pondok Pesantren Darussalam Blokagung 2. All rights reserved.
+                &copy; {{ date('Y') }} Pondok Pesantren Darussalam Blokagung Dua. All rights reserved.
             </p>
         </div>
     </div>

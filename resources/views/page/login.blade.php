@@ -4,7 +4,7 @@
         <div class="reveal w-full max-w-sm">
             {{-- Logo --}}
             <div class="mb-8 text-center">
-                <img src="/img/Logo.png" class="mx-auto h-10 w-auto" alt="Pondok Pesantren Darussalam Blokagung 2">
+                <img src="/img/Logo.png" class="mx-auto h-10 w-auto" alt="Pondok Pesantren Darussalam Blokagung Dua">
                 <h1 class="mt-4 font-serif text-2xl font-semibold text-apple-text">Selamat Datang</h1>
                 <p class="mt-1 text-sm text-apple-text-secondary">Masuk ke akun Anda</p>
             </div>

@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{-- <title>Home - Pondok Pesantren Darussalam Blokagung 2</title> --}}
+    {{-- <title>Home - Pondok Pesantren Darussalam Blokagung Dua</title> --}}
     {!! seo($seo ?? null) !!}
 
     {{-- Css & Js --}}
-    <meta name="description" content="Pondok Pesantren Darussalam Blokagung 2 adalah lembaga pendidikan Islam yang berfokus pada pengembangan ilmu agama dan keterampilan untuk mencetak generasi muda yang berakhlak mulia, berpengetahuan luas, dan siap berkontribusi dalam masyarakat. Dengan fasilitas yang lengkap dan pengajaran yang mengintegrasikan kurikulum agama dan umum, pondok pesantren ini bertujuan untuk menciptakan santri yang tangguh dalam menghadapi tantangan kehidupan di era modern.">
-    <meta name="keywords" content="Pondok pesantren, darussalam, darussalam blokagung, blokagung, darussalam blokagung 2, pondok pesantren dibanyuwangi, pondok pesantren di jawa timur">
+    <meta name="description" content="Pondok Pesantren Darussalam Blokagung Dua adalah lembaga pendidikan Islam yang berfokus pada pengembangan ilmu agama dan keterampilan untuk mencetak generasi muda yang berakhlak mulia, berpengetahuan luas, dan siap berkontribusi dalam masyarakat. Dengan fasilitas yang lengkap dan pengajaran yang mengintegrasikan kurikulum agama dan umum, pondok pesantren ini bertujuan untuk menciptakan santri yang tangguh dalam menghadapi tantangan kehidupan di era modern.">
+    <meta name="keywords" content="Pondok pesantren, darussalam, darussalam blokagung, blokagung, darussalam Blokagung Dua, pondok pesantren dibanyuwangi, pondok pesantren di jawa timur">
     
     <x-head />
     <meta name="google-site-verification" content="i_Ys03MP2YwO3Mbtvb0AL_5ARnPoHV_8xnVda22ep0k" />

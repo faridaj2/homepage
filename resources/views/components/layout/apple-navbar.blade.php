@@ -21,7 +21,7 @@
     <div class="mx-auto flex h-12 max-w-7xl items-center justify-between px-5 md:h-14 lg:px-8">
         {{-- Logo --}}
         <a href="/" class="flex items-center gap-2 transition-opacity duration-300 hover:opacity-80">
-            <img src="/img/Logo.png" class="h-7 w-auto md:h-8" alt="Pondok Pesantren Darussalam Blokagung 2">
+            <img src="/img/Logo.png" class="h-7 w-auto md:h-8" alt="Pondok Pesantren Darussalam Blokagung Dua">
         </a>
 
         {{-- Desktop Nav --}}

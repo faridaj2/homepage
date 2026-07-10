@@ -30,7 +30,7 @@
             <div class="reveal">
                 <h1 class="font-serif text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl">
                     Pondok Pesantren<br>
-                    <span class="text-emerald-400">Darussalam Blokagung 2</span>
+                    <span class="text-emerald-400">Darussalam Blokagung Dua</span>
                 </h1>
                 <p class="mx-auto mt-4 max-w-xl text-base text-white/70 md:text-lg">
                     Mencetak generasi berakhlak mulia, berpengetahuan luas, dan siap berkontribusi dalam masyarakat.
@@ -233,7 +233,7 @@
                 </div>
                 <div class="mt-10 flex items-center justify-center gap-3">
                     <div class="h-px w-12 bg-emerald-600/50"></div>
-                    <span class="text-sm font-medium text-emerald-400">YPP Darussalam Blokagung 2</span>
+                    <span class="text-sm font-medium text-emerald-400">YPP Darussalam Blokagung Dua</span>
                     <div class="h-px w-12 bg-emerald-600/50"></div>
                 </div>
             </div>

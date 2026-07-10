@@ -2,7 +2,7 @@
 
 ## Overview
 
-Redesign the public-facing pages of Pondok Pesantren Darussalam Blokagung 2's website to emulate the premium, minimalist aesthetic of apple.com. The admin/dashboard area is **excluded** from this redesign.
+Redesign the public-facing pages of Pondok Pesantren Darussalam Blokagung Dua's website to emulate the premium, minimalist aesthetic of apple.com. The admin/dashboard area is **excluded** from this redesign.
 
 ---
 

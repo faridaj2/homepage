@@ -12,7 +12,7 @@ return [
     /**
      * Use this setting to specify the site name that will be used in OpenGraph tags.
      */
-    'site_name' => "Pondok Pesantren Darussalam Blokagung 2",
+    'site_name' => "Pondok Pesantren Darussalam Blokagung Dua",
 
     /**
      * Use this setting to specify the path to the sitemap of your website. This exact path will outputted, so
@@ -82,7 +82,7 @@ return [
          * so you'll need to add the suffix manually if you want that. If set to null, we'll determine the title
          * just like the other pages.
          */
-        'homepage_title' => "PP Darussalam Blokagung 2",
+        'homepage_title' => "PP Darussalam Blokagung Dua",
     ],
 
     'description' => [
